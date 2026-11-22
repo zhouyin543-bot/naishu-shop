@@ -225,14 +225,28 @@ button{font:inherit;color:inherit;touch-action:manipulation}
 .skins .acard small{min-height:2.7em}
 .skins .acard small svg{width:12px;height:12px;vertical-align:-1px}
 .wardrobe .thumb canvas{width:56px;height:56px}
-.openwrap{display:flex;flex-direction:column;gap:8px;align-items:stretch;flex:none}
-.pzbtn{appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:5px;border:2.5px solid var(--ink);background:#24398F;color:#fff;font-family:var(--f-display);font-size:15px;letter-spacing:.06em;padding:4px 10px 5px;border-radius:14px;box-shadow:0 3px 0 var(--ink);cursor:pointer;white-space:nowrap}
-.pzbtn svg{width:20px;height:20px;flex:none}
+.festchip.xm{background:#2F6E49;color:#FFF3C4}
+.festchip.sk{background:#FDE3EC;color:#B83B64}
+.festpick{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.festpick button{appearance:none;border:2px solid var(--ink);border-radius:12px;background:var(--card);padding:6px 4px;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 2px 0 var(--ink);color:var(--ink)}
+.festpick button[aria-pressed="true"]{background:var(--cheese);transform:translateY(1px);box-shadow:0 1px 0 var(--ink)}
+.openwrap{display:flex;flex-direction:column;gap:7px;align-items:stretch;flex:none}
+.minibtns{display:flex;gap:5px}
+.pzbtn{appearance:none;flex:1;display:inline-flex;align-items:center;justify-content:center;gap:4px;border:2.5px solid var(--ink);background:#24398F;color:#fff;font-family:var(--f-display);font-size:14px;letter-spacing:.04em;padding:4px 7px 5px;border-radius:14px;box-shadow:0 3px 0 var(--ink);cursor:pointer;white-space:nowrap}
+.pzbtn.mgbtn{background:#E8843C}
+.pzbtn svg{width:17px;height:17px;flex:none}
 .pzbtn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
 .pz{position:fixed;inset:0;z-index:40;background:#16205A}
-.pz canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
-.pzx{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);left:max(12px,env(safe-area-inset-left,0px));z-index:2}
+.pz.mg{background:#FFF0D4}
+.pz > canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.pzx{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);left:max(12px,env(safe-area-inset-left,0px));z-index:2;pointer-events:auto}
 .pztitle{position:absolute;top:calc(env(safe-area-inset-top,0px) + 18px);right:max(14px,env(safe-area-inset-right,0px));font-family:var(--f-display);color:rgba(255,255,255,.8);font-size:16px;letter-spacing:.08em;pointer-events:none}
+.mgbar{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:max(12px,env(safe-area-inset-right,0px));z-index:2;display:flex;gap:6px;pointer-events:auto}
+.mgact{appearance:none;display:inline-flex;align-items:center;gap:4px;height:38px;padding:0 11px;border-radius:999px;border:2.5px solid var(--ink);background:var(--card);box-shadow:0 3px 0 var(--ink);font-size:13px;font-weight:900;color:var(--ink);cursor:pointer;white-space:nowrap}
+.mgact b{font-family:var(--f-num);background:var(--tomato);color:#fff;border-radius:99px;padding:0 5px;font-size:12px;line-height:1.35}
+.mgact:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
+.mgact[disabled]{opacity:.5;cursor:default;transform:none}
+.mgover{position:absolute;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;background:rgba(61,44,41,.45);padding:16px;box-sizing:border-box;pointer-events:auto}
 .swaps{position:absolute;top:-46px;left:max(12px,env(safe-area-inset-left,0px));display:flex;gap:8px;pointer-events:none}
 .swaps .swap{position:static;pointer-events:auto}
 .swap.farm{background:#7CC36A}
@@ -342,7 +356,7 @@ button{font:inherit;color:inherit;touch-action:manipulation}
         <div class="day-title"><b id="hubDay">第 1 天</b><button class="rep" id="hubRep" type="button" hidden>口碑 Lv.0</button><span class="event" id="hubEvent" hidden></span><button class="festchip" id="hubFest" type="button" hidden></button></div>
         <div class="goals" id="hubGoals"></div>
       </div>
-      <div class="openwrap"><button class="big-btn" id="openBtn" type="button">开门营业</button><button class="pzbtn" id="pzBtn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 7.5 12 12 4 7.5z" fill="#7FE0F5" stroke="#3D2C29" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 7.5V16.5L12 21V12z" fill="#38C6E8" stroke="#3D2C29" stroke-width="1.8" stroke-linejoin="round"/><path d="M20 7.5V16.5L12 21V12z" fill="#2390B0" stroke="#3D2C29" stroke-width="1.8" stroke-linejoin="round"/></svg>解压方块</button></div>
+      <div class="openwrap"><button class="big-btn" id="openBtn" type="button">开门营业</button><div class="minibtns"><button class="pzbtn" id="pzBtn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 7.5 12 12 4 7.5z" fill="#7FE0F5" stroke="#3D2C29" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 7.5V16.5L12 21V12z" fill="#38C6E8" stroke="#3D2C29" stroke-width="1.8" stroke-linejoin="round"/><path d="M20 7.5V16.5L12 21V12z" fill="#2390B0" stroke="#3D2C29" stroke-width="1.8" stroke-linejoin="round"/></svg>方块</button><button class="pzbtn mgbtn" id="mgBtn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="#FFE07A" stroke="#3D2C29" stroke-width="2"/><path d="M7.5 14.5l9-6v6z" fill="#FFC433" stroke="#3D2C29" stroke-width="1.6" stroke-linejoin="round"/><circle cx="11" cy="13" r="1.2" fill="#E39B12"/><circle cx="14.5" cy="12" r="1" fill="#E39B12"/></svg>合成</button></div></div>
     </div>
     <div class="quests" id="hubQuests" hidden></div>
     <nav class="tabs" role="tablist" id="tabs"></nav>
@@ -373,6 +387,7 @@ button{font:inherit;color:inherit;touch-action:manipulation}
 <section class="fsheet" id="fSheet" hidden><div class="fsheet-head"><b id="fSheetT"></b><button class="icon-btn" id="fSheetX" type="button" aria-label="关闭"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="tab-body" id="fSheetB"></div></section>
 </div></div>
 <div class="pz" id="pz" hidden><canvas id="pzc" aria-label="奶鼠方块塔"></canvas><button class="icon-btn pzx" id="pzClose" type="button" aria-label="返回小店"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="pztitle">奶鼠方块塔</div></div>
+<div class="pz mg" id="mg" hidden><canvas id="mgc" aria-label="奶鼠甜品合成"></canvas><div class="fcol"><button class="icon-btn pzx" id="mgClose" type="button" aria-label="返回小店"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="mgbar"><button class="mgact" id="mgShake" type="button">摇一摇 <b id="mgShakeN">1</b></button><button class="mgact" id="mgRestart" type="button">重开</button></div><div class="mgover" id="mgOver" hidden></div></div></div>
 <div class="load-err" id="loadErr" hidden>游戏没加载出来，请刷新页面再试一次。</div>
 
 <script>
@@ -425,7 +440,8 @@ const TOPS = {
   honey: { name: '蜂蜜', price: 4, on: ['toast', 'latte', 'icecream'], color: '#F2A93B' },
   foam: { name: '奶盖', price: 6, on: ['milktea', 'latte', 'shake'], color: '#F6C760' },
   pumpkin: { name: '南瓜', price: 8, on: ['cake', 'latte', 'shake', 'icecream'], color: '#FF9A3C', fest: 'hw' },
-  ginger: { name: '姜饼', price: 8, on: ['cake', 'latte', 'shake', 'icecream'], color: '#C98B4A', fest: 'xm' }
+  ginger: { name: '姜饼', price: 8, on: ['cake', 'latte', 'shake', 'icecream'], color: '#C98B4A', fest: 'xm' },
+  sakura: { name: '樱花', price: 8, on: ['cake', 'latte', 'shake', 'icecream', 'milktea'], color: '#F79BB4', fest: 'sk' }
 };
 const itemName = (id) => { const [b, t] = id.split(':'); if (!t) return ITEMS[b].name; const tn = TOPS[t].name; if (b === 'cake') return tn + '蛋糕'; if (b === 'toast') return tn + '吐司'; return tn + ITEMS[b].name; };
 const STATIONS = {
@@ -472,13 +488,13 @@ const GUP = {
 };
 const HELPER_INT = [0, 4.0, 3.3, 2.7, 2.2, 1.85, 1.55];
 const DECOR = {
-  wall: { name: '墙纸', items: [['plain', '奶油条纹', 0, 0], ['mint', '薄荷条纹', 3, 150], ['dots', '草莓波点', 4, 260], ['cheese', '奶酪格纹', 6, 480], ['night', '星星夜空', 8, 900], ['sakura', '樱花粉墙', 10, 2600], ['bats', '万圣夜', 10, 0, { fest: 'hw', candy: 40 }], ['snowwall', '雪花墙纸', 10, 0, { fest: 'xm', bells: 40 }]] },
+  wall: { name: '墙纸', items: [['plain', '奶油条纹', 0, 0], ['mint', '薄荷条纹', 3, 150], ['dots', '草莓波点', 4, 260], ['cheese', '奶酪格纹', 6, 480], ['night', '星星夜空', 8, 900], ['sakura', '樱花粉墙', 10, 2600], ['bats', '万圣夜', 10, 0, { fest: 'hw', candy: 40 }], ['snowwall', '雪花墙纸', 10, 0, { fest: 'xm', bells: 40 }], ['skwall', '樱花吹雪墙', 10, 0, { fest: 'sk', petals: 40 }]] },
   floor: { name: '地板', items: [['wood', '原木地板', 0, 0], ['check', '黑白格', 3, 160], ['tile', '蓝白花砖', 5, 360], ['carpet', '红地毯', 7, 700], ['marble', '大理石', 10, 2800]] },
-  lamp: { name: '吊灯', items: [['bulb', '小灯泡', 0, 0], ['cheese', '奶酪吊灯', 3, 200], ['crystal', '水晶灯', 7, 800], ['star', '星星灯', 10, 2400], ['pumpkin', '南瓜灯', 10, 0, { fest: 'hw', candy: 25 }], ['xmbell', '金铃铛吊灯', 10, 0, { fest: 'xm', bells: 25 }]] },
-  window: { name: '窗户', items: [['plain', '木窗', 0, 0], ['curtain', '碎花窗帘', 2, 120], ['flower', '窗台花箱', 4, 300], ['stained', '彩色玻璃', 8, 2000], ['web', '蜘蛛网窗', 8, 0, { fest: 'hw', candy: 30 }], ['xmsnow', '雪景花环窗', 8, 0, { fest: 'xm', bells: 30 }]] },
+  lamp: { name: '吊灯', items: [['bulb', '小灯泡', 0, 0], ['cheese', '奶酪吊灯', 3, 200], ['crystal', '水晶灯', 7, 800], ['star', '星星灯', 10, 2400], ['pumpkin', '南瓜灯', 10, 0, { fest: 'hw', candy: 25 }], ['xmbell', '金铃铛吊灯', 10, 0, { fest: 'xm', bells: 25 }], ['sklamp', '樱花纸灯笼', 10, 0, { fest: 'sk', petals: 25 }]] },
+  window: { name: '窗户', items: [['plain', '木窗', 0, 0], ['curtain', '碎花窗帘', 2, 120], ['flower', '窗台花箱', 4, 300], ['stained', '彩色玻璃', 8, 2000], ['web', '蜘蛛网窗', 8, 0, { fest: 'hw', candy: 30 }], ['xmsnow', '雪景花环窗', 8, 0, { fest: 'xm', bells: 30 }], ['skwin', '樱枝花窗', 8, 0, { fest: 'sk', petals: 30 }]] },
   plant: { name: '吊篮', items: [['none', '空着', 0, 0], ['ivy', '常春藤', 2, 90], ['flower', '花篮', 4, 260], ['berry', '草莓吊篮', 5, 420], ['orchid', '蝴蝶兰', 8, 1800]] },
   poster: { name: '挂画', items: [['none', '空着', 0, 0], ['cheese', '奶酪海报', 2, 100], ['run', '奶鼠快跑海报', 5, 450], ['portrait', '奶鼠肖像', 6, 600], ['family', '奶鼠全家福', 10, 3200]] },
-  shelf: { name: '摆件', items: [['none', '空着', 0, 0], ['clock', '布谷钟', 3, 240], ['radio', '留声机', 4, 380], ['fish', '小鱼缸', 7, 1100], ['lucky', '招财奶鼠', 10, 1500], ['trophy', '金奶酪奖杯', 14, 6000], ['cauldron', '魔法锅', 12, 0, { fest: 'hw', candy: 50 }], ['xmtree', '小圣诞树', 12, 0, { fest: 'xm', bells: 50 }]] },
+  shelf: { name: '摆件', items: [['none', '空着', 0, 0], ['clock', '布谷钟', 3, 240], ['radio', '留声机', 4, 380], ['fish', '小鱼缸', 7, 1100], ['lucky', '招财奶鼠', 10, 1500], ['trophy', '金奶酪奖杯', 14, 6000], ['cauldron', '魔法锅', 12, 0, { fest: 'hw', candy: 50 }], ['xmtree', '小圣诞树', 12, 0, { fest: 'xm', bells: 50 }], ['skbonsai', '樱花盆景', 12, 0, { fest: 'sk', petals: 50 }]] },
   sofa: { name: '等候区', items: [['none', '空着', 0, 0], ['bench', '木长椅', 3, 200], ['sofa', '软沙发', 6, 650], ['royal', '丝绒沙发', 10, 3000]] },
   counter: { name: '柜台', items: [['wood', '原木柜台', 0, 0], ['walnut', '胡桃木', 4, 1500], ['mint', '薄荷奶油', 6, 3000], ['pink', '草莓牛奶', 8, 5000], ['marble', '大理石台面', 12, 9000]] },
   view: { name: '窗外风景', items: [['field', '田野', 0, 0], ['sea', '海边', 5, 2500], ['snow', '雪山', 7, 4500], ['city', '城市夜景', 9, 7000], ['sakura', '樱花林', 12, 10000]] }
@@ -555,7 +571,12 @@ const ACH = [
   { id: 'regFriend', name: '第一位好朋友', desc: '和一位熟客成为好朋友（♥5）', stat: 'regBest', goal: 1, reward: 2000 },
   { id: 'regAll', name: '整条街的好朋友', desc: '和 8 位熟客都成为好朋友', stat: 'regBest', goal: 8, reward: 10000 },
   { id: 'pumpkin50', name: '南瓜收割机', desc: '万圣节卖出 50 份南瓜美食', stat: 'pumpkin', goal: 50, reward: 1500 },
-  { id: 'pz100', name: '解压大师', desc: '方块塔累计消除 100 层', stat: 'pzLayers', goal: 100, reward: 1000 }
+  { id: 'sakura50', name: '樱花满枝', desc: '樱花春游节卖出 50 份樱花美食', stat: 'sakura', goal: 50, reward: 1500 },
+  { id: 'skinsSk', name: '春游穿搭', desc: '集齐全部樱花春游节皮肤', stat: 'skinsSk', goal: 3, reward: 2500 },
+  { id: 'pz100', name: '解压大师', desc: '方块塔累计消除 100 层', stat: 'pzLayers', goal: 100, reward: 1000 },
+  { id: 'mgGold', name: '终极金奶酪', desc: '甜品合成里合出终极金奶酪', stat: 'mergeGold', goal: 1, reward: 1500 },
+  { id: 'mgScore', name: '合成大师', desc: '甜品合成单局达到 2,000 分', stat: 'mergeBest', goal: 2000, reward: 1200 },
+  { id: 'mgMerge', name: '甜品连连合', desc: '甜品合成累计合成 300 次', stat: 'mergeCount', goal: 300, reward: 1000 }
 ];
 
 /* =========================================================
@@ -595,7 +616,8 @@ const PRODUCTS = {
   flower: { name: '鲜花', fresh: 1, box: 4, cost: 12, ref: 28, pop: 0.45 },
   toy: { name: '小黄鸭', box: 4, cost: 15, ref: 35, pop: 0.4 },
   hwcandy: { name: '万圣节糖果', box: 10, cost: 3, ref: 8, pop: 1.5, multi: 1, season: 'hw' },
-  xmcookie: { name: '姜饼人饼干', box: 10, cost: 3, ref: 8, pop: 1.5, multi: 1, season: 'xm' }
+  xmcookie: { name: '姜饼人饼干', box: 10, cost: 3, ref: 8, pop: 1.5, multi: 1, season: 'xm' },
+  skmochi: { name: '樱花大福', box: 10, cost: 3, ref: 8, pop: 1.5, multi: 1, season: 'sk' }
 };
 const P_KEYS = Object.keys(PRODUCTS);
 const P_START = ['milk', 'bread', 'apple', 'chips', 'water'];
@@ -641,11 +663,11 @@ function defaultSave() {
   const eq = {}; Object.keys(DECOR).forEach((k) => { eq[k] = DECOR[k].items[0][0]; });
   return {
     v: 3, day: 1, coins: 0, stars: {}, crowns: {}, rep: 0, unlocked: ['case', 'milk', 'oven'], lv: { case: 1, milk: 1, oven: 1 },
-    staff: [], mgr: 0, shop: 'cheese', m: null, skins: ['none'], skin: 'none', gifts: {}, candy: 0, regs: {}, festSeen: {}, pz: { layers: 0 }, f: null, inFarm: 0, t: null, inTown: 0, bells: 0,
+    staff: [], mgr: 0, shop: 'cheese', m: null, skins: ['none'], skin: 'none', gifts: {}, candy: 0, regs: {}, festSeen: {}, pz: { layers: 0 }, mg: { best: 0, golds: 0, merges: 0, maxTier: 0 }, f: null, inFarm: 0, t: null, inTown: 0, bells: 0, petals: 0,
     up: { tray: 0, price: 0, sign: 0, hours: 0, spot: 0, helper: 0, tipjar: 0 },
     owned: Object.keys(DECOR).map((k) => k + ':' + DECOR[k].items[0][0]), eq,
     album: {}, ach: {}, sold: {}, quests: null, st: { served: 0, earned: 0, perfect: 0, bestCombo: 0, vip: 0, critic: 0, threeStar: 0, angry: 0, quests: 0, rush: 0, bestRep: 0 },
-    set: { music: true, sfx: true }, lastSeen: 0, loginDay: '', streak: 0, lastEarn: 0, tut: 0, tutTop: 0, nextEvent: null, seenUnlock: {}
+    set: { music: true, sfx: true, festMode: 'auto' }, lastSeen: 0, loginDay: '', streak: 0, lastEarn: 0, tut: 0, tutTop: 0, nextEvent: null, seenUnlock: {}
   };
 }
 let G = defaultSave();
@@ -653,9 +675,14 @@ function applySave(s) {
   const d = defaultSave();
   G = Object.assign({}, d, s);
   ['up', 'st', 'set', 'eq', 'lv'].forEach((k) => { G[k] = Object.assign({}, d[k], s[k] || {}); });
+  if (!['auto', 'hw', 'xm', 'sk'].includes(G.set.festMode)) G.set.festMode = 'auto';
   if (!G.crowns || typeof G.crowns !== 'object') G.crowns = {};
   if (!Array.isArray(G.owned)) G.owned = d.owned;
-  Object.keys(DECOR).forEach((k) => { const def = k + ':' + DECOR[k].items[0][0]; if (!G.owned.includes(def)) G.owned.push(def); });
+  Object.keys(DECOR).forEach((k) => {
+    const def = k + ':' + DECOR[k].items[0][0];
+    if (!G.owned.includes(def)) G.owned.push(def);
+    if (!DECOR[k].items.some((it) => it[0] === G.eq[k])) G.eq[k] = DECOR[k].items[0][0];
+  });
   if (s.rep == null) { G.rep = Math.min(8, Math.floor((G.st.threeStar || 0) / 3)); G.st.bestRep = Math.max(G.st.bestRep || 0, G.rep); G.seasonNew = (G.day > 1); }
   if (!Array.isArray(G.staff)) G.staff = [];
   G.staff = G.staff.filter((x) => x && SPECIES[x.sp]).map((x) => ({ sp: x.sp, name: x.name || '店员', lv: clamp(x.lv || 1, 1, 3), st: x.st && STATIONS[x.st] ? x.st : null }));
@@ -669,14 +696,16 @@ function applySave(s) {
   ['regs', 'festSeen'].forEach((k) => { if (!G[k] || typeof G[k] !== 'object') G[k] = {}; });
   G.candy = Math.max(0, G.candy | 0);
   if (!G.pz || typeof G.pz !== 'object') G.pz = { layers: 0 };
+  G.mg = Object.assign({ best: 0, golds: 0, merges: 0, maxTier: 0 }, G.mg && typeof G.mg === 'object' ? G.mg : {});
   G.f = G.f && typeof G.f === 'object' ? fixFarm(G.f) : null;
   if (!G.f) G.inFarm = 0;
   G.t = G.t && typeof G.t === 'object' ? fixTown(G.t) : null;
   if (!G.t) G.inTown = 0;
   G.bells = Math.max(0, G.bells | 0);
+  G.petals = Math.max(0, G.petals | 0);
   if ((s.v || 1) < 3 && G.day > 1) G.news3 = true;
   G.v = 3;
-  M = G.m;
+  M = G.m; F = G.f;
 }
 function loadSave() {
   try {
@@ -921,39 +950,42 @@ function drawItem(c, id, s) {
     ell(c, 0, 0.3 * s, 0.5 * s, 0.1 * s); fs(c, '#FFFFFF', lw * 0.8);
     poly(c, [[-0.44 * s, -0.04 * s], [0.44 * s, 0.02 * s], [0.44 * s, 0.28 * s], [-0.44 * s, 0.2 * s]]); fs(c, '#FFE6A6', lw);
     poly(c, [[-0.44 * s, 0.14 * s], [0.44 * s, 0.21 * s], [0.44 * s, 0.28 * s], [-0.44 * s, 0.2 * s]]); fill(c, '#C98B4A');
-    const topC = t === 'straw' ? '#F26C86' : t === 'choc' ? '#7A4A2E' : t === 'pumpkin' ? '#FFA94D' : t === 'ginger' ? '#E8C08E' : '#FFF6DE';
+    const topC = t === 'straw' ? '#F26C86' : t === 'choc' ? '#7A4A2E' : t === 'pumpkin' ? '#FFA94D' : t === 'ginger' ? '#E8C08E' : t === 'sakura' ? '#FAD0DE' : '#FFF6DE';
     poly(c, [[-0.44 * s, -0.04 * s], [0.26 * s, -0.3 * s], [0.44 * s, 0.02 * s]]); fs(c, topC, lw);
     poly(c, [[-0.44 * s, -0.04 * s], [0.44 * s, 0.02 * s], [0.44 * s, 0.28 * s], [-0.44 * s, 0.2 * s]]); stroke(c, lw);
     if (t === 'choc') { c.fillStyle = '#7A4A2E'; [[-0.25, 0.08], [0.05, 0.1], [0.3, 0.13]].forEach(([a, bb]) => { ell(c, a * s, bb * s, 0.04 * s, 0.07 * s); c.fill(); }); }
     if (t === 'straw') strawberry(c, 0.16 * s, -0.2 * s, 0.26 * s);
     if (t === 'pumpkin') miniPumpkin(c, 0.16 * s, -0.24 * s, 0.11 * s, lw * 0.8);
     if (t === 'ginger') { gingerSprinkles(c, s, [[-0.3, 0.0], [-0.1, -0.1], [0.1, -0.08]]); miniGinger(c, 0.18 * s, -0.24 * s, 0.13 * s, lw * 0.7); }
+    if (t === 'sakura') { sakuraSprinkles(c, s, [[-0.28, -0.02], [-0.08, -0.1], [0.08, -0.06]]); miniSakura(c, 0.17 * s, -0.23 * s, 0.13 * s, lw * 0.7); }
   } else if (b === 'toast') {
     c.beginPath(); c.moveTo(-0.34 * s, 0.34 * s); c.lineTo(-0.34 * s, -0.06 * s); c.bezierCurveTo(-0.5 * s, -0.42 * s, -0.08 * s, -0.46 * s, 0, -0.3 * s); c.bezierCurveTo(0.08 * s, -0.46 * s, 0.5 * s, -0.42 * s, 0.34 * s, -0.06 * s); c.lineTo(0.34 * s, 0.34 * s); c.closePath(); fs(c, '#C98B4A', lw);
     c.beginPath(); c.moveTo(-0.26 * s, 0.27 * s); c.lineTo(-0.26 * s, -0.05 * s); c.bezierCurveTo(-0.36 * s, -0.32 * s, -0.06 * s, -0.36 * s, 0, -0.22 * s); c.bezierCurveTo(0.06 * s, -0.36 * s, 0.36 * s, -0.32 * s, 0.26 * s, -0.05 * s); c.lineTo(0.26 * s, 0.27 * s); c.closePath(); fill(c, '#F7DCA6');
     c.beginPath(); c.moveTo(-0.3 * s, -0.08 * s); c.lineTo(0.3 * s, -0.08 * s); c.lineTo(0.3 * s, 0.04 * s); c.quadraticCurveTo(0.2 * s, 0.2 * s, 0.12 * s, 0.04 * s); c.quadraticCurveTo(0, 0.14 * s, -0.08 * s, 0.04 * s); c.quadraticCurveTo(-0.2 * s, 0.24 * s, -0.3 * s, 0.04 * s); c.closePath(); fs(c, '#FFD34D', lw * 0.8);
     if (t === 'honey') { c.strokeStyle = '#E8901E'; c.lineWidth = s * 0.06; c.beginPath(); c.moveTo(-0.24 * s, -0.16 * s); c.quadraticCurveTo(0, 0.0, 0.1 * s, -0.18 * s); c.quadraticCurveTo(0.2 * s, -0.28 * s, 0.26 * s, -0.12 * s); c.stroke(); circ(c, -0.04 * s, 0.2 * s, 0.05 * s); fill(c, '#F2A93B'); }
   } else if (b === 'shake') {
-    const cc = t === 'straw' ? '#F7A6B8' : t === 'choc' ? '#A87256' : t === 'pumpkin' ? '#FFB867' : t === 'ginger' ? '#E8C08E' : '#F6EBD6';
-    c.strokeStyle = '#E8453C'; c.lineWidth = s * 0.07; c.beginPath(); c.moveTo(0.06 * s, -0.2 * s); c.lineTo(0.22 * s, -0.52 * s); c.stroke();
+    const cc = t === 'straw' ? '#F7A6B8' : t === 'choc' ? '#A87256' : t === 'pumpkin' ? '#FFB867' : t === 'ginger' ? '#E8C08E' : t === 'sakura' ? '#FAD0DE' : '#F6EBD6';
+    c.strokeStyle = t === 'sakura' ? '#E87A9E' : '#E8453C'; c.lineWidth = s * 0.07; c.beginPath(); c.moveTo(0.06 * s, -0.2 * s); c.lineTo(0.22 * s, -0.52 * s); c.stroke();
     poly(c, [[-0.25 * s, -0.16 * s], [0.25 * s, -0.16 * s], [0.18 * s, 0.4 * s], [-0.18 * s, 0.4 * s]]); fs(c, cc, lw);
     c.fillStyle = 'rgba(255,255,255,0.55)'; rr(c, -0.17 * s, -0.1 * s, 0.05 * s, 0.42 * s, 0.025 * s); c.fill();
-    [[-0.14, -0.2, 0.12], [0.02, -0.25, 0.14], [0.15, -0.19, 0.11]].forEach(([a, bb, r]) => { circ(c, a * s, bb * s, r * s); fs(c, t === 'foam' ? '#FFE9A8' : '#FFFFFF', lw * 0.8); });
+    [[-0.14, -0.2, 0.12], [0.02, -0.25, 0.14], [0.15, -0.19, 0.11]].forEach(([a, bb, r]) => { circ(c, a * s, bb * s, r * s); fs(c, t === 'foam' ? '#FFE9A8' : t === 'sakura' ? '#FFF0F5' : '#FFFFFF', lw * 0.8); });
     if (t === 'foam') { c.fillStyle = '#E39B12'; [[-0.12, -0.24], [0.04, -0.3], [0.14, -0.22]].forEach(([a, bb]) => { circ(c, a * s, bb * s, 0.025 * s); c.fill(); }); }
     else if (t === 'straw') strawberry(c, 0.02 * s, -0.36 * s, 0.2 * s);
     else if (t === 'pumpkin') { c.fillStyle = '#B9752F'; [[-0.1, -0.24], [0.04, -0.3], [0.13, -0.2]].forEach(([a, bb]) => { circ(c, a * s, bb * s, 0.02 * s); c.fill(); }); miniPumpkin(c, 0.03 * s, -0.37 * s, 0.08 * s, lw * 0.7); }
     else if (t === 'ginger') { gingerSprinkles(c, s, [[-0.12, -0.26], [0.04, -0.3], [0.12, -0.22]]); miniGinger(c, 0.03 * s, -0.38 * s, 0.1 * s, lw * 0.7); }
+    else if (t === 'sakura') { sakuraSprinkles(c, s, [[-0.12, -0.24], [0.05, -0.29], [0.13, -0.2]]); miniSakura(c, 0.03 * s, -0.37 * s, 0.11 * s, lw * 0.65); }
     else if (t === 'choc') { c.fillStyle = '#5C3520'; [[-0.1, -0.24], [0.06, -0.3], [0.12, -0.2]].forEach(([a, bb]) => { rr(c, a * s, bb * s, 0.05 * s, 0.03 * s, 0.01 * s); c.fill(); }); }
     else { circ(c, 0.02 * s, -0.38 * s, 0.07 * s); fs(c, '#E8453C', lw * 0.7); }
   } else if (b === 'icecream') {
     poly(c, [[-0.22 * s, -0.02 * s], [0.22 * s, -0.02 * s], [0, 0.46 * s]]); fs(c, '#E8B064', lw);
     c.strokeStyle = '#B97A34'; c.lineWidth = lw * 0.6; c.beginPath(); c.moveTo(-0.13 * s, -0.02 * s); c.lineTo(0.06 * s, 0.3 * s); c.moveTo(0.04 * s, -0.02 * s); c.lineTo(0.14 * s, 0.14 * s); c.moveTo(0.13 * s, -0.02 * s); c.lineTo(-0.06 * s, 0.3 * s); c.moveTo(-0.04 * s, -0.02 * s); c.lineTo(-0.14 * s, 0.14 * s); c.stroke();
-    const cc = t === 'straw' ? '#F7A6B8' : t === 'choc' ? '#8B5A3C' : t === 'honey' ? '#F6C760' : t === 'pumpkin' ? '#FFB867' : t === 'ginger' ? '#E8C08E' : '#FFF6E0';
+    const cc = t === 'straw' ? '#F7A6B8' : t === 'choc' ? '#8B5A3C' : t === 'honey' ? '#F6C760' : t === 'pumpkin' ? '#FFB867' : t === 'ginger' ? '#E8C08E' : t === 'sakura' ? '#FAD0DE' : '#FFF6E0';
     c.beginPath(); c.moveTo(-0.27 * s, -0.04 * s); c.bezierCurveTo(-0.34 * s, -0.5 * s, 0.34 * s, -0.5 * s, 0.27 * s, -0.04 * s); c.quadraticCurveTo(0.18 * s, 0.06 * s, 0.1 * s, -0.02 * s); c.quadraticCurveTo(0, 0.08 * s, -0.1 * s, -0.02 * s); c.quadraticCurveTo(-0.18 * s, 0.06 * s, -0.27 * s, -0.04 * s); c.closePath(); fs(c, cc, lw);
     c.fillStyle = 'rgba(255,255,255,0.6)'; ell(c, -0.1 * s, -0.24 * s, 0.06 * s, 0.04 * s, -0.5); c.fill();
     if (t === 'straw') strawberry(c, 0.04 * s, -0.36 * s, 0.18 * s);
     if (t === 'pumpkin') { c.fillStyle = '#B9752F'; [[-0.12, -0.26], [0.06, -0.3], [0.14, -0.18]].forEach(([a, bb]) => { circ(c, a * s, bb * s, 0.018 * s); c.fill(); }); miniPumpkin(c, 0.04 * s, -0.36 * s, 0.075 * s, lw * 0.7); }
     if (t === 'ginger') { gingerSprinkles(c, s, [[-0.14, -0.26], [0.04, -0.3], [0.13, -0.2]]); miniGinger(c, 0.04 * s, -0.38 * s, 0.1 * s, lw * 0.7); }
+    if (t === 'sakura') { sakuraSprinkles(c, s, [[-0.13, -0.24], [0.05, -0.28], [0.13, -0.18]]); miniSakura(c, 0.04 * s, -0.37 * s, 0.11 * s, lw * 0.65); }
     if (t === 'honey') { c.strokeStyle = '#E8901E'; c.lineWidth = s * 0.05; c.beginPath(); c.moveTo(-0.2 * s, -0.2 * s); c.quadraticCurveTo(0, -0.08 * s, 0.2 * s, -0.22 * s); c.stroke(); }
     if (t === 'choc') { c.fillStyle = '#FFF6E0'; [[-0.1, -0.3], [0.08, -0.22], [0.14, -0.34]].forEach(([a, bb]) => { rr(c, a * s, bb * s, 0.05 * s, 0.025 * s, 0.01 * s); c.fill(); }); }
   } else if (b === 'pizza') {
@@ -970,6 +1002,7 @@ function drawItem(c, id, s) {
     if (t === 'honey') { circ(c, 0.14 * s, -0.14 * s, 0.045 * s); fill(c, '#F2A93B'); circ(c, -0.16 * s, -0.1 * s, 0.035 * s); fill(c, '#F2A93B'); }
     if (t === 'pumpkin') { c.beginPath(); c.moveTo(-0.33 * s, -0.12 * s); c.bezierCurveTo(-0.34 * s, -0.34 * s, 0.34 * s, -0.34 * s, 0.33 * s, -0.12 * s); c.closePath(); fs(c, '#FFF3DF', lw * 0.8); c.fillStyle = '#B9752F'; [[-0.12, -0.2], [0.02, -0.25], [0.14, -0.18], [-0.02, -0.17]].forEach(([a, bb]) => { circ(c, a * s, bb * s, 0.02 * s); c.fill(); }); miniPumpkin(c, 0.17 * s, -0.27 * s, 0.07 * s, lw * 0.6); }
     if (t === 'ginger') { c.beginPath(); c.moveTo(-0.33 * s, -0.12 * s); c.bezierCurveTo(-0.34 * s, -0.34 * s, 0.34 * s, -0.34 * s, 0.33 * s, -0.12 * s); c.closePath(); fs(c, '#FFF6EC', lw * 0.8); gingerSprinkles(c, s, [[-0.14, -0.2], [0.0, -0.25], [-0.04, -0.17]]); miniGinger(c, 0.16 * s, -0.28 * s, 0.1 * s, lw * 0.6); }
+    if (t === 'sakura') { c.beginPath(); c.moveTo(-0.33 * s, -0.12 * s); c.bezierCurveTo(-0.34 * s, -0.34 * s, 0.34 * s, -0.34 * s, 0.33 * s, -0.12 * s); c.closePath(); fs(c, '#FFEAF0', lw * 0.8); sakuraSprinkles(c, s, [[-0.14, -0.2], [0.0, -0.25], [-0.04, -0.17]]); miniSakura(c, 0.16 * s, -0.27 * s, 0.1 * s, lw * 0.6); }
     if (t === 'foam') { c.beginPath(); c.moveTo(-0.33 * s, -0.12 * s); c.bezierCurveTo(-0.34 * s, -0.36 * s, 0.34 * s, -0.36 * s, 0.33 * s, -0.12 * s); c.closePath(); fs(c, '#FFE9A8', lw * 0.8); c.fillStyle = 'rgba(255,255,255,0.7)'; ell(c, -0.1 * s, -0.24 * s, 0.08 * s, 0.03 * s); c.fill(); c.fillStyle = '#E39B12'; circ(c, 0.08 * s, -0.2 * s, 0.025 * s); c.fill(); }
     c.strokeStyle = 'rgba(61,44,41,0.35)'; c.lineWidth = s * 0.03; c.beginPath(); c.moveTo(-0.08 * s, -0.3 * s); c.quadraticCurveTo(-0.14 * s, -0.4 * s, -0.06 * s, -0.48 * s); c.moveTo(0.08 * s, -0.3 * s); c.quadraticCurveTo(0.02 * s, -0.4 * s, 0.1 * s, -0.48 * s); c.stroke();
   } else if (b === 'fondue') {
@@ -987,10 +1020,11 @@ function drawItem(c, id, s) {
     c.beginPath(); c.moveTo(-0.42 * s, -0.04 * s); c.bezierCurveTo(-0.42 * s, -0.42 * s, 0.42 * s, -0.42 * s, 0.42 * s, -0.04 * s); c.closePath(); fs(c, '#E8A75E', lw);
     c.fillStyle = '#FFF3D6'; [[-0.18, -0.22], [0.02, -0.28], [0.2, -0.2], [0.08, -0.14], [-0.06, -0.16]].forEach(([a, bb]) => { ell(c, a * s, bb * s, 0.03 * s, 0.015 * s, 0.4); c.fill(); });
   } else if (b === 'milktea') {
-    poly(c, [[-0.24 * s, -0.22 * s], [0.24 * s, -0.22 * s], [0.18 * s, 0.42 * s], [-0.18 * s, 0.42 * s]]); fs(c, '#D9B48A', lw);
+    poly(c, [[-0.24 * s, -0.22 * s], [0.24 * s, -0.22 * s], [0.18 * s, 0.42 * s], [-0.18 * s, 0.42 * s]]); fs(c, t === 'sakura' ? '#F7C1CE' : '#D9B48A', lw);
     c.fillStyle = 'rgba(255,255,255,0.45)'; rr(c, -0.17 * s, -0.16 * s, 0.05 * s, 0.5 * s, 0.025 * s); c.fill();
     c.fillStyle = '#3A2420'; [[-0.1, 0.32], [0.02, 0.35], [0.12, 0.31], [-0.04, 0.24], [0.08, 0.22], [-0.12, 0.2]].forEach(([a, bb]) => { circ(c, a * s, bb * s, 0.045 * s); c.fill(); });
     if (t === 'foam') { poly(c, [[-0.24 * s, -0.22 * s], [0.24 * s, -0.22 * s], [0.225 * s, -0.04 * s], [-0.225 * s, -0.04 * s]]); fs(c, '#FFE9A8', lw * 0.8); c.fillStyle = '#E39B12'; circ(c, -0.06 * s, -0.14 * s, 0.025 * s); c.fill(); circ(c, 0.1 * s, -0.12 * s, 0.02 * s); c.fill(); }
+    if (t === 'sakura') { poly(c, [[-0.24 * s, -0.22 * s], [0.24 * s, -0.22 * s], [0.225 * s, -0.04 * s], [-0.225 * s, -0.04 * s]]); fs(c, '#FFF0F5', lw * 0.8); miniSakura(c, 0, -0.13 * s, 0.09 * s, lw * 0.6); }
     c.beginPath(); c.moveTo(-0.27 * s, -0.22 * s); c.bezierCurveTo(-0.27 * s, -0.42 * s, 0.27 * s, -0.42 * s, 0.27 * s, -0.22 * s); c.closePath(); fill(c, 'rgba(234,246,255,0.85)'); stroke(c, lw * 0.9);
     c.strokeStyle = INK; c.lineWidth = s * 0.11; c.beginPath(); c.moveTo(0.04 * s, -0.3 * s); c.lineTo(0.14 * s, -0.56 * s); c.stroke(); c.strokeStyle = '#F07A9A'; c.lineWidth = s * 0.07; c.stroke();
   } else if (b === 'gratin') {
@@ -1127,6 +1161,8 @@ function drawProduct(c, p, s) {
     c.fillStyle = '#F07A9A'; poly(c, [[-0.12 * s, 0.12 * s], [0.12 * s, 0.12 * s], [0.08 * s, 0.2 * s], [-0.08 * s, 0.2 * s]]); c.fill();
   } else if (p === 'xmcookie') {
     drawXmCookie(c, s, lw);
+  } else if (p === 'skmochi') {
+    drawSkMochi(c, s, lw);
   } else if (p === 'hwcandy') {
     const candy = (cx, cy, rot, body, wrap, sc) => {
       c.save(); c.translate(cx * s, cy * s); c.rotate(rot);
@@ -1250,7 +1286,7 @@ function drawMouse(c, x, y, S, o) {
   if (sk !== 'none') { skinBody(c, sk, S, t, lw); skinGiftBody(c, sk, S, t, lw); }
   // arms (the left hand can hold a costume prop)
   const armC = skinArmColor(sk) || yel;
-  [-1, 1].forEach((k) => { c.save(); c.translate(k * 0.41 * S, -0.92 * S); const prop = k === -1 && (sk === 'pumpkin' || sk === 'witch' || sk === 'devil'); const up = (mood === 'happy') ? (prop ? 1.0 : 2.3) : (o.wave && k === 1 ? 2.1 + Math.sin(t * 12) * 0.35 : 0.35); c.rotate(k * up); ell(c, 0, 0.17 * S, 0.075 * S, 0.17 * S); fs(c, armC, lw); if (sk !== 'none') skinArm(c, sk, S, lw); if (k === -1 && sk !== 'none') { c.translate(0, 0.3 * S); c.rotate(-k * up); skinHeld(c, sk, S, t, lw); } c.restore(); });
+  [-1, 1].forEach((k) => { c.save(); c.translate(k * 0.41 * S, -0.92 * S); const prop = k === -1 && (sk === 'pumpkin' || sk === 'witch' || sk === 'devil' || sk === 'picnic'); const up = (mood === 'happy') ? (prop ? 1.0 : 2.3) : (o.wave && k === 1 ? 2.1 + Math.sin(t * 12) * 0.35 : 0.35); c.rotate(k * up); ell(c, 0, 0.17 * S, 0.075 * S, 0.17 * S); fs(c, armC, lw); if (sk !== 'none') skinArm(c, sk, S, lw); if (k === -1 && sk !== 'none') { c.translate(0, 0.3 * S); c.rotate(-k * up); skinHeld(c, sk, S, t, lw); } c.restore(); });
   // face
   [-1, 1].forEach((k) => {
     const ex = k * 0.165 * S, ey = -1.29 * S;
@@ -1289,9 +1325,13 @@ const SKINS = {
   cowsuit: { name: '奶牛装', cost: 0, farm: 26, say: ['哞~', '我是奶鼠牛！'] },
   santa: { name: '圣诞老人', cost: 0, xm: 1, desc: '圣诞节礼物', say: ['圣诞快乐！', '礼物来啦~'] },
   reindeer: { name: '小驯鹿', cost: 4000, xm: 1, desc: '鹿角和会发光的红鼻子', say: ['我的鼻子会发光！', '拉雪橇出发~'] },
-  snowman: { name: '小雪人', cost: 5000, xm: 1, desc: '胡萝卜鼻子和小礼帽', say: ['好冷呀~', '我不会化掉的！'] }
+  snowman: { name: '小雪人', cost: 5000, xm: 1, desc: '胡萝卜鼻子和小礼帽', say: ['好冷呀~', '我不会化掉的！'] },
+  picnic: { name: '春游小画家', cost: 0, sk: 1, desc: '樱花节礼物，戴粉贝雷帽拿樱枝', say: ['春天来啦，去赏樱吧！', '这枝樱花送你~'] },
+  kimono: { name: '樱花浴衣', cost: 4000, sk: 1, desc: '樱花粉浴衣和蝴蝶结腰带', say: ['樱花大福配茶正好~', '微风吹过好舒服'] },
+  sakurafairy: { name: '樱花精灵', cost: 5500, sk: 1, desc: '半透明花瓣翅膀和樱花王冠', say: ['花瓣飘呀飘~', '我把春天带来啦！'] }
 };
 const XM_SKINS = ['santa', 'reindeer', 'snowman'];
+const SK_SKINS = ['picnic', 'kimono', 'sakurafairy'];
 const SKIN_KEYS = Object.keys(SKINS);
 const HW_SKINS = SKIN_KEYS.filter((k) => SKINS[k].hw);
 function mouseBodyPath(c, S) {
@@ -1305,6 +1345,7 @@ function mouseBodyPath(c, S) {
 function skinBack(c, sk, S, t, lw) {
   if (SKINS[sk] && SKINS[sk].farm) { skinFarmBack(c, sk, S, t, lw); return; }
   if (SKINS[sk] && SKINS[sk].xm) { skinXmBack(c, sk, S, t, lw); return; }
+  if (SKINS[sk] && SKINS[sk].sk) { skinSkBack(c, sk, S, t, lw); return; }
   if (sk === 'vampire') {
     c.beginPath(); c.moveTo(-0.3 * S, -1.02 * S); c.quadraticCurveTo(-0.62 * S, -0.62 * S, -0.8 * S, -0.04 * S);
     const n = 5; for (let i = 0; i < n; i++) { const x0 = -0.8 + i * 1.6 / n, x1 = x0 + 1.6 / n; c.quadraticCurveTo((x0 + x1) / 2 * S, 0.08 * S, x1 * S, -0.04 * S); }
@@ -1377,6 +1418,8 @@ function skinHeld(c, sk, S, t, lw) {
     c.beginPath(); c.moveTo(-0.1 * S, -0.1 * S); c.quadraticCurveTo(-0.1 * S, 0.02 * S, 0, 0.02 * S); c.quadraticCurveTo(0.1 * S, 0.02 * S, 0.1 * S, -0.1 * S); c.moveTo(0, 0.02 * S); c.lineTo(0, -0.14 * S); stroke(c, lw * 1.1, '#E8453C');
     [[-0.1, -0.1], [0, -0.14], [0.1, -0.1]].forEach(([a, b]) => { poly(c, [[(a - 0.03) * S, b * S], [(a + 0.03) * S, b * S], [a * S, (b - 0.06) * S]]); fs(c, '#E8453C', lw * 0.5); });
     c.restore();
+  } else if (sk === 'picnic') {
+    skinSkHeld(c, sk, S, t, lw);
   }
 }
 function skinHead(c, sk, S, t, lw, mood) {
@@ -1414,7 +1457,7 @@ function drawMouseSkinned(c, x, y, S, o) { o.skin = G.skin; drawMouse(c, x, y, S
    decor + room painting
    ========================================================= */
 function wallPattern(c, id, x, y, w, h) {
-  const base = { plain: '#FFF3DC', mint: '#E3F6EE', dots: '#FFF0F3', cheese: '#FFF1C9', night: '#2E3A66', sakura: '#FFE6EE', bats: '#3A2E55', snowwall: '#FFF4F0' }[id] || '#FFF3DC';
+  const base = { plain: '#FFF3DC', mint: '#E3F6EE', dots: '#FFF0F3', cheese: '#FFF1C9', night: '#2E3A66', sakura: '#FFE6EE', bats: '#3A2E55', snowwall: '#FFF4F0', skwall: '#FFF0F5' }[id] || '#FFF3DC';
   c.fillStyle = base; c.fillRect(x, y, w, h);
   c.save(); c.beginPath(); c.rect(x, y, w, h); c.clip();
   if (id === 'plain' || id === 'mint') { c.fillStyle = id === 'mint' ? '#CDEEDF' : '#F8E4C0'; for (let i = x; i < x + w; i += 26) c.fillRect(i, y, 12, h); }
@@ -1422,6 +1465,7 @@ function wallPattern(c, id, x, y, w, h) {
   if (id === 'cheese') { c.fillStyle = 'rgba(246,200,90,0.35)'; for (let i = x; i < x + w; i += 30) c.fillRect(i, y, 12, h); for (let j = y; j < y + h; j += 30) c.fillRect(x, j, w, 12); }
   if (id === 'sakura') { for (let j = 0, yy = y + 14; yy < y + h + 10; yy += 38, j++) for (let xx = x + (j % 2) * 22 + 10; xx < x + w + 10; xx += 44) { c.save(); c.translate(xx, yy); c.rotate((j * 0.7 + xx * 0.01) % 1.2); c.fillStyle = '#F7B3C6'; for (let k = 0; k < 5; k++) { c.rotate(Math.PI * 2 / 5); ell(c, 0, -4.6, 3.2, 4.6); c.fill(); } circ(c, 0, 0, 2); fill(c, '#FFE07A'); c.restore(); } c.fillStyle = 'rgba(247,179,198,0.55)'; for (let i = 0; i < 26; i++) { ell(c, x + ((i * 83) % w), y + ((i * 47) % h), 2.4, 1.5, i); c.fill(); } }
   if (id === 'snowwall') xmWall(c, x, y, w, h);
+  if (id === 'skwall') skWall(c, x, y, w, h);
   if (id === 'bats') {
     c.fillStyle = 'rgba(255,154,60,0.18)'; for (let i = x; i < x + w; i += 34) c.fillRect(i, y, 14, h);
     for (let j = 0, yy = y + 18; yy < y + h + 10; yy += 46, j++) for (let xx = x + (j % 2) * 30 + 14; xx < x + w + 10; xx += 60) {
@@ -1445,7 +1489,8 @@ function drawLamp(c, id, x, y, s, glow, top) {
   c.save(); c.lineJoin = 'round';
   c.beginPath(); c.moveTo(x, top == null ? y - 70 * s : top); c.lineTo(x, y - 14 * s); stroke(c, 2 * s, '#5A4A44');
   if (glow > 0) { const gr = c.createRadialGradient(x, y + 4 * s, 2, x, y + 4 * s, 70 * s); gr.addColorStop(0, 'rgba(255,220,140,' + (0.55 * glow) + ')'); gr.addColorStop(1, 'rgba(255,220,140,0)'); c.fillStyle = gr; c.fillRect(x - 70 * s, y - 66 * s, 140 * s, 140 * s); }
-  if (id === 'xmbell') xmLamp(c, x, y, s, glow);
+  if (id === 'xmbell') { xmLamp(c, x, y, s, glow); c.restore(); return; }
+  if (id === 'sklamp') { skLamp(c, x, y, s, glow); c.restore(); return; }
   if (id === 'pumpkin') {
     [[-11, 13], [11, 13]].forEach(([dx, rx]) => { ell(c, x + dx * s, y - 2 * s, rx * s, 13 * s); fs(c, '#FF9A3C', 2.2 * s); });
     ell(c, x, y - 3 * s, 13 * s, 14 * s); fs(c, '#FFA94D', 2.2 * s);
@@ -1492,6 +1537,7 @@ function drawShelfItem(c, id, x, y, s, t) {
   else if (id === 'fish') { const tt = t || 0; c.beginPath(); c.arc(x, y - 18 * s, 18 * s, Math.PI * 0.82, Math.PI * 2.18); c.closePath(); fill(c, 'rgba(158,216,240,0.7)'); stroke(c, 2.2 * s); c.save(); c.beginPath(); c.arc(x, y - 18 * s, 16 * s, 0, Math.PI * 2); c.clip(); c.fillStyle = '#E8D3B0'; c.fillRect(x - 18 * s, y - 6 * s, 36 * s, 8 * s); const fx = x + Math.sin(tt * 1.3) * 7 * s, dir = Math.cos(tt * 1.3) > 0 ? 1 : -1; ell(c, fx, y - 18 * s, 6 * s, 4 * s); fill(c, '#FF8A3D'); poly(c, [[fx - dir * 5 * s, y - 18 * s], [fx - dir * 10 * s, y - 22 * s], [fx - dir * 10 * s, y - 14 * s]]); fill(c, '#FF8A3D'); circ(c, fx + dir * 3 * s, y - 19 * s, 1 * s); fill(c, INK); c.restore(); }
   else if (id === 'trophy') { c.beginPath(); c.moveTo(x - 14 * s, y - 40 * s); c.lineTo(x + 14 * s, y - 40 * s); c.quadraticCurveTo(x + 13 * s, y - 20 * s, x, y - 17 * s); c.quadraticCurveTo(x - 13 * s, y - 20 * s, x - 14 * s, y - 40 * s); c.closePath(); fs(c, '#F2C14E', 2.2 * s); [-1, 1].forEach((k) => { c.beginPath(); c.arc(x + k * 15 * s, y - 33 * s, 5 * s, k < 0 ? Math.PI * 0.5 : -Math.PI * 0.5, k < 0 ? Math.PI * 1.5 : Math.PI * 0.5, k < 0); stroke(c, 2.2 * s, '#C9A04A'); }); rr(c, x - 3 * s, y - 18 * s, 6 * s, 10 * s, 1); fs(c, '#E0B040', 1.8 * s); rr(c, x - 11 * s, y - 9 * s, 22 * s, 9 * s, 2 * s); fs(c, '#8A5530', 2 * s); c.save(); c.translate(x, y - 44 * s); drawItem(c, 'cheese', 16 * s); c.restore(); c.globalAlpha = 0.7; star5(c, x - 8 * s, y - 32 * s, 3 * s); fill(c, '#FFFFFF'); c.globalAlpha = 1; }
   else if (id === 'xmtree') xmTree(c, x, y, s, t);
+  else if (id === 'skbonsai') skBonsai(c, x, y, s, t);
   else if (id === 'cauldron') {
     const tt = t || 0;
     [-12, 12].forEach((dx) => { c.beginPath(); c.moveTo(x + dx * s, y - 10 * s); c.lineTo(x + dx * 1.3 * s, y); stroke(c, 2.6 * s, '#2A2233'); });
@@ -1657,6 +1703,7 @@ function drawWindow(c, f, t) {
   if (f < 0.88) { circ(c, sx, sy, 9); fill(c, f > 0.6 ? '#FFB067' : '#FFE07A'); } else { circ(c, wx + ww * 0.75, wy + wh * 0.3, 8); fill(c, '#FFF6D0'); circ(c, wx + ww * 0.75 + 4, wy + wh * 0.3 - 3, 7); fill(c, top); }
   c.fillStyle = 'rgba(255,255,255,0.9)'; const cx0 = wx + ((t * 6) % (ww + 60)) - 30; ell(c, cx0, wy + wh * 0.3, 16, 6); c.fill(); ell(c, cx0 + 12, wy + wh * 0.26, 10, 6); c.fill();
   viewScene(c, G.eq.view, wx, wy, ww, wh, f, t);
+  if (festActive() === 'sk') { c.fillStyle = '#F7A6C0'; for (let i = 0; i < 12; i++) { const px = wx + (((i * 31 + Math.sin(t + i) * 10 + t * 14) % ww) + ww) % ww, py = wy + ((i * 23 + t * 20) % wh); ell(c, px, py, 2.4, 1.5, t * 2 + i); c.fill(); } }
   if (mode === 'day' && D && D.event === 'rain') { c.fillStyle = 'rgba(80,100,135,0.38)'; c.fillRect(wx, wy, ww, wh); c.strokeStyle = 'rgba(255,255,255,0.75)'; c.lineWidth = 1.5; c.beginPath(); for (let i = 0; i < 16; i++) { const rx = wx + ((i * 37 + t * 30) % ww), ry = wy + ((i * 23 + t * 150) % wh); c.moveTo(rx, ry); c.lineTo(rx - 3, ry + 9); } c.stroke(); }
   if (G.eq.window === 'stained') stainedGlass(c, wx, wy, ww, wh);
   c.restore();
@@ -1665,9 +1712,10 @@ function drawWindow(c, f, t) {
   if (deco === 'curtain') [-1, 1].forEach((k) => { c.beginPath(); const ex = k < 0 ? wx - 8 : wx + ww + 8, ix = k < 0 ? wx + ww * 0.22 : wx + ww * 0.78; c.moveTo(ex, wy - 10); c.lineTo(ix, wy - 10); c.quadraticCurveTo(ix - k * 8, wy + wh * 0.5, ex + k * -2, wy + wh * 0.8); c.lineTo(ex, wy + wh * 0.8); c.closePath(); fs(c, '#F7C1CE', 2.4); c.fillStyle = '#FFFFFF'; for (let i = 0; i < 6; i++) { circ(c, lerp(ex, ix, 0.3 + (i % 3) * 0.2), wy + 2 + i * wh * 0.11, 2); c.fill(); } });
   if (deco === 'curtain' || deco === 'flower') { rr(c, wx - 12, wy - 14, ww + 24, 7, 3); fs(c, '#B0703F', 2.2); }
   if (deco === 'web') drawWeb(c, wx, wy, ww, wh, t);
-  if (deco === 'xmsnow') xmWindow(c, wx, wy, ww, wh, t || 0);
   if (deco === 'flower') { rr(c, wx - 4, wy + wh + 2, ww + 8, 14, 4); fs(c, '#C98B55', 2.4); for (let i = 0; i < 6; i++) { const fx = wx + 10 + i * (ww - 20) / 5; ell(c, fx, wy + wh, 6, 4); fill(c, '#4CA96B'); circ(c, fx, wy + wh - 6, 4.5); fs(c, ['#F07A9A', '#FFC433', '#8FD3FF'][i % 3], 1.6); } }
   else { rr(c, wx - 10, wy + wh + 4, ww + 20, 7, 3); fs(c, '#FFFFFF', 2.4); }
+  if (deco === 'xmsnow') xmWindow(c, wx, wy, ww, wh, t || 0);
+  if (deco === 'skwin') skWindow(c, wx, wy, ww, wh, t || 0);
 }
 
 /* =========================================================
@@ -1827,17 +1875,17 @@ function drawStations(c, t) {
 function drawJars(c, t) {
   LY.jars.forEach((j) => {
     const unlocked = topAvail(j.id), cx = j.x + j.w / 2, by = j.y + j.h;
-    if (TOPS[j.id].fest) { c.save(); c.globalAlpha = 0.3 + Math.sin(t * 4) * 0.15; circ(c, cx, j.y + j.h / 2, j.w * 0.62); fill(c, '#FFB867'); c.restore(); }
+    if (TOPS[j.id].fest) { c.save(); c.globalAlpha = 0.3 + Math.sin(t * 4) * 0.15; circ(c, cx, j.y + j.h / 2, j.w * 0.62); fill(c, j.id === 'sakura' ? '#F79BB4' : '#FFB867'); c.restore(); }
     const s = Math.min(1, j.h / 40, j.w / 38);
     c.save(); c.lineJoin = 'round';
     if (!unlocked) { c.globalAlpha = 0.35; }
     const pulse = hand && unlocked && TOPS[j.id].on.includes(hand.item.split(':')[0]) && !hand.item.includes(':') ? 1 + Math.sin(t * 10) * 0.06 : 1;
     c.translate(cx, by); c.scale(pulse * s, pulse * s);
-    const JC = { straw: ['#F7A6B8', '#F0506E'], choc: ['#A87256', '#5C3520'], honey: ['#F6C760', '#E8901E'], foam: ['#FFF3C4', '#E8C25A'], pumpkin: ['#FFC48A', '#E07A1F'], ginger: ['#E8C08E', '#E8453C'] }[j.id];
+    const JC = { straw: ['#F7A6B8', '#F0506E'], choc: ['#A87256', '#5C3520'], honey: ['#F6C760', '#E8901E'], foam: ['#FFF3C4', '#E8C25A'], pumpkin: ['#FFC48A', '#E07A1F'], ginger: ['#E8C08E', '#E8453C'], sakura: ['#FAD0DE', '#E87A9E'] }[j.id];
     rr(c, -16, -34, 32, 32, 9); fs(c, JC[0], 2.4);
     rr(c, -18, -40, 36, 8, 3); fs(c, JC[1], 2.2);
     rr(c, -10, -26, 20, 14, 4); fill(c, '#FFF8EA');
-    if (j.id === 'pumpkin') miniPumpkin(c, 0, -18, 6.5, 1.4); else if (j.id === 'ginger') miniGinger(c, 0, -19, 7, 1.2); else if (j.id === 'straw') strawberry(c, 0, -19, 9); else if (j.id === 'choc') { rr(c, -6, -24, 12, 9, 2); fs(c, '#7A4A2E', 1.4); } else if (j.id === 'foam') { c.beginPath(); c.arc(-4, -18, 4, Math.PI, 0); c.arc(2, -20, 5, Math.PI, 0); c.arc(7, -18, 3, Math.PI, 0); c.lineTo(9, -15); c.lineTo(-8, -15); c.closePath(); fs(c, '#FFE9A8', 1.4); } else { ell(c, 0, -19, 6, 4); fs(c, '#F2A93B', 1.4); }
+    if (j.id === 'pumpkin') miniPumpkin(c, 0, -18, 6.5, 1.4); else if (j.id === 'ginger') miniGinger(c, 0, -19, 7, 1.2); else if (j.id === 'sakura') miniSakura(c, 0, -19, 6.8, 1.2); else if (j.id === 'straw') strawberry(c, 0, -19, 9); else if (j.id === 'choc') { rr(c, -6, -24, 12, 9, 2); fs(c, '#7A4A2E', 1.4); } else if (j.id === 'foam') { c.beginPath(); c.arc(-4, -18, 4, Math.PI, 0); c.arc(2, -20, 5, Math.PI, 0); c.arc(7, -18, 3, Math.PI, 0); c.lineTo(9, -15); c.lineTo(-8, -15); c.closePath(); fs(c, '#FFE9A8', 1.4); } else { ell(c, 0, -19, 6, 4); fs(c, '#F2A93B', 1.4); }
     c.restore();
     if (!unlocked) { const u = UNLOCKS.find((x) => x.id === j.id); if (u) txt(c, '★' + u.stars, cx, j.y + j.h / 2 - 2, 11, '#7B6157', FN); }
   });
@@ -2114,7 +2162,7 @@ function pay(c) {
   let sales = 0; c.order.forEach((l) => { const [b, tp] = l.id.split(':'); let p = ITEMS[b].price * (ev.priceItems && ev.priceItems.includes(b) ? ev.priceMul : 1) * masteryMul(b); if (tp) p += TOPS[tp].price; sales += p; });
   sales = Math.round(sales * priceMul);
   const ftp = festTop(); let candyN = 0;
-  c.order.forEach((l) => { const [b, tp] = l.id.split(':'); if (tp && tp === ftp) { candyN++; G.st.pumpkin = (G.st.pumpkin || 0) + 1; } const before = mastery(b); G.sold[b] = (G.sold[b] || 0) + 1; const after = mastery(b); if (after > before && !SIM) setTimeout(() => toast(ITEMS[b].name + '熟练度升到 ★' + after + '，售价 +' + (after - 1) * 5 + '%'), 700); questEvent('sell', b); if (tp) questEvent('topped'); });
+  c.order.forEach((l) => { const [b, tp] = l.id.split(':'); if (tp && tp === ftp) { candyN++; G.st[tp] = (G.st[tp] || 0) + 1; } const before = mastery(b); G.sold[b] = (G.sold[b] || 0) + 1; const after = mastery(b); if (after > before && !SIM) setTimeout(() => toast(ITEMS[b].name + '熟练度升到 ★' + after + '，售价 +' + (after - 1) * 5 + '%'), 700); questEvent('sell', b); if (tp) questEvent('topped'); });
   questEvent('species', c.sp);
   const pf = clamp(c.pat / c.max, 0, 1);
   const tip = Math.round(sales * (0.08 + 0.42 * pf) * c.S.tip * (1 + charm() * 0.008) * (ev.tip || 1) * (1 + 0.1 * (G.up.tipjar || 0)) * (c.rush ? 2 : 1));
@@ -2137,7 +2185,7 @@ function pay(c) {
   burst(head.x, head.y, 'heart', 6, '#F07A9A');
   floatText(head.x, head.y - 30, '+' + total, '#FFC433', 24);
   if (perfect) floatText(head.x, head.y - 58, '完美！', '#3FB28A', 20);
-  if (candyN) { const ck = festCur(); G[ck] = (G[ck] || 0) + candyN; D.candy = (D.candy || 0) + candyN; floatText(head.x, head.y - 86, festCurName() + ' +' + candyN, '#FF9A3C', 18); }
+  if (candyN) { const ck = festCur(), fa = festActive(); G[ck] = (G[ck] || 0) + candyN; D.candy = (D.candy || 0) + candyN; floatText(head.x, head.y - 86, festCurName() + ' +' + candyN, fa === 'sk' ? '#F07A9A' : fa === 'xm' ? '#FFC433' : '#FF9A3C', 18); }
   if (c.reg) regGain(c.reg, 2 + (perfect ? 1 : 0) + (c.order.some((l) => l.id.split(':')[0] === REGS[c.reg].fav) ? 1 : 0), head.x, head.y - (candyN ? 112 : 86));
   const tgt = coinTarget(), nCoins = clamp(Math.round(total / 7), 3, 10);
   for (let i = 0; i < nCoins; i++) coinsFly.push({ x0: head.x + rnd(-14, 14), y0: head.y + rnd(-10, 10), x1: tgt.x, y1: tgt.y, t: -i * 0.06, dur: 0.6, val: total / nCoins });
@@ -2256,7 +2304,7 @@ function helperAct() {
       const sl = st.slots[i]; if (sl.s !== 'ready') continue;
       let item = sl.item;
       if (!needCustomer(item) && topper) { const tp = toppingNeeded(item); if (tp) item = item + ':' + tp; }
-      if (needCustomer(item)) { const p = slotPos(id, i); sl.s = 'idle'; sl.item = null; if (item !== sl.item && item.includes(':')) burst(p.x, p.y, 'sparkle', 5, TOPS[item.split(':')[1]].color); routeItem(item, p, false); helperHop = 0.4; return; }
+      if (needCustomer(item)) { const p = slotPos(id, i), topped = item !== sl.item && item.includes(':'); sl.s = 'idle'; sl.item = null; if (topped) burst(p.x, p.y, 'sparkle', 5, TOPS[item.split(':')[1]].color); routeItem(item, p, false); helperHop = 0.4; return; }
     }
   }
   for (let i = 0; i < tray.length; i++) { const it = tray[i]; if (it && it !== '__in' && needCustomer(it)) { const p = LY.tray[i]; tray[i] = null; routeItem(it, { x: p.x, y: p.y - 8 }, false); helperHop = 0.4; return; } }
@@ -2439,6 +2487,7 @@ function render() {
   if (LY.door) { const d = LY.door, open = easeOut(doorOpen); const lw = d.w * (1 - open * 0.75); rr(g, d.x, d.y, lw, d.h, 6); fs(g, '#B0703F', 2.6); if (lw > 14) { circ(g, d.x + lw * 0.5, d.y + d.h * 0.3, Math.min(10, lw * 0.25)); fs(g, '#BFE3F7', 2); circ(g, d.x + lw - 7, d.y + d.h * 0.55, 3); fill(g, '#F2C14E'); } c_bell(g, d.x + d.w / 2, d.y - 4, doorOpen); }
   if (mode === 'day' && D && (D.event === 'weekend' || D.event === 'festival' || D.event === 'critic')) drawBunting(g, D.event, t);
   else if (festActive()) drawFestBunting(g, festActive(), t);
+  if (festActive() === 'sk' || G.eq.wall === 'skwall') drawPetals(g, GW, LY.counterY, t, 14);
   // evening tint
   if (f > 0.8) { g.fillStyle = 'rgba(46,40,110,' + ((f - 0.8) * 0.5) + ')'; g.fillRect(0, 0, GW, LY.counterY); }
   // queue
@@ -2459,7 +2508,7 @@ function render() {
   layoutBubbles();
   customers.filter((c) => c.state === 'wait' && c.bub).sort((a, b) => b.bub.lvl - a.bub.lvl).forEach((c) => drawBubble(g, c));
   customers.forEach((c) => { if (c.say && c.state !== 'leave') drawSay(g, c.state === 'wait' && c.bub ? clamp(c.x, 60, GW - 60) : c.x, c.state === 'wait' && c.bub ? c.bub.y0 - 14 : LY.counterY + 26 - 178 * LY.sc, c.say.text); });
-  if (shopper.say) drawSay(g, LY.mouseX - 10, LY.counterY - 160 * LY.sc, shopper.say.text);
+  if (shopper.say) { g.font = '700 13px ' + FB; const hw = g.measureText(shopper.say.text).width / 2 + 14; drawSay(g, clamp(LY.mouseX - 10, hw, GW - hw), LY.counterY - 160 * LY.sc, shopper.say.text); }
   // tray items
   tray.forEach((it, i) => { if (it && it !== '__in') { const p = LY.tray[i]; drawIcon(g, it, p.x, p.y - 8, 34); } });
   drawJars(g, t);
@@ -2496,7 +2545,7 @@ function render() {
   g.restore();
 }
 function drawFestBunting(c, ev, t) {
-  const cols = ev === 'xm' ? ['#E8453C', '#3FA45B', '#FFFFFF'] : ['#FF9A3C', '#6A4CA0', '#2A2233'], sw = Math.min(170, GW * 0.42), sx = GW / 2 - sw / 2, y0 = LY.top + 4;
+  const cols = ev === 'xm' ? ['#E8453C', '#3FA45B', '#FFFFFF'] : ev === 'sk' ? ['#F7A6C0', '#FFF0F5', '#9ED88A'] : ['#FF9A3C', '#6A4CA0', '#2A2233'], sw = Math.min(170, GW * 0.42), sx = GW / 2 - sw / 2, y0 = LY.top + 4;
   c.save(); c.lineJoin = 'round';
   [[0, sx - 8], [sx + sw + 8, GW]].forEach(([a, b], side) => {
     const len = b - a, n = Math.max(3, Math.round(len / 24)), sag = 14;
@@ -2686,7 +2735,7 @@ function decorThumb(x, cat, id, s) {
   if (cat === 'poster') { if (id === 'none') return; drawPoster(x, id, s * 0.2, s * 0.1, s * 0.6, s * 0.8); }
   if (cat === 'shelf') { if (id === 'none') return; drawShelfItem(x, id, s / 2, s * 0.86, 0.95, 0); }
   if (cat === 'sofa') { if (id === 'none') return; drawSofa(x, id, s * 0.12, s * 0.86, 0.55); }
-  if (cat === 'window') { const sky = x.createLinearGradient(0, 8, 0, s - 10); sky.addColorStop(0, '#7FC8F5'); sky.addColorStop(1, '#D8F1FF'); rr(x, 10, 10, s - 20, s - 22, 6); x.fillStyle = sky; x.fill(); stroke(x, 2.2); if (id === 'curtain') { x.fillStyle = '#F7C1CE'; rr(x, 6, 8, 14, s - 18, 4); x.fill(); rr(x, s - 20, 8, 14, s - 18, 4); x.fill(); } if (id === 'stained') { x.save(); rr(x, 10, 10, s - 20, s - 22, 6); x.clip(); stainedGlass(x, 10, 10, s - 20, s - 22); x.restore(); rr(x, 10, 10, s - 20, s - 22, 6); stroke(x, 2.2); } if (id === 'flower') { rr(x, 8, s - 16, s - 16, 9, 3); fs(x, '#C98B55', 2); [16, 28, 40].forEach((xx, i) => { circ(x, xx, s - 18, 4); fs(x, ['#F07A9A', '#FFC433', '#8FD3FF'][i], 1.4); }); } if (id === 'web') { x.save(); rr(x, 10, 10, s - 20, s - 22, 6); x.clip(); x.fillStyle = 'rgba(46,40,80,0.35)'; x.fillRect(0, 0, s, s); drawWeb(x, 10, 10, s - 20, s - 22, 0); x.restore(); } }
+  if (cat === 'window') { const sky = x.createLinearGradient(0, 8, 0, s - 10); sky.addColorStop(0, '#7FC8F5'); sky.addColorStop(1, '#D8F1FF'); rr(x, 10, 10, s - 20, s - 22, 6); x.fillStyle = sky; x.fill(); stroke(x, 2.2); if (id === 'curtain') { x.fillStyle = '#F7C1CE'; rr(x, 6, 8, 14, s - 18, 4); x.fill(); rr(x, s - 20, 8, 14, s - 18, 4); x.fill(); } if (id === 'stained') { x.save(); rr(x, 10, 10, s - 20, s - 22, 6); x.clip(); stainedGlass(x, 10, 10, s - 20, s - 22); x.restore(); rr(x, 10, 10, s - 20, s - 22, 6); stroke(x, 2.2); } if (id === 'flower') { rr(x, 8, s - 16, s - 16, 9, 3); fs(x, '#C98B55', 2); [16, 28, 40].forEach((xx, i) => { circ(x, xx, s - 18, 4); fs(x, ['#F07A9A', '#FFC433', '#8FD3FF'][i], 1.4); }); } if (id === 'web') { x.save(); rr(x, 10, 10, s - 20, s - 22, 6); x.clip(); x.fillStyle = 'rgba(46,40,80,0.35)'; x.fillRect(0, 0, s, s); drawWeb(x, 10, 10, s - 20, s - 22, 0); x.restore(); } if (id === 'xmsnow') { x.save(); rr(x, 10, 10, s - 20, s - 22, 6); x.clip(); x.fillStyle = '#FFFFFF'; [[0.25, 0.25], [0.62, 0.35], [0.4, 0.65], [0.76, 0.22]].forEach(([u, v]) => { circ(x, 10 + (s - 20) * u, 10 + (s - 22) * v, s * 0.036); x.fill(); }); x.restore(); x.beginPath(); x.moveTo(8, s - 11); for (let xx = 8; xx <= s - 8; xx += 8) x.quadraticCurveTo(xx + 4, s - 17, xx + 8, s - 11); x.closePath(); fs(x, '#FFFFFF', 1.6); x.beginPath(); x.arc(s / 2, 11, s * 0.13, 0, Math.PI * 2); stroke(x, 5, INK); x.beginPath(); x.arc(s / 2, 11, s * 0.13, 0, Math.PI * 2); stroke(x, 3.2, '#3FA45B'); circ(x, s / 2, 11 + s * 0.13, 2.4); fill(x, '#E8453C'); } if (id === 'skwin') { x.save(); rr(x, 10, 10, s - 20, s - 22, 6); x.clip(); x.fillStyle = '#F7A6C0'; [[0.24, 0.32], [0.68, 0.45], [0.46, 0.68], [0.78, 0.72]].forEach(([u, v], i) => { ell(x, 10 + (s - 20) * u, 10 + (s - 22) * v, s * 0.045, s * 0.026, i); x.fill(); }); x.restore(); x.beginPath(); x.moveTo(6, 12); x.quadraticCurveTo(s * 0.48, 7, s - 7, 17); stroke(x, 3, '#7B4E38'); [[0.28, 11], [0.52, 10], [0.74, 15]].forEach(([u, yy]) => miniSakura(x, s * u, yy, s * 0.095, 1.1)); } }
 }
 function renderAlbum(body) {
   renderRegulars(body);
@@ -2706,7 +2755,7 @@ function renderAlbum(body) {
 }
 function achProgress(a) {
   if (a.stat === 'unlocks') return UNLOCKS.filter((u) => isUnlocked(u.id)).length;
-  if (a.stat === 'decor') return G.owned.filter((k) => { const [c, i] = k.split(':'); return DECOR[c].items[0][0] !== i; }).length;
+  if (a.stat === 'decor') return G.owned.filter((k) => { const [c, i] = k.split(':'); return DECOR[c] && DECOR[c].items[0][0] !== i; }).length;
   if (a.stat === 'album') return SP_KEYS.filter((k) => G.album[k]).length;
   if (a.stat === 'master') return Object.keys(ITEMS).filter((b) => mastery(b) >= 5).length;
   if (a.stat === 'crowns') return Object.keys(G.crowns || {}).length;
@@ -2715,6 +2764,10 @@ function achProgress(a) {
   if (a.stat === 'staffN') return (G.staff || []).length;
   if (a.stat === 'pzLayers') return (G.pz && G.pz.layers) || 0;
   if (a.stat === 'skinsHw') return HW_SKINS.filter((k) => G.skins.includes(k)).length;
+  if (a.stat === 'skinsSk') return SK_SKINS.filter((k) => G.skins.includes(k)).length;
+  if (a.stat === 'mergeGold') return (G.mg && G.mg.golds) || 0;
+  if (a.stat === 'mergeBest') return (G.mg && G.mg.best) || 0;
+  if (a.stat === 'mergeCount') return (G.mg && G.mg.merges) || 0;
   if (a.stat === 'regBest') return REG_KEYS.filter((id) => G.regs && G.regs[id] && G.regs[id].lv >= 5).length;
   if (a.stat === 'mgr') return G.mgr || 0;
   if (a.stat === 'mOpen') return G.m ? 1 : 0;
@@ -2836,20 +2889,35 @@ function showRestore() {
   });
 }
 function showSettings() {
+  let festChanged = false;
   showModal((card, close) => {
     card.appendChild(el('h2', '', '设置'));
     const mk = (label, key, on) => { const b = el('button', 'toggle', '<span>' + label + '</span><i></i>'); b.type = 'button'; b.setAttribute('aria-pressed', String(G.set[key])); b.addEventListener('click', () => { G.set[key] = !G.set[key]; b.setAttribute('aria-pressed', String(G.set[key])); save(); ensureAudio(); on && on(G.set[key]); }); return b; };
     card.appendChild(mk('背景音乐', 'music', (v) => { if (v) Music.start(); else Music.stop(); }));
     card.appendChild(mk('音效', 'sfx'));
+    card.appendChild(el('div', 'sec', '节日活动'));
+    const fp = el('div', 'festpick');
+    [['auto', '按日期'], ['sk', '樱花节'], ['xm', '圣诞节'], ['hw', '万圣节']].forEach(([id, label]) => {
+      const fb = el('button', '', label); fb.type = 'button'; fb.setAttribute('aria-pressed', String((G.set.festMode || 'auto') === id));
+      fb.addEventListener('click', () => {
+        if ((G.set.festMode || 'auto') === id) return;
+        G.set.festMode = id; festChanged = true;
+        fp.querySelectorAll('button').forEach((x, idx) => x.setAttribute('aria-pressed', String(['auto', 'sk', 'xm', 'hw'][idx] === id)));
+        save(); layout(); bgDirty = true; mbgDirty = true; if (M) festCleanupMart(); renderHub(); sfx.tap();
+        toast(id === 'auto' ? '已切回按日期自动' : '已开启' + FESTS[id].name + '体验');
+      });
+      fp.appendChild(fb);
+    });
+    card.appendChild(fp);
     card.appendChild(el('p', '', '进度自动存在这台手机的浏览器里。浏览器有时会清掉网页数据，隔几天备份一次存档码最保险。'));
     const bk = el('button', 'btn ghost', '备份存档'); bk.type = 'button'; bk.addEventListener('click', () => { close(); showBackup(); }); card.appendChild(bk);
     const rv = el('button', 'btn ghost', '用存档码恢复'); rv.type = 'button'; rv.addEventListener('click', () => { close(); showRestore(); }); card.appendChild(rv);
     const rs = el('button', 'btn ghost', '清空存档，从头开始'); rs.type = 'button';
-    rs.addEventListener('click', () => { if (rs.dataset.armed) { try { localStorage.removeItem(SAVE_KEY); } catch (e) {} G = defaultSave(); M = null; dispCoins = 0; close(); buildStations(); goHub(); toast('已经重新开始'); } else { rs.dataset.armed = '1'; rs.textContent = '再点一次确认清空'; } });
+    rs.addEventListener('click', () => { if (rs.dataset.armed) { try { localStorage.removeItem(SAVE_KEY); } catch (e) {} G = defaultSave(); M = null; F = null; dispCoins = 0; bgDirty = true; mbgDirty = true; close(); layout(); buildStations(); goHub(); toast('已经重新开始'); } else { rs.dataset.armed = '1'; rs.textContent = '再点一次确认清空'; } });
     card.appendChild(rs);
     const b = el('button', 'big-btn wide', '好了'); b.type = 'button'; b.addEventListener('click', close); card.appendChild(b);
     card.appendChild(el('p', '', '奶鼠奶酪屋 · by hyc'));
-  });
+  }, () => { if (festChanged) { if (festActive() === 'hw') halloweenGift(); festIntro(); } });
 }
 function showPause() {
   paused = true;
@@ -3285,7 +3353,7 @@ function mFinish() {
   G.coins += total; MD.sales += total;
   R.lines.forEach((L) => { MD.cogs += L.cost; MD.sold[L.p] = (MD.sold[L.p] || 0) + L.q; M.sold[L.p] = (M.sold[L.p] || 0) + L.q; mQuestEvent('sell', L.p, L.q); });
   MD.served++; M.st.served++; mQuestEvent('serve');
-  const candyN = R.lines.filter((L) => PRODUCTS[L.p].season && festOn(PRODUCTS[L.p].season)).length; if (candyN) { const ck = festCur(); G[ck] = (G[ck] || 0) + candyN; MD.candy = (MD.candy || 0) + candyN; floatText(LM.ctr.x + 18, LM.ctr.y - 70, festCurName() + ' +' + candyN, '#FF9A3C', 16); }
+  const candyN = R.lines.filter((L) => PRODUCTS[L.p].season && festOn(PRODUCTS[L.p].season)).length; if (candyN) { const ck = festCur(), fa = festActive(); G[ck] = (G[ck] || 0) + candyN; MD.candy = (MD.candy || 0) + candyN; floatText(LM.ctr.x + 18, LM.ctr.y - 70, festCurName() + ' +' + candyN, fa === 'sk' ? '#F07A9A' : fa === 'xm' ? '#FFC433' : '#FF9A3C', 16); }
   if (c.reg) regGain(c.reg, 2 + (c.sat >= 0.9 ? 1 : 0), c.x, c.y - 90 * LM.sc / 0.3);
   if (R.change > 0) { M.st.cash++; MD.cashN++; mQuestEvent('cash'); }
   const fastLim = 1.6 + 1.1 * R.lines.length + (R.change > 0 ? 3 : 1.2);
@@ -3564,8 +3632,9 @@ function drawMartScene(t) {
   g2.drawImage(mBack, 0, 0, GW, H);
   // windows on the back wall (sky follows the clock)
   const f = mode === 'day' && MD ? clamp(MD.t / MD.len, 0, 1) : 0.05, [sk1, sk2] = skyAt(f);
-  [[GW * 0.2, 0], [GW * 0.8 - 30, 1]].forEach(([wx]) => { const wy = LM.top + 2, ww = 30, wh = 18; rr(g2, wx - 2, wy - 2, ww + 4, wh + 4, 4); fs(g2, '#FFFFFF', 2); const gr = g2.createLinearGradient(0, wy, 0, wy + wh); gr.addColorStop(0, sk1); gr.addColorStop(1, sk2); g2.fillStyle = gr; g2.fillRect(wx, wy, ww, wh); if (mode === 'day' && MD && MD.event === 'rain') { g2.strokeStyle = 'rgba(255,255,255,0.7)'; g2.lineWidth = 1; g2.beginPath(); for (let i = 0; i < 4; i++) { const rx = wx + ((i * 9 + t * 25) % ww), ry = wy + ((i * 7 + t * 60) % wh); g2.moveTo(rx, ry); g2.lineTo(rx - 2, ry + 5); } g2.stroke(); } g2.beginPath(); g2.moveTo(wx + ww / 2, wy); g2.lineTo(wx + ww / 2, wy + wh); stroke(g2, 2, '#FFFFFF'); });
-  if (festActive() === 'hw') { const y0 = LM.wallB - 12, n = Math.round(GW / 22); g2.save(); g2.lineJoin = 'round'; g2.beginPath(); g2.moveTo(0, y0 - 4); g2.lineTo(GW, y0 - 4); stroke(g2, 1.4, '#5A3A22'); for (let i = 0; i < n; i++) { const x = (i + 0.5) * GW / n; g2.save(); g2.translate(x, y0 - 4); g2.rotate(Math.sin(t * 2 + i) * 0.08); poly(g2, [[-6, 0], [6, 0], [0, 10]]); fs(g2, ['#FF9A3C', '#6A4CA0', '#2A2233'][i % 3], 1.2); g2.restore(); } g2.restore(); }
+  const fa = festActive();
+  [[GW * 0.2, 0], [GW * 0.8 - 30, 1]].forEach(([wx]) => { const wy = LM.top + 2, ww = 30, wh = 18; rr(g2, wx - 2, wy - 2, ww + 4, wh + 4, 4); fs(g2, '#FFFFFF', 2); const gr = g2.createLinearGradient(0, wy, 0, wy + wh); gr.addColorStop(0, sk1); gr.addColorStop(1, sk2); g2.fillStyle = gr; g2.fillRect(wx, wy, ww, wh); if (mode === 'day' && MD && MD.event === 'rain') { g2.strokeStyle = 'rgba(255,255,255,0.7)'; g2.lineWidth = 1; g2.beginPath(); for (let i = 0; i < 4; i++) { const rx = wx + ((i * 9 + t * 25) % ww), ry = wy + ((i * 7 + t * 60) % wh); g2.moveTo(rx, ry); g2.lineTo(rx - 2, ry + 5); } g2.stroke(); } else if (fa === 'xm') { g2.fillStyle = '#FFFFFF'; for (let i = 0; i < 4; i++) { circ(g2, wx + ((i * 8 + t * 6) % ww), wy + ((i * 6 + t * 14) % wh), 1.3); g2.fill(); } } else if (fa === 'sk') { g2.fillStyle = '#F7A6C0'; for (let i = 0; i < 4; i++) { ell(g2, wx + ((i * 8 + t * 8) % ww), wy + ((i * 5 + t * 14) % wh), 1.7, 1.1, t + i); g2.fill(); } } g2.beginPath(); g2.moveTo(wx + ww / 2, wy); g2.lineTo(wx + ww / 2, wy + wh); stroke(g2, 2, '#FFFFFF'); });
+  if (fa) { const bcols = fa === 'xm' ? ['#E8453C', '#3FA45B', '#FFFFFF'] : fa === 'sk' ? ['#F7A6C0', '#FFF0F5', '#9ED88A'] : ['#FF9A3C', '#6A4CA0', '#2A2233']; const y0 = LM.wallB - 12, n = Math.round(GW / 22); g2.save(); g2.lineJoin = 'round'; g2.beginPath(); g2.moveTo(0, y0 - 4); g2.lineTo(GW, y0 - 4); stroke(g2, 1.4, '#5A3A22'); for (let i = 0; i < n; i++) { const x = (i + 0.5) * GW / n; g2.save(); g2.translate(x, y0 - 4); g2.rotate(Math.sin(t * 2 + i) * 0.08); poly(g2, [[-6, 0], [6, 0], [0, 10]]); fs(g2, bcols[i % 3], 1.2); g2.restore(); } g2.restore(); }
   // door leaf
   { const d = LM.door, open = easeOut(doorOpen), lw = (d.w - 4) * (1 - open * 0.8); if (lw > 2) { rr(g2, d.x + 2, d.y, lw, d.h, 5); fill(g2, 'rgba(255,255,255,0.35)'); stroke(g2, 1.6, 'rgba(61,44,41,0.5)'); } }
   // goods
@@ -3678,7 +3747,7 @@ function staffAct(sf) {
     const sl = st.slots[i]; if (sl.s !== 'ready') continue;
     let item = sl.item;
     if (!needCustomer(item)) { const tp = toppingNeeded(item); if (tp) item = item + ':' + tp; }
-    if (needCustomer(item)) { const p = slotPos(id, i); sl.s = 'idle'; sl.item = null; if (item.includes(':')) { burst(p.x, p.y, 'sparkle', 5, TOPS[item.split(':')[1]].color); questEvent('topped'); } routeItem(item, p, false); return true; }
+    if (needCustomer(item)) { const p = slotPos(id, i); sl.s = 'idle'; sl.item = null; if (item.includes(':')) burst(p.x, p.y, 'sparkle', 5, TOPS[item.split(':')[1]].color); routeItem(item, p, false); return true; }
   }
   const { want, have } = stockSummary();
   if ((have[b] || 0) < (want[b] || 0)) { const fi = st.slots.findIndex((sl) => sl.s === 'idle'); if (fi >= 0) { const sl = st.slots[fi]; sl.s = 'cook'; sl.t = 0; sl.dur = stTime(id, st.lv); sl.item = b; st.flash = 0.2; return true; } }
@@ -4171,12 +4240,33 @@ function showUpdateNews3() {
 /* =========================================================
    wardrobe (奶鼠衣柜)
    ========================================================= */
-function skinThumb(k, size) { return thumbCanvas((x, s) => { x.fillStyle = SKINS[k].hw ? '#3E3554' : '#FFF3DC'; x.fillRect(0, 0, s, s); if (SKINS[k].hw) { x.fillStyle = 'rgba(255,214,90,0.9)'; [[0.15, 0.18], [0.82, 0.12], [0.88, 0.5], [0.1, 0.62]].forEach(([a, b]) => { star5(x, a * s, b * s, s * 0.025); x.fill(); }); x.fillStyle = '#FFE9A8'; circ(x, s * 0.8, s * 0.22, s * 0.07); x.fill(); x.fillStyle = '#3E3554'; circ(x, s * 0.83, s * 0.2, s * 0.06); x.fill(); } drawMouse(x, s / 2, s * 0.97, s * 0.37, { t: 0.4, mood: 'ok', skin: k }); }, size); }
+function skinThumb(k, size) {
+  return thumbCanvas((x, s) => {
+    const S = SKINS[k];
+    x.fillStyle = S.hw ? '#3E3554' : S.xm ? '#DDF0FC' : S.sk ? '#FFEAF1' : '#FFF3DC';
+    x.fillRect(0, 0, s, s);
+    if (S.hw) {
+      x.fillStyle = 'rgba(255,214,90,0.9)'; [[0.15, 0.18], [0.82, 0.12], [0.88, 0.5], [0.1, 0.62]].forEach(([a, b]) => { star5(x, a * s, b * s, s * 0.025); x.fill(); });
+      x.fillStyle = '#FFE9A8'; circ(x, s * 0.8, s * 0.22, s * 0.07); x.fill(); x.fillStyle = '#3E3554'; circ(x, s * 0.83, s * 0.2, s * 0.06); x.fill();
+    } else if (S.xm) {
+      x.fillStyle = 'rgba(255,255,255,0.9)'; [[0.18, 0.18, 2.2], [0.78, 0.16, 2.5], [0.86, 0.45, 1.8], [0.14, 0.56, 2], [0.55, 0.12, 1.8]].forEach(([a, b, r]) => { circ(x, a * s, b * s, r * s / 72); x.fill(); });
+    } else if (S.sk) {
+      x.fillStyle = 'rgba(247,166,192,0.85)'; [[0.16, 0.2, 0.5], [0.82, 0.18, -0.6], [0.86, 0.54, 0.9], [0.14, 0.6, -0.4], [0.52, 0.12, 0.2]].forEach(([a, b, rot]) => { ell(x, a * s, b * s, s * 0.045, s * 0.026, rot); x.fill(); });
+    }
+    drawMouse(x, s / 2, s * 0.97, s * 0.37, { t: 0.4, mood: 'ok', skin: k });
+  }, size);
+}
 function wardrobeRow(body) {
   const row = el('div', 'row wardrobe');
   const th = el('div', 'thumb'); th.appendChild(skinThumb(G.skin, 56)); row.appendChild(th);
-  const left = HW_SKINS.filter((k) => !G.skins.includes(k)).length;
-  row.appendChild(el('div', 'info', '<b>奶鼠衣柜</b><small>现在穿：' + SKINS[G.skin].name + (left ? ' · 万圣节限定还有 ' + left + ' 套没买' : ' · 万圣节皮肤集齐啦') + '</small>'));
+  const f = festActive();
+  let sub = ' · 已收集 ' + G.skins.length + '/' + SKIN_KEYS.length + ' 套';
+  if (f) {
+    const pool = f === 'sk' ? SK_SKINS : f === 'xm' ? XM_SKINS : HW_SKINS;
+    const left = pool.filter((k) => !G.skins.includes(k)).length;
+    sub = left ? ' · ' + FESTS[f].name + '限定还有 ' + left + ' 套未获得' : ' · ' + FESTS[f].name + '皮肤集齐啦';
+  }
+  row.appendChild(el('div', 'info', '<b>奶鼠衣柜</b><small>现在穿：' + SKINS[G.skin].name + sub + '</small>'));
   const b = el('button', 'btn mint', '换衣服'); b.type = 'button'; b.addEventListener('click', () => { sfx.tap(); showWardrobe(); }); row.appendChild(b);
   body.appendChild(row);
 }
@@ -4184,20 +4274,27 @@ function wearSkin(k) { G.skin = k; save(); shopper.hop = 18; shopper.mood = 'hap
 function showWardrobe() {
   showModal((card, close) => {
     card.appendChild(el('h2', '', '奶鼠衣柜'));
-    card.appendChild(el('p', '', '换上以后，奶酪屋和超市里的奶鼠都穿着它。'));
+    card.appendChild(el('p', '', '换上以后，奶酪屋、超市、牧场和小游戏里的奶鼠都穿着它。'));
     const mk = (k) => {
       const S = SKINS[k], owned = G.skins.includes(k), on = G.skin === k, giftOf = S.gift ? REGS[S.gift] : null;
-      const b = el('button', 'acard pick' + (on ? ' vip' : '') + (giftOf && !owned ? ' off' : ''));
+      const festId = S.sk ? 'sk' : S.xm ? 'xm' : S.hw ? 'hw' : null;
+      const festFree = festId && S.cost === 0;
+      const b = el('button', 'acard pick' + (on ? ' vip' : '') + ((giftOf || (festFree && !festOn(festId))) && !owned ? ' off' : ''));
       b.type = 'button';
       b.appendChild(skinThumb(k, 84));
       b.appendChild(el('b', '', S.name));
-      const sm = el('small', '', on ? '穿着呢' : owned ? '点一下换上' : S.farm ? '牧场 Lv.' + S.farm + ' 获得' : giftOf ? '和' + giftOf.name + '成为好朋友（♥5）后获得' : SVG_COIN + S.cost.toLocaleString('en-US') + (S.hw ? '<br>万圣节限定' : S.xm ? '<br>圣诞限定' : ''));
+      const sm = el('small', '', on ? '穿着呢' : owned ? '点一下换上' : S.farm ? '牧场 Lv.' + S.farm + ' 获得' : giftOf ? '和' + giftOf.name + '成为好朋友（♥5）后获得' : festFree ? (festOn(festId) ? '点一下免费领取' : FESTS[festId].name + '期间免费送') : SVG_COIN + S.cost.toLocaleString('en-US') + (S.hw ? '<br>万圣节限定' : S.xm ? '<br>圣诞限定' : S.sk ? '<br>樱花节限定' : ''));
       b.appendChild(sm);
       b.addEventListener('click', () => {
         if (on) { sfx.tap(); return; }
         if (owned) { wearSkin(k); sfx.buy(); close(); renderHub(); return; }
         if (S.farm) { toast('牧场升到 Lv.' + S.farm + ' 就会得到'); sfx.nope(); return; }
         if (giftOf) { toast('多招待' + giftOf.name + '，成为好朋友就会送你'); sfx.nope(); return; }
+        if (festFree) {
+          if (festOn(festId)) { G.skins.push(k); wearSkin(k); sfx.buy(); close(); renderHub(); toast('领到了「' + S.name + '」，已经换上啦'); }
+          else { toast(FESTS[festId].name + '期间免费送（也可在设置开启节日体验）'); sfx.nope(); }
+          return;
+        }
         if (G.coins < S.cost) { toast('还差 ' + (S.cost - G.coins).toLocaleString('en-US') + ' 金币'); sfx.nope(); return; }
         if (!b.dataset.armed) { document.querySelectorAll('.skins .acard').forEach((x) => { delete x.dataset.armed; }); b.dataset.armed = '1'; sm.innerHTML = '再点一下买下<br>' + SVG_COIN + S.cost.toLocaleString('en-US'); sfx.tap(); return; }
         if (!spend(S.cost)) return;
@@ -4206,8 +4303,9 @@ function showWardrobe() {
       return b;
     };
     const sec = (title, keys) => { card.appendChild(el('div', 'sec', title)); const grid = el('div', 'grid-album skins'); keys.forEach((k) => grid.appendChild(mk(k))); card.appendChild(grid); };
-    sec('日常 & 万圣节限定', ['none'].concat(HW_SKINS));
+    sec('日常 & 樱花春游节限定', ['none'].concat(SK_SKINS));
     sec('圣诞节限定', XM_SKINS);
+    sec('万圣节限定', HW_SKINS);
     sec('熟客送的礼物', SKIN_KEYS.filter((k) => SKINS[k].gift));
     if (G.f) sec('牧场奖励', SKIN_KEYS.filter((k) => SKINS[k].farm));
     card.appendChild(el('p', '', '在小店里点一下柜台后面的奶鼠，也能打开衣柜。'));
@@ -4216,10 +4314,11 @@ function showWardrobe() {
 }
 let giftInIntro = false;
 function halloweenGift() {
+  if (festActive() !== 'hw') return;
   if (G.gifts.hw2026) return;
   G.gifts.hw2026 = 1; if (!G.skins.includes('pumpkin')) G.skins.push('pumpkin'); save();
   if (G.day <= 1 && !G.tut) return;
-  if (festActive() === 'hw' && !(G.festSeen && G.festSeen.hw)) { giftInIntro = true; return; }
+  if (!(G.festSeen && G.festSeen.hw)) { giftInIntro = true; return; }
   showModal((card, close) => {
     card.appendChild(el('h2', '', '万圣节快乐！'));
     const a = el('div', 'unlock-art'); a.appendChild(skinThumb('pumpkin', 110)); card.appendChild(a);
@@ -4330,12 +4429,14 @@ const REG_KEYS = Object.keys(REGS);
    ========================================================= */
 const FESTS = {
   hw: { name: '万圣节', from: [10, 20], to: [11, 15], top: 'pumpkin', product: 'hwcandy', cur: 'candy', desc: '南瓜口味限定、穿万圣节服装的客人、用糖果兑换节日装修' },
-  xm: { name: '圣诞节', from: [12, 1], to: [1, 3], top: 'ginger', product: 'xmcookie', cur: 'bells', desc: '姜饼口味限定、戴圣诞帽的客人、用铃铛兑换节日装修' }
+  xm: { name: '圣诞节', from: [12, 1], to: [1, 3], top: 'ginger', product: 'xmcookie', cur: 'bells', desc: '姜饼口味限定、戴圣诞帽的客人、用铃铛兑换节日装修' },
+  sk: { name: '樱花春游节', from: [3, 15], to: [4, 25], top: 'sakura', product: 'skmochi', cur: 'petals', desc: '樱花口味限定、春游装扮客人、用樱花瓣兑换节日装修与小镇百年樱花树' }
 };
 let FEST_NOW = null; // test override: a Date
 function festToday() { return FEST_NOW ? new Date(FEST_NOW) : new Date(); }
 function festOn(id) {
   const f = FESTS[id]; if (!f) return false;
+  if (!FEST_NOW && G && G.set && G.set.festMode && G.set.festMode !== 'auto') return G.set.festMode === id;
   const d = festToday(), m = d.getMonth() + 1, day = d.getDate(), v = m * 100 + day, a = f.from[0] * 100 + f.from[1], b = f.to[0] * 100 + f.to[1];
   return a <= b ? v >= a && v <= b : v >= a || v <= b;
 }
@@ -4357,6 +4458,8 @@ function drawCostume(c, kind, x, y, sc) {
     ell(c, 0, -132, 46, 9); fs(c, '#5A3E8C', 3);
   } else if (kind === 'santa' || kind === 'antler' || kind === 'xmscarf') {
     drawXmCostume(c, kind);
+  } else if (kind === 'skflower' || kind === 'skhat' || kind === 'skberet') {
+    drawSkCostume(c, kind);
   } else if (kind === 'pumpkin') {
     miniPumpkin(c, 0, -142, 22, 3);
   } else if (kind === 'horns') {
@@ -4368,12 +4471,17 @@ function drawCostume(c, kind, x, y, sc) {
   c.restore();
 }
 const COSTUMES = ['witch', 'pumpkin', 'horns', 'bat'];
-function festCostume(sp) { const f = festActive(); if (f === 'xm') return Math.random() < 0.5 ? pick(['santa', 'santa', 'antler', 'xmscarf']) : null; return f === 'hw' && sp !== 'frog' && Math.random() < 0.45 ? pick(COSTUMES) : null; }
+function festCostume(sp) {
+  const f = festActive();
+  if (f === 'xm') return Math.random() < 0.5 ? pick(['santa', 'santa', 'antler', 'xmscarf']) : null;
+  if (f === 'sk') return Math.random() < 0.5 ? pick(['skflower', 'skflower', 'skhat', 'skberet']) : null;
+  return f === 'hw' && sp !== 'frog' && Math.random() < 0.45 ? pick(COSTUMES) : null;
+}
 function festChipHtml() { const f = festActive(); if (!f) return ''; return FESTS[f].name + '活动 · ' + festCurSvg(f) + (G[festCur(f)] || 0); }
 function updateFestChip() {
   const b = $('#hubFest'), f = festActive();
-  if (!f) { b.hidden = true; return; }
-  b.hidden = false; b.innerHTML = festChipHtml();
+  if (!f) { b.hidden = true; b.classList.remove('xm', 'sk'); return; }
+  b.hidden = false; b.classList.toggle('xm', f === 'xm'); b.classList.toggle('sk', f === 'sk'); b.innerHTML = festChipHtml();
 }
 function festDecorItems(f) { const out = []; Object.keys(DECOR).forEach((cat) => DECOR[cat].items.forEach((it) => { if (it[4] && it[4].fest === f) out.push([cat, it]); })); return out; }
 function buyFestDecor(cat, it) {
@@ -4388,10 +4496,16 @@ function showFestival() {
   const F = FESTS[f];
   showModal((card, close) => {
     card.appendChild(el('h2', '', F.name + '活动'));
-    card.appendChild(el('p', '', '活动到 ' + F.to[0] + ' 月 ' + F.to[1] + ' 日，还剩 <b>' + festDaysLeft(f) + '</b> 天'));
+    const customMode = !FEST_NOW && G.set && G.set.festMode === f;
+    card.appendChild(el('p', '', customMode ? '节日体验模式中（可在「设置」切回按日期自动）' : '活动到 ' + F.to[0] + ' 月 ' + F.to[1] + ' 日，还剩 <b>' + festDaysLeft(f) + '</b> 天'));
     card.appendChild(el('div', 'big-num candy', festCurSvg(f) + (G[festCur(f)] || 0)));
     const how = el('div', 'qlist');
-    how.innerHTML = (f === 'xm' ? ['<b>姜饼口味</b>：活动期间多了姜饼糖霜，能加在蛋糕、拿铁、奶昔、冰淇淋上（每份 +¥8）。卖一份姜饼美食得 1 个铃铛', '<b>超市</b>：限定商品「姜饼人饼干」，卖一单也得 1 个铃铛', '<b>小镇</b>：居民每天的礼物里也有铃铛；广场能用铃铛建「圣诞大树」', '<b>铃铛兑换</b>：用铃铛换下面的节日装修，活动结束后也能一直用'] : ['<b>南瓜口味</b>：活动期间多了南瓜酱，能加在蛋糕、拿铁、奶昔、冰淇淋上（每份 +¥8）。卖一份南瓜美食得 1 颗糖果', '<b>超市</b>：限定商品「万圣节糖果」，卖一单也得 1 颗糖果', '<b>万圣节客人</b>：很多客人会戴着南瓜帽、女巫帽来店里', '<b>糖果兑换</b>：用糖果换下面的节日装修，活动结束后也能一直用']).map((t) => '<span class="q news"><span>' + t + '</span></span>').join('');
+    const guides = f === 'sk'
+      ? ['<b>樱花口味</b>：活动期间多了樱花酱，能加在蛋糕、拿铁、奶昔、冰淇淋、珍珠奶茶上（每份 +¥8）。卖一份樱花美食得 1 片樱花瓣', '<b>超市</b>：限定商品「樱花大福」，卖一单也得 1 片樱花瓣', '<b>小镇</b>：居民每天的礼物里也有樱花瓣；广场能用樱花瓣建「百年樱花树」', '<b>花瓣兑换</b>：用樱花瓣换下面的节日装修，活动结束后也能一直用']
+      : f === 'xm'
+        ? ['<b>姜饼口味</b>：活动期间多了姜饼糖霜，能加在蛋糕、拿铁、奶昔、冰淇淋上（每份 +¥8）。卖一份姜饼美食得 1 个铃铛', '<b>超市</b>：限定商品「姜饼人饼干」，卖一单也得 1 个铃铛', '<b>小镇</b>：居民每天的礼物里也有铃铛；广场能用铃铛建「圣诞大树」', '<b>铃铛兑换</b>：用铃铛换下面的节日装修，活动结束后也能一直用']
+        : ['<b>南瓜口味</b>：活动期间多了南瓜酱，能加在蛋糕、拿铁、奶昔、冰淇淋上（每份 +¥8）。卖一份南瓜美食得 1 颗糖果', '<b>超市</b>：限定商品「万圣节糖果」，卖一单也得 1 颗糖果', '<b>万圣节客人</b>：很多客人会戴着南瓜帽、女巫帽来店里', '<b>糖果兑换</b>：用糖果换下面的节日装修，活动结束后也能一直用'];
+    how.innerHTML = guides.map((t) => '<span class="q news"><span>' + t + '</span></span>').join('');
     card.appendChild(how);
     const grid = el('div', 'grid-album');
     festDecorItems(f).forEach(([cat, it]) => {
@@ -4416,6 +4530,7 @@ function festIntro() {
   G.festSeen[f] = 1; save();
   if (G.day <= 1 && !G.tut) return;
   if (f === 'xm') { xmasIntro(); return; }
+  if (f === 'sk') { sakuraIntro(); return; }
   showModal((card, close) => {
     card.appendChild(el('h2', '', '万圣节活动开始啦！'));
     const a = el('div', 'unlock-art'); a.appendChild(thumbCanvas((x, s) => { x.fillStyle = '#3E3554'; x.fillRect(0, 0, s, s); x.save(); x.translate(s * 0.3, s * 0.62); drawItem(x, 'latte:pumpkin', s * 0.42); x.restore(); x.save(); x.translate(s * 0.7, s * 0.58); drawItem(x, 'cake:pumpkin', s * 0.42); x.restore(); drawLamp(x, 'pumpkin', s * 0.5, s * 0.3, 0.9, 0.8, 0); }, 110)); card.appendChild(a);
@@ -4430,11 +4545,14 @@ function festIntro() {
 }
 function festCleanupMart() {
   if (!M) return;
+  let changed = false;
   P_KEYS.forEach((p) => {
     const P = PRODUCTS[p]; if (!P.season || festOn(P.season)) return;
-    const at = tierOf(p); if (at) M.units[at.u].p[at.k] = null;
-    const n = mStock(p); if (n > 0) { const refund = Math.round(M.val[p] || 0); G.coins += refund; M.shelf[p] = 0; M.wh[p] = 0; M.val[p] = 0; }
+    const at = tierOf(p); if (at) { M.units[at.u].p[at.k] = null; changed = true; }
+    const n = mStock(p); if (n > 0) { const refund = Math.round(M.val[p] || 0); G.coins += refund; M.shelf[p] = 0; M.wh[p] = 0; M.val[p] = 0; changed = true; }
+    if (M.quests && M.quests.list && M.quests.list.some((q) => q.t === 'sell' && q.prod === p)) { M.quests = null; changed = true; }
   });
+  if (changed) dispCoins = G.coins;
 }
 const mAvailList = () => M.unlocked.concat(P_KEYS.filter((p) => PRODUCTS[p].season && festOn(PRODUCTS[p].season) && !M.unlocked.includes(p)));
 
@@ -4543,6 +4661,7 @@ function renderRegulars(body) {
 function skinGiftBody(c, sk, S, t, lw) {
   if (SKINS[sk] && SKINS[sk].farm) { skinFarmBody(c, sk, S, t, lw); return; }
   if (SKINS[sk] && SKINS[sk].xm) { skinXmBody(c, sk, S, t, lw); return; }
+  if (SKINS[sk] && SKINS[sk].sk) { skinSkBody(c, sk, S, t, lw); return; }
   if (sk === 'scarf') {
     c.save(); rr(c, -0.38 * S, -1.08 * S, 0.76 * S, 0.15 * S, 0.075 * S); c.clip(); c.fillStyle = '#E8453C'; c.fillRect(-0.4 * S, -1.1 * S, 0.8 * S, 0.2 * S); c.fillStyle = '#FFFFFF'; for (let x = -0.36; x < 0.4; x += 0.16) c.fillRect(x * S, -1.1 * S, 0.06 * S, 0.2 * S); c.restore();
     rr(c, -0.38 * S, -1.08 * S, 0.76 * S, 0.15 * S, 0.075 * S); stroke(c, lw);
@@ -4561,6 +4680,7 @@ function skinGiftBody(c, sk, S, t, lw) {
 function skinGiftHead(c, sk, S, t, lw) {
   if (SKINS[sk] && SKINS[sk].farm) { skinFarmHead(c, sk, S, t, lw); return; }
   if (SKINS[sk] && SKINS[sk].xm) { skinXmHead(c, sk, S, t, lw); return; }
+  if (SKINS[sk] && SKINS[sk].sk) { skinSkHead(c, sk, S, t, lw); return; }
   if (sk === 'flower') {
     const pts = [[-0.27, -1.39], [-0.19, -1.47], [-0.1, -1.52], [0, -1.54], [0.1, -1.52], [0.19, -1.47], [0.27, -1.39]];
     pts.forEach(([a, b], i) => { if (i % 2) return; ell(c, (a + 0.05) * S, (b + 0.01) * S, 0.05 * S, 0.025 * S, -0.5); fill(c, '#5DBB63'); });
@@ -4672,8 +4792,19 @@ function pzOpen() {
 }
 function pzClose() { PZ = null; $('#pz').hidden = true; save(); renderHub(); }
 function pzResize() { const cvs = $('#pzc'); cvs.width = Math.round(W * DPR); cvs.height = Math.round(H * DPR); }
+function pzFallbackLayer() {
+  const defs = [[[1, 1], [2, 1], [1, 2], [2, 2]], [[3, 1], [3, 2], [3, 3]], [[1, 3], [2, 3], [2, 4]]];
+  const holes = new Set();
+  const pieces = defs.map((abs, slot) => {
+    abs.forEach(([i, j]) => holes.add(pzKey(i, j)));
+    const minI = Math.min(...abs.map((p) => p[0])), minJ = Math.min(...abs.map((p) => p[1]));
+    const cells = abs.map(([i, j]) => [i - minI, j - minJ]);
+    return { cells, placed: false, slot, cx: cells.reduce((a, s) => a + s[0] + 0.5, 0) / cells.length, cy: cells.reduce((a, s) => a + s[1] + 0.5, 0) / cells.length };
+  });
+  return { holes, pieces };
+}
 function pzNewLayer(first) {
-  const P = PZ, gen = pzGenerate((G.pz.layers || 0) + P.L) || pzGenerate(9);
+  const P = PZ, gen = pzGenerate((G.pz.layers || 0) + P.L) || pzGenerate(9) || pzFallbackLayer();
   P.layer = gen; P.cells = [];
   for (let i = 0; i < PZ_N; i++) { P.cells[i] = []; for (let j = 0; j < PZ_N; j++) P.cells[i][j] = { st: gen.holes.has(pzKey(i, j)) ? 'hole' : 'solid', z: 0, shrink: gen.holes.has(pzKey(i, j)) && !first ? 1 : 0 }; }
 }
@@ -4818,6 +4949,484 @@ function pzPointer(e, kind) {
     const tg = pzDragTarget(), k = P.drag.k; P.drag = null;
     if (tg && tg.ok) { pzPlace(k, tg.oi, tg.oj); P.hint = false; }
     else { P.layer.pieces[k].back = 0.3; tone(300, 220, 0.08, 'sine', 0.04); }
+  }
+}
+
+/* =========================================================
+   解压小游戏：奶鼠甜品合成 (2D physics dessert merge)
+   ========================================================= */
+const MG_W = 340, MG_H = 406, MG_DANGER_Y = 66, MG_DROP_Y = 26, MG_GRAV = 1180;
+const MG_TIERS = [
+  { id: 'cheese', name: '小奶酪', ic: 'cheese', r: 15, pts: 2, bg: '#FFF3B0', ring: '#E8A825' },
+  { id: 'milk', name: '牛奶杯', ic: 'milk', r: 19, pts: 4, bg: '#E8F4FF', ring: '#5B9BD5' },
+  { id: 'toast', name: '芝士吐司', ic: 'toast', r: 24, pts: 8, bg: '#FCE4B8', ring: '#C98B4A' },
+  { id: 'icecream', name: '草莓甜筒', ic: 'icecream:straw', r: 29, pts: 16, bg: '#FFE2EA', ring: '#F07A9A' },
+  { id: 'shake', name: '巧克奶昔', ic: 'shake:choc', r: 35, pts: 32, bg: '#EFE0D6', ring: '#8B5A3C' },
+  { id: 'milktea', name: '奶盖奶茶', ic: 'milktea:foam', r: 42, pts: 64, bg: '#F7E7CE', ring: '#C5925A' },
+  { id: 'cake', name: '草莓蛋糕', ic: 'cake:straw', r: 49, pts: 128, bg: '#FFDCE5', ring: '#E85D7A' },
+  { id: 'burger', name: '芝士汉堡', ic: 'burger', r: 56, pts: 256, bg: '#FDE8C4', ring: '#D97B34' },
+  { id: 'pizza', name: '芝士披萨', ic: 'pizza', r: 64, pts: 512, bg: '#FFE8B0', ring: '#E0523C' },
+  { id: 'fondue', name: '芝士火锅', ic: 'fondue', r: 72, pts: 1024, bg: '#FAD7D2', ring: '#C94B4B' },
+  { id: 'goldcheese', name: '终极金奶酪', ic: null, r: 80, pts: 2500, bg: '#FFE880', ring: '#D48C10' }
+];
+const MG_NOTES = [262, 294, 330, 392, 440, 523, 587, 659, 784, 880, 1047, 1175, 1319];
+let MG = null;
+function mgPickTier(score) {
+  const pool = [0, 0, 0, 1, 1, 1, 2, 2];
+  if (score >= 50) pool.push(3, 3);
+  if (score >= 180) pool.push(4);
+  return pick(pool);
+}
+function mgResize() { const cvs = $('#mgc'); cvs.width = Math.round(W * DPR); cvs.height = Math.round(H * DPR); }
+function mgLayout() {
+  const S = MG; if (!S) return;
+  const topUI = LY.sT + 148, botUI = LY.sB + 66;
+  const availH = Math.max(240, H - topUI - botUI), availW = GW - 28;
+  S.sc = Math.min(availW / MG_W, availH / MG_H, 1.12);
+  S.jw = MG_W * S.sc; S.jh = MG_H * S.sc;
+  S.jx = OX + (GW - S.jw) / 2;
+  S.jy = topUI + (availH - S.jh) * 0.56;
+  S.stripY = H - LY.sB - 34;
+}
+function mgSyncBtns() {
+  const S = MG; if (!S) return;
+  const sn = $('#mgShakeN'); if (sn) sn.textContent = String(S.shakes);
+  const sb = $('#mgShake'); if (sb) sb.disabled = S.shakes <= 0 || S.over || S.shake > 0;
+}
+function mgNewState() {
+  const cur = mgPickTier(0), nxt = mgPickTier(0);
+  MG = {
+    balls: [], nextId: 1, cur, next: nxt, aimX: MG_W / 2, mouseX: MG_W / 2, cd: 0,
+    score: 0, dispScore: 0, maxTier: 0, goldsRun: 0, bonusCoins: 0, rewarded: false,
+    combo: 0, comboT: 0, shakes: 1, shakeMark: 0, shake: 0, shakeX: 0, shakeY: 0,
+    danger: 0, over: false, t: 0, cheer: 0, drag: false, hint: !(G.mg && G.mg.merges),
+    parts: [], rings: [], pops: [], sc: 1, jx: 0, jy: 0, jw: MG_W, jh: MG_H, stripY: H - 40
+  };
+  const ov = $('#mgOver'); if (ov) { ov.hidden = true; ov.innerHTML = ''; }
+  mgResize(); mgLayout(); mgSyncBtns();
+}
+function mgOpen() {
+  ensureAudio();
+  $('#mg').hidden = false;
+  mgNewState();
+  sfx.tap();
+}
+function mgAwardRunCoins() {
+  const S = MG; if (!S || S.rewarded) return 0;
+  S.rewarded = true;
+  const rw = Math.min(350, Math.floor(S.score / 25));
+  if (rw > 0) { G.coins += rw; dispCoins = G.coins; }
+  G.mg.best = Math.max(G.mg.best || 0, S.score);
+  save();
+  return rw;
+}
+function mgClose() {
+  if (!MG) return;
+  const rw = MG.score >= 50 ? mgAwardRunCoins() : 0;
+  MG = null;
+  $('#mg').hidden = true;
+  const ov = $('#mgOver'); if (ov) { ov.hidden = true; ov.innerHTML = ''; }
+  save(); renderHub();
+  if (rw > 0) toast('甜品合成获得 +' + rw + ' 金币');
+}
+function mgRestart() {
+  if (!MG) return;
+  if (!MG.over && MG.score >= 50) mgAwardRunCoins();
+  sfx.tap();
+  mgNewState();
+}
+function mgDrop(xOverride, forceTier, bypassCd) {
+  const S = MG; if (!S || S.over) return null;
+  if (!bypassCd && S.cd > 0) return null;
+  const tier = forceTier != null ? clamp(forceTier | 0, 0, MG_TIERS.length - 1) : S.cur;
+  const T = MG_TIERS[tier];
+  const x = clamp(xOverride != null ? xOverride : S.aimX, T.r + 3, MG_W - T.r - 3);
+  const b = { id: S.nextId++, tier, r: T.r, x, y: MG_DROP_Y, vx: rnd(-6, 6), vy: 40, ang: rnd(-0.15, 0.15), vang: rnd(-0.6, 0.6), age: 0, pop: 0.16, merged: false };
+  S.balls.push(b);
+  S.maxTier = Math.max(S.maxTier, tier);
+  G.mg.maxTier = Math.max(G.mg.maxTier || 0, tier);
+  if (forceTier == null) { S.cur = S.next; S.next = mgPickTier(S.score); }
+  S.cd = 0.42; S.hint = false;
+  S.aimX = clamp(S.aimX, MG_TIERS[S.cur].r + 3, MG_W - MG_TIERS[S.cur].r - 3);
+  tone(360 + tier * 35, 220 + tier * 20, 0.08, 'triangle', 0.07);
+  return b;
+}
+function mgShake() {
+  const S = MG; if (!S || S.over || S.shakes <= 0 || S.shake > 0) return;
+  S.shakes--; S.shake = 0.45; S.danger = Math.max(0, S.danger - 0.8);
+  S.balls.forEach((b) => { b.vy -= rnd(220, 380); b.vx += rnd(-200, 200); b.vang += rnd(-5, 5); });
+  noise(0.28, 1200, 260, 0.14, 'bandpass');
+  tone(190, 320, 0.16, 'triangle', 0.09);
+  S.pops.push({ x: MG_W / 2, y: MG_H * 0.42, text: '摇一摇！', col: '#F2674B', sz: 22, t: 0.9, max: 0.9 });
+  mgSyncBtns();
+}
+function mgBurst(x, y, col, n, big) {
+  const S = MG; if (!S) return;
+  for (let i = 0; i < n; i++) {
+    const a = rnd(0, Math.PI * 2), sp = rnd(big ? 110 : 60, big ? 300 : 190);
+    S.parts.push({ x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - rnd(40, 120), r: rnd(big ? 4 : 2.5, big ? 7.5 : 5), col: i % 3 === 0 ? '#FFE07A' : i % 3 === 1 ? col : '#FFFFFF', kind: i % 2 ? 'star' : 'dot', rot: rnd(0, 6), vr: rnd(-8, 8), life: rnd(0.45, 0.85), max: 0.85 });
+  }
+}
+function mgTriggerMerge(a, b) {
+  const S = MG;
+  const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+  S.combo = S.comboT > 0 ? S.combo + 1 : 1;
+  S.comboT = 1.15;
+  G.mg.merges = (G.mg.merges || 0) + 1;
+  const note = MG_NOTES[Math.min(MG_NOTES.length - 1, a.tier + Math.min(3, S.combo - 1))];
+  tone(note, note * 1.25, 0.14, 'triangle', 0.09);
+  if (a.tier >= 10) {
+    // Two Ultimate Golden Cheeses collide -> Super Golden Burst!
+    S.score += 5000;
+    G.mg.golds = (G.mg.golds || 0) + 1; S.goldsRun++;
+    G.coins += 500; dispCoins = G.coins; S.bonusCoins += 500;
+    S.shake = 0.45; S.cheer = 2.4;
+    S.rings.push({ x: mx, y: my, r: 40, maxR: 210, col: '#FFC433', t: 0.65, max: 0.65 });
+    mgBurst(mx, my, '#FFC433', 38, true);
+    S.pops.push({ x: clamp(mx, 70, MG_W - 70), y: clamp(my, 70, MG_H - 40), text: '超级金奶酪！+500 金币', col: '#FFC433', sz: 22, t: 1.8, max: 1.8 });
+    sfx.fanfare();
+  } else {
+    const nt = a.tier + 1, T = MG_TIERS[nt];
+    const nx = clamp(mx, T.r + 2, MG_W - T.r - 2), ny = clamp(my, T.r + 2, MG_H - T.r - 2);
+    const nb = { id: S.nextId++, tier: nt, r: T.r, x: nx, y: ny, vx: (a.vx + b.vx) * 0.32, vy: Math.min(a.vy, b.vy) * 0.25 - 52, ang: (a.ang + b.ang) * 0.5, vang: rnd(-1.5, 1.5), age: 0.55, pop: 0.28, merged: false };
+    S.balls.push(nb);
+    const mul = 1 + Math.min(1.5, (S.combo - 1) * 0.25);
+    const pts = Math.round(T.pts * mul);
+    S.score += pts;
+    S.maxTier = Math.max(S.maxTier, nt);
+    G.mg.maxTier = Math.max(G.mg.maxTier || 0, nt);
+    S.rings.push({ x: nx, y: ny, r: T.r * 0.5, maxR: T.r * 1.9, col: T.ring, t: 0.36, max: 0.36 });
+    mgBurst(nx, ny, T.ring, 8 + nt * 2, nt >= 7);
+    S.pops.push({ x: clamp(nx, 44, MG_W - 44), y: clamp(ny - T.r * 0.4, 52, MG_H - 30), text: '+' + pts + (S.combo >= 2 ? '  ×' + S.combo : ''), col: S.combo >= 3 ? '#F2674B' : '#FFC433', sz: nt >= 6 ? 20 : 16, t: 0.95, max: 0.95 });
+    if (nt >= 5) S.cheer = Math.max(S.cheer, 0.9);
+    if (nt === 10) {
+      G.mg.golds = (G.mg.golds || 0) + 1; S.goldsRun++;
+      G.coins += 300; dispCoins = G.coins; S.bonusCoins += 300;
+      S.shake = 0.38; S.cheer = 2.2;
+      mgBurst(nx, ny, '#FFC433', 32, true);
+      S.pops.push({ x: MG_W / 2, y: clamp(ny - 44, 70, MG_H - 60), text: '终极金奶酪！+300 金币', col: '#FFC433', sz: 22, t: 1.9, max: 1.9 });
+      sfx.fanfare();
+    }
+  }
+  G.mg.best = Math.max(G.mg.best || 0, S.score);
+  const mark = Math.floor(S.score / 800);
+  if (mark > S.shakeMark) {
+    S.shakeMark = mark;
+    if (S.shakes < 3) {
+      S.shakes++;
+      S.pops.push({ x: MG_W - 66, y: 86, text: '摇一摇 +1', col: '#3FB28A', sz: 15, t: 1.1, max: 1.1 });
+    }
+  }
+  mgSyncBtns();
+}
+function mgEndGame() {
+  const S = MG; if (!S || S.over) return;
+  S.over = true;
+  mgSyncBtns();
+  const rw = mgAwardRunCoins();
+  const totCoins = rw + S.bonusCoins;
+  sfx.angry();
+  const ov = $('#mgOver'); if (!ov) return;
+  ov.innerHTML = '';
+  const card = el('div', 'card');
+  card.appendChild(el('h2', '', S.goldsRun > 0 ? '太棒啦！大丰收！' : '罐子装满啦'));
+  const art = el('div', 'unlock-art');
+  art.appendChild(thumbCanvas((x, s) => { x.translate(s / 2, s / 2); mgDrawOrb(x, S.maxTier, s * 0.4, 0, S.t, 1); }, 96));
+  card.appendChild(art);
+  card.appendChild(el('div', 'big-num', SVG_COIN + '+' + totCoins.toLocaleString('en-US')));
+  const lg = el('div', 'ledger');
+  lg.innerHTML = '<span>本局得分</span><span>' + S.score.toLocaleString('en-US') + '</span>'
+    + '<span>历史最高</span><span>' + (G.mg.best || 0).toLocaleString('en-US') + '</span>'
+    + '<span>最高合成</span><span>' + MG_TIERS[S.maxTier].name + '</span>'
+    + (S.goldsRun ? '<span>合成金奶酪</span><span>' + S.goldsRun + ' 次</span>' : '')
+    + '<span>积分奖励</span><span>+' + rw + ' 金币</span>'
+    + (S.bonusCoins ? '<span>金奶酪奖金</span><span>+' + S.bonusCoins + ' 金币</span>' : '');
+  card.appendChild(lg);
+  const again = el('button', 'big-btn wide mint', '再来一局'); again.type = 'button'; again.addEventListener('click', mgRestart); card.appendChild(again);
+  const back = el('button', 'btn ghost', '回小店'); back.type = 'button'; back.addEventListener('click', () => { sfx.tap(); mgClose(); }); card.appendChild(back);
+  ov.appendChild(card);
+  ov.hidden = false;
+}
+function mgUpdate(dt) {
+  const S = MG; if (!S) return;
+  S.t += dt;
+  S.dispScore = lerp(S.dispScore, S.score, Math.min(1, dt * 12));
+  if (Math.abs(S.dispScore - S.score) < 0.5) S.dispScore = S.score;
+  S.mouseX = lerp(S.mouseX, S.aimX, Math.min(1, dt * 16));
+  if (S.cd > 0) S.cd = Math.max(0, S.cd - dt);
+  if (S.comboT > 0) { S.comboT = Math.max(0, S.comboT - dt); if (S.comboT <= 0) S.combo = 0; }
+  if (S.cheer > 0) S.cheer = Math.max(0, S.cheer - dt);
+  if (S.shake > 0) {
+    S.shake = Math.max(0, S.shake - dt);
+    S.shakeX = S.shake > 0 ? Math.sin(S.t * 68) * S.shake * 14 : 0;
+    S.shakeY = S.shake > 0 ? Math.cos(S.t * 54) * S.shake * 8 : 0;
+    if (S.shake <= 0) { S.shakeX = 0; S.shakeY = 0; mgSyncBtns(); }
+  }
+  // Visual effects tick
+  for (let i = S.parts.length - 1; i >= 0; i--) {
+    const p = S.parts[i]; p.life -= dt; if (p.life <= 0) { S.parts.splice(i, 1); continue; }
+    p.vy += 420 * dt; p.x += p.vx * dt; p.y += p.vy * dt; p.rot += p.vr * dt;
+  }
+  for (let i = S.rings.length - 1; i >= 0; i--) { const r = S.rings[i]; r.t -= dt; if (r.t <= 0) S.rings.splice(i, 1); }
+  for (let i = S.pops.length - 1; i >= 0; i--) { const p = S.pops[i]; p.t -= dt; p.y -= 28 * dt; if (p.t <= 0) S.pops.splice(i, 1); }
+  if (S.over) return;
+  // Substepped 2D circle physics
+  const steps = 6, sdt = dt / steps;
+  for (let st = 0; st < steps; st++) {
+    const merges = [];
+    for (let i = 0; i < S.balls.length; i++) {
+      const b = S.balls[i];
+      b.age += sdt;
+      if (b.pop > 0) b.pop = Math.max(0, b.pop - sdt);
+      b.vy += MG_GRAV * sdt;
+      b.vx *= (1 - 0.18 * sdt);
+      b.vy *= (1 - 0.06 * sdt);
+      b.x += b.vx * sdt;
+      b.y += b.vy * sdt;
+      b.ang += b.vang * sdt;
+      b.vang *= (1 - 1.6 * sdt);
+      if (b.x < b.r) { b.x = b.r; if (b.vx < 0) b.vx = -b.vx * 0.22; }
+      else if (b.x > MG_W - b.r) { b.x = MG_W - b.r; if (b.vx > 0) b.vx = -b.vx * 0.22; }
+      if (b.y > MG_H - b.r) { b.y = MG_H - b.r; if (b.vy > 0) b.vy = -b.vy * 0.16; b.vx *= 0.94; b.vang = lerp(b.vang, b.vx / Math.max(12, b.r), 0.25); }
+    }
+    const n = S.balls.length;
+    for (let i = 0; i < n; i++) {
+      const a = S.balls[i]; if (a.merged) continue;
+      for (let j = i + 1; j < n; j++) {
+        const b = S.balls[j]; if (b.merged) continue;
+        const dx = b.x - a.x, dy = b.y - a.y, minD = a.r + b.r;
+        const d2 = dx * dx + dy * dy;
+        if (d2 >= minD * minD) continue;
+        if (a.tier === b.tier) {
+          a.merged = true; b.merged = true;
+          merges.push([a, b]);
+          continue;
+        }
+        const dist = Math.sqrt(d2) || 0.001;
+        const nx = dist < 0.002 ? 0.01 : dx / dist, ny = dist < 0.002 ? -1 : dy / dist;
+        const pen = minD - dist;
+        const invA = 1 / (a.r * a.r), invB = 1 / (b.r * b.r), invSum = invA + invB;
+        const corr = pen * 0.85 / invSum;
+        a.x -= nx * corr * invA; a.y -= ny * corr * invA;
+        b.x += nx * corr * invB; b.y += ny * corr * invB;
+        const rvx = b.vx - a.vx, rvy = b.vy - a.vy, vn = rvx * nx + rvy * ny;
+        if (vn < 0) {
+          const imp = -(1 + 0.14) * vn / invSum;
+          a.vx -= imp * nx * invA; a.vy -= imp * ny * invA;
+          b.vx += imp * nx * invB; b.vy += imp * ny * invB;
+          const tx = -ny, ty = nx, vt = rvx * tx + rvy * ty;
+          const fImp = clamp(-vt * 0.16 / invSum, -Math.abs(imp) * 0.3, Math.abs(imp) * 0.3);
+          a.vx -= fImp * tx * invA; a.vy -= fImp * ty * invA;
+          b.vx += fImp * tx * invB; b.vy += fImp * ty * invB;
+          a.vang += vt * 0.0025; b.vang -= vt * 0.0025;
+        }
+      }
+    }
+    if (merges.length) {
+      S.balls = S.balls.filter((x) => !x.merged);
+      merges.forEach(([a, b]) => mgTriggerMerge(a, b));
+    }
+    // Keep everything inside jar walls after collision push
+    for (let i = 0; i < S.balls.length; i++) {
+      const b = S.balls[i];
+      if (b.x < b.r) b.x = b.r; else if (b.x > MG_W - b.r) b.x = MG_W - b.r;
+      if (b.y > MG_H - b.r) b.y = MG_H - b.r;
+    }
+  }
+  // Danger overflow check (ignore freshly dropped balls)
+  const overLine = S.balls.some((b) => b.age > 1.15 && (b.y - b.r) < MG_DANGER_Y);
+  if (overLine) { S.danger = Math.min(2.6, S.danger + dt); if (S.danger >= 2.6) mgEndGame(); }
+  else S.danger = Math.max(0, S.danger - dt * 1.8);
+}
+function mgDrawGoldCheese(c, r, t) {
+  c.save();
+  // Rotating golden rays inside orb
+  c.save(); c.beginPath(); c.arc(0, 0, r * 0.94, 0, Math.PI * 2); c.clip();
+  c.rotate((t || 0) * 0.35);
+  c.fillStyle = 'rgba(255,252,214,0.45)';
+  for (let i = 0; i < 12; i++) {
+    const a0 = i * Math.PI / 6, a1 = a0 + Math.PI / 14;
+    c.beginPath(); c.moveTo(0, 0); c.arc(0, 0, r, a0, a1); c.closePath(); c.fill();
+  }
+  c.restore();
+  // Royal golden cheese wedge body
+  const s = r * 1.25, lw = Math.max(1.8, r * 0.045);
+  c.lineJoin = 'round';
+  const gr = c.createLinearGradient(-0.4 * s, -0.35 * s, 0.45 * s, 0.4 * s);
+  gr.addColorStop(0, '#FFF5B8'); gr.addColorStop(0.5, '#FFC832'); gr.addColorStop(1, '#E89614');
+  poly(c, [[-0.46 * s, 0.04 * s], [0.46 * s, 0.04 * s], [0.46 * s, 0.34 * s], [-0.46 * s, 0.34 * s]]); fs(c, '#E89B18', lw);
+  poly(c, [[-0.46 * s, 0.04 * s], [0.16 * s, -0.34 * s], [0.46 * s, 0.04 * s]]); fill(c, gr); stroke(c, lw);
+  // Cheese holes
+  [[-0.2, 0.18, 0.075], [0.16, 0.22, 0.06], [0.02, -0.08, 0.055], [0.22, -0.05, 0.04]].forEach(([a, b, rad]) => {
+    circ(c, a * s, b * s, rad * s); fill(c, '#D47F0E');
+    circ(c, (a - 0.015) * s, (b - 0.015) * s, rad * 0.45 * s); fill(c, '#FFE27A');
+  });
+  // Royal crown on top
+  c.save(); c.translate(0.1 * s, -0.34 * s); c.rotate(0.12);
+  poly(c, [[-0.22 * s, 0.05 * s], [-0.26 * s, -0.18 * s], [-0.09 * s, -0.06 * s], [0, -0.24 * s], [0.09 * s, -0.06 * s], [0.26 * s, -0.18 * s], [0.22 * s, 0.05 * s]]);
+  fs(c, '#FFD84D', lw * 0.9);
+  circ(c, 0, -0.04 * s, 0.045 * s); fs(c, '#E8453C', lw * 0.5);
+  [-0.14, 0.14].forEach((px) => { circ(c, px * s, -0.02 * s, 0.03 * s); fill(c, '#FFFFFF'); });
+  c.restore();
+  // Shimmering stars
+  c.fillStyle = '#FFFFFF';
+  [[-0.36, -0.24, 0.08], [0.38, -0.2, 0.07], [-0.32, 0.34, 0.06]].forEach(([a, b, sr], i) => {
+    c.globalAlpha = 0.5 + 0.5 * Math.sin((t || 0) * 5 + i * 2.1);
+    star5(c, a * s, b * s, sr * s); c.fill();
+  });
+  c.globalAlpha = 1;
+  c.restore();
+}
+function mgDrawOrb(c, tier, r, ang, t, alpha) {
+  const T = MG_TIERS[tier];
+  c.save();
+  if (alpha != null) c.globalAlpha = alpha;
+  // Soft shadow
+  circ(c, 0, r * 0.08, r * 0.98); fill(c, 'rgba(61,44,41,0.12)');
+  // Main pastel dessert orb
+  const gr = c.createRadialGradient(-r * 0.3, -r * 0.32, r * 0.12, 0, 0, r);
+  gr.addColorStop(0, '#FFFFFF');
+  gr.addColorStop(0.28, T.bg);
+  gr.addColorStop(1, shade(T.bg, -0.1));
+  circ(c, 0, 0, r); fill(c, gr);
+  // Subtle inner tint ring
+  circ(c, 0, 0, Math.max(2, r - 2.4)); c.globalAlpha = (alpha == null ? 1 : alpha) * 0.35; stroke(c, Math.max(1.2, r * 0.06), T.ring); c.globalAlpha = alpha == null ? 1 : alpha;
+  // Rotated procedural dessert icon
+  c.save(); c.rotate(ang || 0);
+  if (tier === 10) mgDrawGoldCheese(c, r, t);
+  else drawIcon(c, T.ic, 0, 0, r * 1.48);
+  c.restore();
+  // Gloss highlight + crisp outline
+  c.fillStyle = 'rgba(255,255,255,0.45)';
+  ell(c, -r * 0.32, -r * 0.36, r * 0.24, r * 0.12, -0.55); c.fill();
+  circ(c, 0, 0, r); stroke(c, clamp(r * 0.065, 1.8, 3.2), tier === 10 ? '#A86200' : INK);
+  c.restore();
+}
+function mgRender() {
+  const S = MG, c = $('#mgc').getContext('2d');
+  c.setTransform(DPR, 0, 0, DPR, 0, 0);
+  // Warm bakery background
+  const bg = c.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, '#FFF6E4'); bg.addColorStop(0.55, '#FCE7C4'); bg.addColorStop(1, '#F5D6A3');
+  c.fillStyle = bg; c.fillRect(0, 0, W, H);
+  // Subtle polka dots
+  c.fillStyle = 'rgba(255,255,255,0.38)';
+  for (let y = 16; y < H; y += 38) for (let x = (Math.floor(y / 38) % 2) ? 19 : 0; x < W; x += 38) { circ(c, x, y, 4.5); c.fill(); }
+  if (festActive() === 'sk') drawPetals(c, W, H, S.t, 16);
+  // Top HUD text (Score + Best)
+  const cx = OX + GW / 2, hudY = LY.sT + 30;
+  txt(c, String(Math.round(S.dispScore)), cx, hudY + 10, 34, INK, FN, 'center', 0);
+  txt(c, '最高 ' + Math.max(G.mg.best || 0, S.score).toLocaleString('en-US') + (S.goldsRun ? ' · 👑' + S.goldsRun : ''), cx, hudY + 34, 12, '#7B6157', FB);
+  // Next orb preview badge (top-right, cleanly above 奶鼠's track)
+  const nxX = OX + GW - 44, nxY = LY.sT + 76;
+  rr(c, nxX - 32, nxY - 21, 64, 42, 14); fs(c, '#FFFBF2', 2.2);
+  txt(c, '下一个', nxX - 12, nxY - 8, 9.5, '#7B6157', FB);
+  txt(c, MG_TIERS[S.next].name.slice(0, 3), nxX - 12, nxY + 7, 9, '#A0806E', FB);
+  c.save(); c.translate(nxX + 16, nxY);
+  mgDrawOrb(c, S.next, Math.min(14, MG_TIERS[S.next].r * 0.54), 0, S.t, 1);
+  c.restore();
+  // Jar transform (with shake offset)
+  const jx = S.jx + S.shakeX, jy = S.jy + S.shakeY, sc = S.sc;
+  // Perched 奶鼠 sliding above jar
+  const mx = jx + S.mouseX * sc, my = jy - 2;
+  drawMouse(c, mx, my, clamp(24 * sc, 20, 28), { t: S.t, mood: S.danger > 1.2 ? 'worried' : S.cheer > 0 ? 'happy' : 'ok', hop: S.cheer > 0 ? Math.abs(Math.sin(S.t * 14)) * 9 : 0, skin: G.skin });
+  // Jar backdrop
+  rr(c, jx - 4, jy + 6, S.jw + 8, S.jh + 8, 22); fill(c, 'rgba(61,44,41,0.14)');
+  rr(c, jx, jy, S.jw, S.jh, 20); fill(c, 'rgba(255,251,242,0.88)');
+  // Soft cream stripes inside jar
+  c.save(); rr(c, jx, jy, S.jw, S.jh, 20); c.clip();
+  c.fillStyle = 'rgba(246,229,198,0.35)';
+  for (let x = jx; x < jx + S.jw; x += 28 * sc) c.fillRect(x, jy, 12 * sc, S.jh);
+  // Danger line
+  const dy = jy + MG_DANGER_Y * sc;
+  c.save();
+  c.strokeStyle = S.danger > 0 ? 'rgba(242,103,75,' + (0.45 + Math.abs(Math.sin(S.t * 10)) * 0.55) + ')' : 'rgba(180,120,90,0.32)';
+  c.lineWidth = S.danger > 0 ? 2.6 : 1.6; c.setLineDash([7, 6]);
+  c.beginPath(); c.moveTo(jx + 8, dy); c.lineTo(jx + S.jw - 8, dy); c.stroke();
+  c.restore();
+  if (S.danger > 0.15) {
+    const f = clamp(S.danger / 2.6, 0, 1);
+    c.fillStyle = 'rgba(242,103,75,' + (0.08 + f * 0.16) + ')';
+    c.fillRect(jx, jy, S.jw, MG_DANGER_Y * sc);
+    rr(c, jx + S.jw / 2 - 46, dy - 18, 92, 12, 6); fs(c, '#FFF8EA', 1.5);
+    rr(c, jx + S.jw / 2 - 44, dy - 16, 88 * f, 8, 4); fill(c, '#F2674B');
+  }
+  // Aim guide line + ready orb preview
+  if (!S.over && S.cd <= 0) {
+    const ax = jx + S.aimX * sc, ay = jy + MG_DROP_Y * sc;
+    c.save(); c.strokeStyle = 'rgba(123,97,87,0.35)'; c.lineWidth = 1.8; c.setLineDash([4, 5]);
+    c.beginPath(); c.moveTo(ax, ay); c.lineTo(ax, jy + S.jh - 8); c.stroke(); c.restore();
+    c.save(); c.translate(ax, ay);
+    mgDrawOrb(c, S.cur, MG_TIERS[S.cur].r * sc, 0, S.t, 0.92);
+    c.restore();
+  }
+  // Balls inside jar
+  S.balls.forEach((b) => {
+    const popSc = b.pop > 0 ? 1 + Math.sin((b.pop / 0.28) * Math.PI) * 0.2 : 1;
+    c.save(); c.translate(jx + b.x * sc, jy + b.y * sc); c.scale(popSc, popSc);
+    mgDrawOrb(c, b.tier, b.r * sc, b.ang, S.t, 1);
+    c.restore();
+  });
+  // Shockwave rings
+  S.rings.forEach((r) => {
+    const k = 1 - r.t / r.max;
+    c.save(); c.globalAlpha = (1 - k) * 0.7;
+    circ(c, jx + r.x * sc, jy + r.y * sc, lerp(r.r, r.maxR, easeOut(k)) * sc);
+    stroke(c, (4 - 2.5 * k) * sc, r.col);
+    c.restore();
+  });
+  // Particles
+  S.parts.forEach((p) => {
+    c.save(); c.globalAlpha = clamp(p.life / 0.35, 0, 1);
+    c.translate(jx + p.x * sc, jy + p.y * sc); c.rotate(p.rot);
+    if (p.kind === 'star') { star5(c, 0, 0, p.r * sc); fill(c, p.col); }
+    else { circ(c, 0, 0, p.r * 0.7 * sc); fill(c, p.col); }
+    c.restore();
+  });
+  // Floating score pops
+  S.pops.forEach((p) => {
+    c.save(); c.globalAlpha = clamp(p.t / 0.35, 0, 1);
+    txt(c, p.text, jx + p.x * sc, jy + p.y * sc, p.sz * Math.min(1.05, sc), p.col, FD, 'center', 4);
+    c.restore();
+  });
+  // Glass specular glint on jar left edge
+  c.fillStyle = 'rgba(255,255,255,0.45)'; rr(c, jx + 8, jy + 16, 7, S.jh - 38, 4); c.fill();
+  c.restore();
+  // Wooden/glass jar frame (open top with rounded lips)
+  c.beginPath();
+  c.moveTo(jx, jy + 4); c.lineTo(jx, jy + S.jh - 20); c.quadraticCurveTo(jx, jy + S.jh, jx + 20, jy + S.jh);
+  c.lineTo(jx + S.jw - 20, jy + S.jh); c.quadraticCurveTo(jx + S.jw, jy + S.jh, jx + S.jw, jy + S.jh - 20);
+  c.lineTo(jx + S.jw, jy + 4);
+  stroke(c, 5, '#C98B55'); stroke(c, 2.6, INK);
+  rr(c, jx - 6, jy + S.jh - 4, S.jw + 12, 10, 5); fs(c, '#C98B55', 2.2);
+  // First-time hint
+  if (S.hint && !S.balls.length) txt(c, '左右滑动瞄准，松手落下相同甜品合成！', cx, jy + S.jh * 0.45, 13.5, '#7B6157', FB);
+  // Bottom 11-tier evolution strip
+  const sy = S.stripY, pad = 12, sw = GW - pad * 2, step = sw / MG_TIERS.length;
+  rr(c, OX + pad - 4, sy - 20, sw + 8, 40, 16); fs(c, 'rgba(255,251,242,0.92)', 2);
+  MG_TIERS.forEach((T, i) => {
+    const ix = OX + pad + (i + 0.5) * step, got = i <= Math.max(S.maxTier, G.mg.maxTier || 0);
+    const rr2 = clamp(step * 0.36, 9, 13.5);
+    c.save(); c.translate(ix, sy - 2);
+    mgDrawOrb(c, i, rr2, 0, S.t, got ? 1 : 0.4);
+    c.restore();
+    if (i < MG_TIERS.length - 1) txt(c, '›', ix + step * 0.5, sy - 2, 11, '#B89E82', FB);
+  });
+}
+function mgPointer(e, kind) {
+  const S = MG; if (!S || S.over) return;
+  const rx = (e.clientX - S.jx) / S.sc;
+  const r = MG_TIERS[S.cur].r;
+  const cx = clamp(rx, r + 3, MG_W - r - 3);
+  if (kind === 'down') {
+    if (e.clientY < S.jy - 48 || e.clientY > S.jy + S.jh + 24) return;
+    S.drag = true; S.aimX = cx;
+    try { e.target.setPointerCapture && e.target.setPointerCapture(e.pointerId); } catch (er) {}
+  } else if (kind === 'move') {
+    if (S.drag) S.aimX = cx;
+  } else if (S.drag) {
+    S.drag = false; S.aimX = cx;
+    if (kind === 'up') mgDrop(cx);
   }
 }
 
@@ -5837,6 +6446,7 @@ function fRender() {
   c.setTransform(DPR, 0, 0, DPR, 0, 0);
   FARM.flyers.forEach((f) => { const u = easeOut(clamp(f.t / f.dur, 0, 1)), x = lerp(f.x0, f.x1, u), y = lerp(f.y0, f.y1, u) - Math.sin(u * Math.PI) * 60; drawIcon(c, 'F:' + f.ic, x, y, 26 * (1 - u * 0.35)); });
   if (festActive() === 'xm') drawSnow(c, W, H, t, 50);
+  else if (festActive() === 'sk') drawPetals(c, W, H, t, 42);
 }
 const fTime = (ms) => { const s = Math.ceil(ms / 1000); return s >= 60 ? Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0') : s + '秒'; };
 // ---------- hit testing ----------
@@ -6481,10 +7091,11 @@ function fBotSim(hours, opts) {
    圣诞节
    ========================================================= */
 const SVG_BELL = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c-3.6 0-6 2.8-6 6.6v3.8L4 17h16l-2-3.1V10.1c0-3.8-2.4-6.6-6-6.6z" fill="#FFC433" stroke="#3D2C29" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="18.6" r="2.2" fill="#E39B12" stroke="#3D2C29" stroke-width="1.5"/><path d="M8.5 9.5c.3-1.6 1.4-2.8 2.8-3.1" stroke="#fff" stroke-width="1.4" stroke-linecap="round" fill="none"/><path d="M9 3.8l3 1.4 3-1.4" stroke="#E8453C" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
+const SVG_PETAL = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5c-5.2-3.2-7.8-8.2-6.2-13.2C6.8 4.4 9.6 3.5 11.4 6c.4.6.8.6 1.2 0 1.8-2.5 4.6-1.6 5.6 1.3 1.6 5-1 10-6.2 13.2z" fill="#F9A8C2" stroke="#3D2C29" stroke-width="1.9" stroke-linejoin="round"/><path d="M12 16.5c-.4-2.8-.2-5.4.6-7.6" fill="none" stroke="#FFF0F5" stroke-width="1.6" stroke-linecap="round"/></svg>';
 const festCur = (f) => (FESTS[f || festActive()] || {}).cur || 'candy';
-const festCurName = (f) => (festCur(f) === 'bells' ? '铃铛' : '糖果');
-const festCurSvg = (f) => (festCur(f) === 'bells' ? SVG_BELL : SVG_CANDY);
-const festCost = (it) => (it[4].bells != null ? it[4].bells : it[4].candy);
+const festCurName = (f) => ({ bells: '铃铛', petals: '樱花瓣', candy: '糖果' }[festCur(f)] || '糖果');
+const festCurSvg = (f) => ({ bells: SVG_BELL, petals: SVG_PETAL, candy: SVG_CANDY }[festCur(f)] || SVG_CANDY);
+const festCost = (it) => (it[4].petals != null ? it[4].petals : it[4].bells != null ? it[4].bells : it[4].candy);
 function miniGinger(c, x, y, r, lw) {
   lw = Math.min(lw, r * 0.16);
   c.save(); c.translate(x, y); c.lineJoin = 'round';
@@ -6625,6 +7236,295 @@ function xmasIntro() {
 }
 
 /* =========================================================
+   樱花春游节 (Sakura Spring Festival)
+   ========================================================= */
+function miniSakura(c, x, y, r, lw) {
+  lw = Math.min(lw || 1.4, Math.max(0.8, r * 0.22));
+  c.save(); c.translate(x, y); c.lineJoin = 'round';
+  for (let k = 0; k < 5; k++) {
+    c.save(); c.rotate(k * Math.PI * 2 / 5 - Math.PI / 2);
+    c.beginPath();
+    c.moveTo(0, -0.08 * r);
+    c.bezierCurveTo(-0.5 * r, -0.35 * r, -0.45 * r, -1.02 * r, -0.14 * r, -1.06 * r);
+    c.lineTo(0, -0.86 * r);
+    c.lineTo(0.14 * r, -1.06 * r);
+    c.bezierCurveTo(0.45 * r, -1.02 * r, 0.5 * r, -0.35 * r, 0, -0.08 * r);
+    c.closePath();
+    fs(c, '#F9B4CA', lw);
+    c.restore();
+  }
+  circ(c, 0, 0, 0.24 * r); fill(c, '#FFE07A');
+  c.fillStyle = '#E8688E';
+  for (let k = 0; k < 5; k++) { const a = k * Math.PI * 2 / 5; circ(c, Math.cos(a) * 0.26 * r, Math.sin(a) * 0.26 * r, 0.09 * r); c.fill(); }
+  c.restore();
+}
+function sakuraSprinkles(c, s, pts) {
+  const cols = ['#F79BB4', '#FFF0F5', '#8FD183'];
+  pts.forEach(([a, b], i) => { c.fillStyle = cols[i % 3]; ell(c, a * s, b * s, 0.032 * s, 0.018 * s, i * 0.9); c.fill(); });
+}
+function drawSkMochi(c, s, lw) {
+  // Green pickled sakura leaf cradling plump pink sakura mochi
+  c.save(); c.lineJoin = 'round';
+  ell(c, 0, 0.26 * s, 0.44 * s, 0.14 * s); fs(c, '#5DBB63', lw);
+  c.beginPath(); c.moveTo(-0.36 * s, 0.28 * s); c.quadraticCurveTo(0, 0.16 * s, 0.36 * s, 0.26 * s); stroke(c, lw * 0.6, '#3D8A46');
+  c.beginPath();
+  c.moveTo(-0.34 * s, 0.2 * s);
+  c.bezierCurveTo(-0.38 * s, -0.24 * s, 0.38 * s, -0.24 * s, 0.34 * s, 0.2 * s);
+  c.quadraticCurveTo(0, 0.32 * s, -0.34 * s, 0.2 * s);
+  c.closePath(); fs(c, '#FFD4E2', lw);
+  // Leaf fold wrapping front-right
+  c.beginPath(); c.moveTo(-0.18 * s, 0.25 * s); c.quadraticCurveTo(0.14 * s, 0.1 * s, 0.35 * s, 0.14 * s); c.quadraticCurveTo(0.28 * s, 0.3 * s, -0.18 * s, 0.25 * s); c.closePath(); fs(c, '#6CC471', lw * 0.85);
+  c.fillStyle = 'rgba(255,255,255,0.6)'; ell(c, -0.14 * s, -0.02 * s, 0.09 * s, 0.05 * s, -0.5); c.fill();
+  miniSakura(c, 0.02 * s, -0.14 * s, 0.14 * s, lw * 0.65);
+  c.restore();
+}
+function drawSkCostume(c, kind) {
+  if (kind === 'skflower') {
+    // Floral sakura headband
+    c.beginPath(); c.arc(0, -118, 36, Math.PI * 1.16, Math.PI * 1.84); stroke(c, 5, '#6CC471');
+    [[-18, -142], [18, -142]].forEach(([x, y]) => { ell(c, x, y, 7, 3.5, x < 0 ? -0.4 : 0.4); fill(c, '#7CC36A'); });
+    miniSakura(c, -16, -144, 11, 1.8); miniSakura(c, 0, -149, 13, 2); miniSakura(c, 16, -144, 11, 1.8);
+  } else if (kind === 'skhat') {
+    // Spring straw picnic hat with sakura ribbon
+    ell(c, 0, -134, 46, 10); fs(c, '#F3D392', 3);
+    c.beginPath(); c.moveTo(-25, -135); c.bezierCurveTo(-24, -170, 24, -170, 25, -135); c.closePath(); fs(c, '#F7DFAC', 3);
+    rr(c, -26, -144, 52, 8, 3); fs(c, '#F07A9A', 2.2);
+    miniSakura(c, 22, -142, 10, 1.8);
+  } else if (kind === 'skberet') {
+    c.save(); c.translate(4, -146); c.rotate(-0.15);
+    ell(c, 0, 0, 34, 12); fs(c, '#F49AB6', 3);
+    rr(c, -2, -16, 4, 7, 2); fs(c, '#D96A8E', 1.8);
+    miniSakura(c, -18, 2, 9, 1.6);
+    c.restore();
+  }
+}
+function drawPetals(c, w, h, t, n) {
+  const cols = ['#FFB7CE', '#F79BB4', '#FFD9E6'];
+  n = n || 36;
+  c.save();
+  for (let i = 0; i < n; i++) {
+    const spY = 18 + (i * 29) % 24, spX = 10 + (i * 19) % 16;
+    const x = (((i * 91.7) % w) + t * spX + Math.sin(t * 1.4 + i) * 18 + w * 2) % (w + 20) - 10;
+    const y = (((i * 57.3) % h) + t * spY) % (h + 16) - 8;
+    const rot = t * (1.2 + (i % 3) * 0.4) + i * 1.7;
+    const flip = 0.45 + 0.55 * Math.abs(Math.cos(t * 2.2 + i));
+    const rx = 3.2 + (i % 3) * 1.1, ry = 1.9 + (i % 3) * 0.6;
+    c.save(); c.translate(x, y); c.rotate(rot); c.scale(1, flip);
+    c.globalAlpha = 0.65 + (i % 3) * 0.1;
+    c.fillStyle = cols[i % 3];
+    c.beginPath(); c.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2); c.fill();
+    c.restore();
+  }
+  c.restore();
+}
+// --- sakura decor ---
+function skWall(c, x, y, w, h) {
+  c.fillStyle = 'rgba(247,166,192,0.16)'; for (let i = x; i < x + w; i += 32) c.fillRect(i, y, 14, h);
+  // Sweeping sakura branch silhouette across top wall
+  c.beginPath(); c.moveTo(x - 4, y + h * 0.22); c.quadraticCurveTo(x + w * 0.35, y + h * 0.08, x + w * 0.72, y + h * 0.24);
+  c.moveTo(x + w * 0.26, y + h * 0.15); c.quadraticCurveTo(x + w * 0.4, y + h * 0.28, x + w * 0.52, y + h * 0.3);
+  stroke(c, 3.2, '#8A5A42');
+  [[0.14, 0.19, 7], [0.28, 0.13, 8.5], [0.46, 0.15, 7.5], [0.64, 0.21, 8], [0.48, 0.29, 6.5], [0.85, 0.18, 7]].forEach(([u, v, r]) => {
+    miniSakura(c, x + w * u, y + h * v, r, 1.1);
+  });
+  c.fillStyle = 'rgba(247,166,192,0.65)';
+  for (let i = 0; i < 20; i++) { ell(c, x + ((i * 79) % w), y + ((i * 43 + 12) % h), 3, 1.8, i * 0.8); c.fill(); }
+}
+function skLamp(c, x, y, s, glow) {
+  if (glow > 0) { c.globalAlpha = 0.36; circ(c, x, y - 4 * s, 28 * s); fill(c, '#FFD1E0'); c.globalAlpha = 1; }
+  // Japanese sakura paper lantern
+  ell(c, x, y - 4 * s, 15 * s, 16 * s); fs(c, glow > 0 ? '#FFE9F0' : '#FCD6E3', 2.2 * s);
+  c.strokeStyle = 'rgba(216,120,150,0.45)'; c.lineWidth = 1.2 * s;
+  [-7, 0, 7].forEach((dy) => { c.beginPath(); c.ellipse(x, y - 4 * s + dy * s, (14 - Math.abs(dy) * 0.45) * s, 2.4 * s, 0, 0, Math.PI); c.stroke(); });
+  rr(c, x - 8.5 * s, y - 21 * s, 17 * s, 4.5 * s, 2 * s); fs(c, '#6E4528', 1.8 * s);
+  rr(c, x - 7.5 * s, y + 10 * s, 15 * s, 4 * s, 2 * s); fs(c, '#6E4528', 1.8 * s);
+  c.beginPath(); c.moveTo(x, y + 14 * s); c.lineTo(x, y + 22 * s); stroke(c, 2 * s, '#E87A9E');
+  circ(c, x, y + 22 * s, 2.4 * s); fill(c, '#FFE07A');
+  miniSakura(c, x, y - 4 * s, 5.8 * s, 1.1 * s);
+}
+function skWindow(c, wx, wy, ww, wh, t) {
+  c.save(); c.beginPath(); c.rect(wx, wy, ww, wh); c.clip();
+  c.fillStyle = '#F7A6C0';
+  for (let i = 0; i < 12; i++) { const px = wx + (((i * 31 + Math.sin(t + i) * 8 + t * 14) % ww) + ww) % ww, py = wy + ((i * 23 + t * 16) % wh); ell(c, px, py, 2.6, 1.6, t * 2 + i); c.fill(); }
+  c.restore();
+  // Branch curving across top window frame with blossoms
+  c.beginPath(); c.moveTo(wx - 12, wy + 12); c.quadraticCurveTo(wx + ww * 0.35, wy - 10, wx + ww * 0.82, wy + 6);
+  c.moveTo(wx + ww * 0.42, wy - 2); c.quadraticCurveTo(wx + ww * 0.62, wy + 10, wx + ww + 10, wy + 4);
+  stroke(c, 4.2, '#7B4E38');
+  [[0.04, 8, 7.5], [0.22, -2, 9], [0.42, -3, 8], [0.64, 3, 9], [0.84, 5, 7.5], [1.02, 4, 7]].forEach(([u, dy, r]) => {
+    miniSakura(c, wx + ww * u, wy + dy, r, 1.3);
+  });
+  // Fallen petals resting on windowsill
+  c.fillStyle = '#F7A6C0';
+  [0.14, 0.36, 0.62, 0.82].forEach((u, i) => { ell(c, wx + ww * u, wy + wh + 4, 3.6, 2, i * 0.7); c.fill(); });
+}
+function skBonsai(c, x, y, s, t) {
+  const tt = t || 0;
+  // Ceramic pot
+  c.beginPath(); c.moveTo(x - 16 * s, y - 10 * s); c.lineTo(x + 16 * s, y - 10 * s); c.lineTo(x + 12 * s, y); c.lineTo(x - 12 * s, y); c.closePath(); fs(c, '#4F8FD9', 2 * s);
+  rr(c, x - 18 * s, y - 13 * s, 36 * s, 4 * s, 2 * s); fs(c, '#6FA7E8', 1.8 * s);
+  // Gnarled bonsai trunk
+  c.beginPath(); c.moveTo(x - 2 * s, y - 12 * s); c.quadraticCurveTo(x - 10 * s, y - 24 * s, x + 4 * s, y - 34 * s);
+  c.moveTo(x - 5 * s, y - 22 * s); c.quadraticCurveTo(x - 16 * s, y - 28 * s, x - 14 * s, y - 34 * s);
+  stroke(c, 5.5 * s, INK); stroke(c, 3.2 * s, '#7B4E38');
+  // Fluffy sakura canopy
+  [[-12, -35, 11], [6, -38, 13], [-2, -44, 11], [15, -31, 9]].forEach(([dx, dy, r], i) => {
+    circ(c, x + dx * s, y + dy * s, r * s); fs(c, i % 2 ? '#FBC2D4' : '#F79BB4', 1.8 * s);
+  });
+  [[-12, -35], [5, -40], [14, -31], [-2, -46]].forEach(([dx, dy]) => miniSakura(c, x + dx * s, y + dy * s, 4.6 * s, 0.9 * s));
+  // Tiny falling petal
+  const ph = (tt * 0.55) % 1;
+  c.globalAlpha = 1 - ph; ell(c, x + (8 + Math.sin(tt * 3) * 4) * s, y - (28 - ph * 24) * s, 2.4 * s, 1.4 * s, tt * 3); fill(c, '#F79BB4'); c.globalAlpha = 1;
+}
+function skTree(c, x, y, s, t) {
+  const sw = Math.sin((t || 0) * 1.4) * 1.6 * s;
+  // Red & white picnic blanket beneath tree
+  c.save();
+  poly(c, [[x - 38 * s, y + 2 * s], [x + 38 * s, y + 2 * s], [x + 28 * s, y - 12 * s], [x - 28 * s, y - 12 * s]]);
+  fs(c, '#FFF5E8', 1.6 * s);
+  c.clip();
+  c.fillStyle = 'rgba(240,122,154,0.45)';
+  for (let gx = x - 40 * s; gx < x + 42 * s; gx += 10 * s) c.fillRect(gx, y - 14 * s, 5 * s, 18 * s);
+  c.fillRect(x - 40 * s, y - 8 * s, 80 * s, 4 * s);
+  c.restore();
+  // Tiny mochi plate on blanket
+  ell(c, x + 12 * s, y - 4 * s, 7 * s, 3 * s); fs(c, '#FFFFFF', 1.2 * s);
+  circ(c, x + 12 * s, y - 6 * s, 3 * s); fs(c, '#FFD4E2', 1 * s);
+  // Forked cherry tree trunk
+  c.beginPath(); c.moveTo(x - 7 * s, y - 6 * s); c.quadraticCurveTo(x - 6 * s, y - 26 * s, x - 14 * s, y - 40 * s);
+  c.lineTo(x - 6 * s, y - 40 * s); c.quadraticCurveTo(x, y - 28 * s, x + 10 * s, y - 42 * s);
+  c.lineTo(x + 16 * s, y - 38 * s); c.quadraticCurveTo(x + 7 * s, y - 24 * s, x + 8 * s, y - 6 * s); c.closePath();
+  fs(c, '#7B4E38', 2 * s);
+  // Multi-layer sakura cloud canopy
+  [[-22, -44, 17, '#F79BB4'], [20, -44, 17, '#F79BB4'], [0, -56, 20, '#FBC0D2'], [-12, -52, 16, '#FFD4E2'], [12, -50, 15, '#FFE4EE']].forEach(([dx, dy, r, col]) => {
+    circ(c, x + dx * s + sw, y + dy * s, r * s); fs(c, col, 1.8 * s);
+  });
+  [[-22, -44], [0, -58], [18, -44], [-8, -48], [10, -54]].forEach(([dx, dy]) => miniSakura(c, x + dx * s + sw, y + dy * s, 5.2 * s, 1 * s));
+  // Drifting petals around the tree
+  for (let i = 0; i < 4; i++) {
+    const ph = ((t || 0) * 0.45 + i * 0.25) % 1;
+    c.globalAlpha = 1 - ph;
+    ell(c, x + (-18 + i * 12 + Math.sin((t || 0) * 2 + i) * 6) * s, y - (44 - ph * 42) * s, 2.5 * s, 1.5 * s, (t || 0) * 2 + i);
+    fill(c, '#FFB7CE');
+  }
+  c.globalAlpha = 1;
+}
+// --- 奶鼠 sakura outfits ---
+function skinSkBack(c, sk, S, t, lw) {
+  if (sk === 'sakurafairy') {
+    const fl = Math.sin(t * 9) * 0.14;
+    [-1, 1].forEach((k) => {
+      c.save(); c.translate(k * 0.28 * S, -0.92 * S); c.rotate(k * (-0.32 + fl));
+      c.globalAlpha = 0.84;
+      ell(c, k * 0.3 * S, -0.14 * S, 0.32 * S, 0.17 * S, k * -0.35); fs(c, '#FFC4D6', lw * 0.85);
+      ell(c, k * 0.22 * S, 0.12 * S, 0.22 * S, 0.13 * S, k * 0.35); fs(c, '#FFE0EB', lw * 0.85);
+      c.globalAlpha = 1;
+      c.beginPath(); c.moveTo(k * 0.08 * S, -0.06 * S); c.lineTo(k * 0.46 * S, -0.2 * S); stroke(c, lw * 0.55, 'rgba(255,255,255,0.75)');
+      c.restore();
+    });
+  } else if (sk === 'kimono') {
+    // Festive obi bow peeking behind waist
+    [-1, 1].forEach((k) => { ell(c, k * 0.44 * S, -0.46 * S, 0.18 * S, 0.11 * S, k * -0.25); fs(c, '#E85D7A', lw * 0.85); });
+  }
+}
+function skinSkBody(c, sk, S, t, lw) {
+  if (sk === 'picnic') {
+    // Painter smock + pink bow tie + brush pocket
+    c.save(); mouseBodyPath(c, S); c.clip();
+    c.fillStyle = '#FFF8EE'; c.fillRect(-0.7 * S, -0.96 * S, 1.4 * S, 1.0 * S);
+    c.restore();
+    rr(c, -0.14 * S, -0.56 * S, 0.28 * S, 0.2 * S, 0.04 * S); fs(c, '#FAD0DE', lw * 0.7);
+    c.beginPath(); c.moveTo(-0.06 * S, -0.56 * S); c.lineTo(-0.08 * S, -0.7 * S); stroke(c, lw * 1.1, '#8A5A3A');
+    circ(c, -0.085 * S, -0.72 * S, 0.03 * S); fill(c, '#F07A9A');
+    c.beginPath(); c.moveTo(0.05 * S, -0.56 * S); c.lineTo(0.08 * S, -0.68 * S); stroke(c, lw * 1.1, '#8A5A3A');
+    circ(c, 0.085 * S, -0.7 * S, 0.028 * S); fill(c, '#7FC8F5');
+    poly(c, [[0, -0.99 * S], [-0.15 * S, -1.06 * S], [-0.15 * S, -0.92 * S]]); fs(c, '#F07A9A', lw * 0.7);
+    poly(c, [[0, -0.99 * S], [0.15 * S, -1.06 * S], [0.15 * S, -0.92 * S]]); fs(c, '#F07A9A', lw * 0.7);
+    circ(c, 0, -0.99 * S, 0.04 * S); fs(c, '#FFE07A', lw * 0.6);
+    mouseBodyPath(c, S); stroke(c, lw);
+  } else if (sk === 'kimono') {
+    c.save(); mouseBodyPath(c, S); c.clip();
+    c.fillStyle = '#FBC2D4'; c.fillRect(-0.7 * S, -1.04 * S, 1.4 * S, 1.1 * S);
+    // Crossed white collar (left over right)
+    poly(c, [[-0.32 * S, -1.06 * S], [0.04 * S, -0.76 * S], [-0.04 * S, -0.7 * S], [-0.42 * S, -1.0 * S]]); fs(c, '#FFFFFF', lw * 0.65);
+    poly(c, [[0.32 * S, -1.06 * S], [-0.08 * S, -0.7 * S], [0.02 * S, -0.66 * S], [0.42 * S, -1.0 * S]]); fs(c, '#FFFFFF', lw * 0.65);
+    // Tiny sakura motifs on yukata
+    [[-0.22, -0.74], [0.22, -0.76], [-0.18, -0.22], [0.2, -0.24]].forEach(([a, b]) => miniSakura(c, a * S, b * S, 0.075 * S, lw * 0.45));
+    // Crimson obi sash + gold cord
+    c.fillStyle = '#E85D7A'; c.fillRect(-0.7 * S, -0.56 * S, 1.4 * S, 0.2 * S);
+    c.fillStyle = '#FFD34D'; c.fillRect(-0.7 * S, -0.48 * S, 1.4 * S, 0.045 * S);
+    c.restore();
+    circ(c, 0, -0.46 * S, 0.055 * S); fs(c, '#FFF0F5', lw * 0.6);
+    mouseBodyPath(c, S); stroke(c, lw);
+  } else if (sk === 'sakurafairy') {
+    // Layered sakura petal skirt + collar gem
+    const petals = (y0, w, col, sc) => {
+      c.beginPath(); c.moveTo(-w * 0.78 * S, y0 * S); c.quadraticCurveTo(0, (y0 - 0.1) * S, w * 0.78 * S, y0 * S);
+      for (let i = 0; i < 5; i++) { const x0 = w - i * 2 * w / 5, x1 = x0 - 2 * w / 5; c.quadraticCurveTo((x0 + x1) / 2 * S, (y0 + sc) * S, x1 * S, (y0 + 0.02) * S); }
+      c.closePath(); fs(c, col, lw * 0.8);
+    };
+    petals(-0.44, 0.66, '#F79BB4', 0.28);
+    petals(-0.47, 0.58, '#FFD6E5', 0.18);
+    c.beginPath(); c.moveTo(-0.34 * S, -1.02 * S); c.quadraticCurveTo(0, -0.92 * S, 0.34 * S, -1.02 * S); stroke(c, lw * 1.4, '#F79BB4');
+    miniSakura(c, 0, -0.95 * S, 0.11 * S, lw * 0.6);
+  }
+}
+function skinSkHead(c, sk, S, t, lw) {
+  if (sk === 'picnic') {
+    c.save(); c.translate(0.05 * S, -1.52 * S); c.rotate(-0.15);
+    ell(c, 0, 0, 0.33 * S, 0.11 * S); fs(c, '#F080A0', lw);
+    rr(c, -0.02 * S, -0.15 * S, 0.04 * S, 0.06 * S, 0.01 * S); fs(c, '#C95478', lw * 0.6);
+    miniSakura(c, -0.17 * S, 0.01 * S, 0.1 * S, lw * 0.55);
+    c.restore();
+  } else if (sk === 'kimono') {
+    // Sakura kanzashi hairpin near left ear with swaying petal tassel
+    const sw = Math.sin(t * 3.5) * 0.06;
+    c.save(); c.translate(-0.32 * S, -1.52 * S); c.rotate(sw);
+    c.beginPath(); c.moveTo(0, 0.02 * S); c.lineTo(-0.04 * S, 0.24 * S); stroke(c, lw * 0.8, '#F07A9A');
+    [0.14, 0.22].forEach((dy) => { ell(c, -0.03 * S, dy * S, 0.035 * S, 0.02 * S, 0.5); fill(c, '#FFB7CE'); });
+    miniSakura(c, 0, 0, 0.12 * S, lw * 0.6);
+    c.restore();
+  } else if (sk === 'sakurafairy') {
+    // Golden filigree sakura crown + floating sparkles
+    poly(c, [[-0.24 * S, -1.46 * S], [-0.26 * S, -1.66 * S], [-0.1 * S, -1.56 * S], [0, -1.72 * S], [0.1 * S, -1.56 * S], [0.26 * S, -1.66 * S], [0.24 * S, -1.46 * S]]);
+    fs(c, '#FFD34D', lw * 0.85);
+    miniSakura(c, -0.18 * S, -1.54 * S, 0.095 * S, lw * 0.55);
+    miniSakura(c, 0, -1.62 * S, 0.12 * S, lw * 0.6);
+    miniSakura(c, 0.18 * S, -1.54 * S, 0.095 * S, lw * 0.55);
+    c.fillStyle = '#FFFFFF';
+    [[-0.38, -1.72], [0.36, -1.66]].forEach(([a, b], i) => { c.globalAlpha = 0.4 + 0.6 * Math.sin(t * 5 + i * 2); star5(c, a * S, b * S, 0.045 * S); c.fill(); });
+    c.globalAlpha = 1;
+  }
+}
+function skinSkHeld(c, sk, S, t, lw) {
+  if (sk !== 'picnic') return;
+  // Blooming sakura branch held upright
+  c.beginPath(); c.moveTo(0, 0.08 * S); c.quadraticCurveTo(0.06 * S, -0.22 * S, 0.02 * S, -0.48 * S);
+  c.moveTo(0.04 * S, -0.24 * S); c.quadraticCurveTo(0.16 * S, -0.32 * S, 0.18 * S, -0.4 * S);
+  stroke(c, lw * 1.2, '#7B4E38');
+  ell(c, -0.06 * S, -0.26 * S, 0.06 * S, 0.03 * S, -0.6); fill(c, '#7CC36A');
+  miniSakura(c, 0.02 * S, -0.48 * S, 0.11 * S, lw * 0.6);
+  miniSakura(c, 0.16 * S, -0.37 * S, 0.095 * S, lw * 0.55);
+  miniSakura(c, 0.06 * S, -0.22 * S, 0.085 * S, lw * 0.55);
+}
+function sakuraGift() {
+  G.gifts = G.gifts || {};
+  if (G.gifts.sk2026) return false;
+  G.gifts.sk2026 = 1; if (!G.skins.includes('picnic')) G.skins.push('picnic'); save();
+  return true;
+}
+function sakuraIntro() {
+  const gift = sakuraGift();
+  showModal((card, close) => {
+    card.appendChild(el('h2', '', '樱花春游节开始啦！'));
+    const a = el('div', 'unlock-art'); a.appendChild(skinThumb('picnic', 110)); card.appendChild(a);
+    card.appendChild(el('p', '', '春风吹开漫天樱花！店里多了限定<b>樱花酱</b>，超市上架<b>樱花大福</b>，卖樱花美食能攒<b>樱花瓣</b>，兑换樱花纸灯笼、樱花盆景和小镇「百年樱花树」。' + (gift ? '<br>还送你一套<b>春游小画家</b>皮肤！' : '')));
+    const b = el('button', 'big-btn wide mint', gift ? '穿上春游小画家' : '看看活动'); b.type = 'button'; b.addEventListener('click', () => { close(); if (gift) { wearSkin('picnic'); renderHub(); } setTimeout(showFestival, 160); }); card.appendChild(b);
+    const c2 = el('button', 'btn ghost', '知道了'); c2.type = 'button'; c2.addEventListener('click', close); card.appendChild(c2);
+  });
+}
+
+/* =========================================================
    奶鼠小镇
    ========================================================= */
 const T_HOUSE_COST = [0, 2000, 5000, 12000];   // invite, upgrade to lv2, lv3
@@ -6637,7 +7537,8 @@ const T_FAC = [
   { id: 'bench', name: '路灯长椅', lv: 4, cost: 5000, pros: 50, desc: '晚上会亮起暖黄色的灯' },
   { id: 'clock', name: '钟楼', lv: 6, cost: 9000, pros: 70, desc: '整点会响一声' },
   { id: 'wheel', name: '摩天轮', lv: 8, cost: 15000, pros: 100, desc: '小镇最高的地方' },
-  { id: 'xtree', name: '圣诞大树', lv: 1, fest: 'xm', bells: 60, pros: 60, desc: '圣诞节限定，挂满彩灯和礼物' }
+  { id: 'xtree', name: '圣诞大树', lv: 1, fest: 'xm', bells: 60, pros: 60, desc: '圣诞节限定，挂满彩灯和礼物' },
+  { id: 'sktree', name: '百年樱花树', lv: 1, fest: 'sk', petals: 60, pros: 60, desc: '樱花节限定，树下铺着野餐垫，微风吹过花瓣纷飞' }
 ];
 const T_COL = { mianhua: ['#FFE3EC', '#F07A9A'], afu: ['#FFE9C4', '#E8904A'], nannan: ['#E3F2FF', '#4F8FD9'], lizi: ['#FFE7D6', '#E8604C'], yuanye: ['#EFEDE8', '#6E6A78'], miemie: ['#FFF8EA', '#B48ACB'], yudian: ['#E3F6E6', '#3FA45B'], lulu: ['#FFEFF4', '#E07AA0'] };
 let TOWN = null, TL = {};
@@ -6713,10 +7614,13 @@ function tLayout() {
   TL.hall = { x: 110, y: t0 + 6, w: 170, h: 150 };
   TL.shops = { cheese: { x: 8, y: t0 + 196, w: 120, h: 140 }, mart: { x: 135, y: t0 + 196, w: 120, h: 140 }, farm: { x: 262, y: t0 + 196, w: 120, h: 140 } };
   TL.road1 = t0 + 352;
-  TL.fac = {}; T_FAC.forEach((f, i) => { TL.fac[f.id] = { x: 10 + (i % 3) * 124, y: t0 + 398 + Math.floor(i / 3) * 132, w: 120, h: 124 }; });
-  TL.road2 = t0 + 664;
-  TL.houses = {}; REG_KEYS.forEach((id, i) => { TL.houses[id] = { x: i % 2 ? 200 : 12, y: t0 + 706 + Math.floor(i / 2) * 178, w: 178, h: 168 }; });
-  TL.H = t0 + 706 + 4 * 178 + (LY.sB + 96) / TL.k;
+  const visFac = T_FAC.filter((f) => !f.fest || festOn(f.fest) || (G.t && G.t.fac.includes(f.id)));
+  TL.fac = {}; T_FAC.forEach((f) => { TL.fac[f.id] = { x: -999, y: -999, w: 0, h: 0 }; });
+  visFac.forEach((f, i) => { TL.fac[f.id] = { x: 10 + (i % 3) * 124, y: t0 + 398 + Math.floor(i / 3) * 132, w: 120, h: 124 }; });
+  const facRows = Math.max(2, Math.ceil(visFac.length / 3));
+  TL.road2 = t0 + 400 + facRows * 132;
+  TL.houses = {}; REG_KEYS.forEach((id, i) => { TL.houses[id] = { x: i % 2 ? 200 : 12, y: TL.road2 + 42 + Math.floor(i / 2) * 178, w: 178, h: 168 }; });
+  TL.H = TL.road2 + 42 + Math.ceil(REG_KEYS.length / 2) * 178 + (LY.sB + 96) / TL.k;
 }
 const tScrollMax = () => Math.max(0, TL.H * TL.k - H);
 // ---------- art ----------
@@ -6737,6 +7641,7 @@ function tHouse(c, id, r, t) {
   rr(c, bx, by, bw, bh, 5); fs(c, col[0], 2.2);
   poly(c, [[bx - 8, by + 4], [bx + bw / 2, by - bh * 0.42 - 8], [bx + bw + 8, by + 4]]); fs(c, col[1], 2.4);
   if (festActive() === 'xm') { c.beginPath(); c.moveTo(bx - 6, by + 4); c.lineTo(bx + bw / 2, by - bh * 0.42 - 6); c.lineTo(bx + bw + 6, by + 4); stroke(c, 5, '#FFFFFF'); for (let k = 0; k < 6; k++) { const u = (k + 0.5) / 6, px = bx + bw * u, py = by + 6; c.globalAlpha = 0.6 + 0.4 * Math.sin(t * 3 + k); circ(c, px, py, 2.6); fill(c, ['#E8453C', '#FFC433', '#3FB28A'][k % 3]); c.globalAlpha = 1; } }
+  else if (festActive() === 'sk') { for (let k = 0; k < 5; k++) { const u = (k + 0.5) / 5; miniSakura(c, bx + bw * u, by + 5, 4.2, 0.9); } }
   rr(c, bx + 12, by + bh - 34, 20, 34, 8); fs(c, shade(col[1], -0.1), 1.8);
   rr(c, bx + 42, by + 14, 22, 18, 3); fs(c, '#9ED8F0', 1.6);
   if (lv >= 2) { rr(c, bx + 72, by + 14, 18, 18, 3); fs(c, '#9ED8F0', 1.6); }
@@ -6749,6 +7654,7 @@ function tHouse(c, id, r, t) {
   const bob = Math.sin(t * 2 + id.length) * 1.5, cx = r.x + r.w - 54, cy = r.y + r.h - 16;
   drawCritter(c, SPECIES[R.sp], cx, cy + bob, 0.28, { t, mood: ready || h.req ? 'happy' : 'ok' });
   if (festActive() === 'xm') drawCostume(c, 'santa', cx, cy + bob, 0.28);
+  else if (festActive() === 'sk') drawCostume(c, 'skflower', cx, cy + bob, 0.28);
   fLabel(c, r.x + 52, r.y + 16, R.name + ' 的家 Lv.' + lv, 10.5);
   if (h.req) {
     const rq = h.req, ic = rq.items ? rq.items[0][0] : null, can = tCanReq(id), bb = Math.sin(t * 4) * 2;
@@ -6773,6 +7679,7 @@ function tShop(c, kind, r, t) {
     if (kind === 'mart' && !G.m) { c.globalAlpha = 0.55; rr(c, bx, by, bw, bh, 5); fill(c, '#FFFFFF'); c.globalAlpha = 1; }
   }
   if (festActive() === 'xm') { c.beginPath(); c.moveTo(bx - 2, by - 2); c.quadraticCurveTo(bx + bw / 2, by + 12, bx + bw + 2, by - 2); stroke(c, 4, '#3FA45B'); }
+  else if (festActive() === 'sk') { c.beginPath(); c.moveTo(bx - 2, by - 2); c.quadraticCurveTo(bx + bw / 2, by + 10, bx + bw + 2, by - 2); stroke(c, 3, '#F7A6C0'); [0.22, 0.5, 0.78].forEach((u) => miniSakura(c, bx + bw * u, by + 3, 4.2, 0.9)); }
   fLabel(c, x + w / 2, y + hh - 13, kind === 'cheese' ? '奶鼠奶酪屋' : kind === 'mart' ? (G.m ? '奶鼠超市' : '空铺子') : (G.f ? '奶鼠牧场' : '郊外牧场'), 11);
 }
 function tHall(c, r, t) {
@@ -6792,7 +7699,7 @@ function tFac(c, f, r, t) {
   const cx = r.x + r.w / 2, by = r.y + r.h - 18;
   if (!own) {
     c.save(); c.setLineDash([5, 5]); rr(c, r.x + 6, r.y + 6, r.w - 12, r.h - 12, 10); stroke(c, 2, 'rgba(61,44,41,0.3)'); c.restore();
-    if (f.fest) fWoodSign(c, cx, by - 20, f.name, '铃铛 ' + f.bells);
+    if (f.fest) fWoodSign(c, cx, by - 20, f.name, festCurName(f.fest) + ' ' + f[festCur(f.fest)]);
     else if (tLv() >= f.lv) fWoodSign(c, cx, by - 20, f.name, '◎' + f.cost.toLocaleString('en-US'));
     else { fLock(c, cx, r.y + r.h / 2 - 10, 20); fLabel(c, cx, r.y + r.h / 2 + 18, '小镇 Lv.' + f.lv, 11); }
     return;
@@ -6803,6 +7710,7 @@ function tFac(c, f, r, t) {
   else if (f.id === 'clock') { rr(c, cx - 18, r.y + 22, 36, r.h - 40, 3); fs(c, '#E8C08E', 2.2); poly(c, [[cx - 24, r.y + 24], [cx, r.y + 4], [cx + 24, r.y + 24]]); fs(c, '#7FAE45', 2.2); circ(c, cx, r.y + 44, 12); fs(c, '#FFFFFF', 2); const a = t * 0.5; c.beginPath(); c.moveTo(cx, r.y + 44); c.lineTo(cx + Math.cos(a) * 8, r.y + 44 + Math.sin(a) * 8); c.moveTo(cx, r.y + 44); c.lineTo(cx, r.y + 37); stroke(c, 1.8); rr(c, cx - 8, by - 24, 16, 22, 6); fs(c, '#C98B55', 1.6); }
   else if (f.id === 'wheel') { const wy = r.y + 52, R2 = 40; c.beginPath(); c.moveTo(cx - 24, by); c.lineTo(cx, wy); c.lineTo(cx + 24, by); stroke(c, 3, '#5A5A66'); circ(c, cx, wy, R2); stroke(c, 2.4); for (let k = 0; k < 8; k++) { const a = t * 0.3 + k * Math.PI / 4, px = cx + Math.cos(a) * R2, py = wy + Math.sin(a) * R2; c.beginPath(); c.moveTo(cx, wy); c.lineTo(px, py); stroke(c, 1.2, '#7B6157'); rr(c, px - 6, py, 12, 10, 3); fs(c, ['#F07A9A', '#FFC433', '#7FC8F5', '#3FB28A'][k % 4], 1.4); } circ(c, cx, wy, 4); fs(c, '#FFC433', 1.4); }
   else if (f.id === 'xtree') { xmTree(c, cx, by, 1.6, t); [[-30, 0, '#E8453C'], [24, 0, '#4F8FD9'], [-14, 4, '#FFC433']].forEach(([dx, dy, col]) => { rr(c, cx + dx - 8, by - 12 + dy, 16, 12, 2); fs(c, col, 1.6); c.beginPath(); c.moveTo(cx + dx, by - 12 + dy); c.lineTo(cx + dx, by + dy); stroke(c, 2, '#FFFFFF'); }); }
+  else if (f.id === 'sktree') { skTree(c, cx, by, 1.32, t); }
   fLabel(c, cx, r.y + r.h - 9, f.name, 10.5);
 }
 function tRender() {
@@ -6811,25 +7719,38 @@ function tRender() {
   c.setTransform(DPR * k, 0, 0, DPR * k, DPR * OX, -DPR * TOWN.scroll); c.lineJoin = 'round'; c.lineCap = 'round';
   const top = TOWN.scroll / k, bot = top + H / k;
   c.fillStyle = fGrassPattern(c); c.fillRect(-OX / k - 2, top - 4, W / k + 4, bot - top + 8);
-  if (festActive() === 'xm') { c.fillStyle = 'rgba(255,255,255,0.35)'; c.fillRect(-OX / k - 2, top - 4, W / k + 4, bot - top + 8); }
+  const fa = festActive();
+  if (fa === 'xm') { c.fillStyle = 'rgba(255,255,255,0.35)'; c.fillRect(-OX / k - 2, top - 4, W / k + 4, bot - top + 8); }
+  else if (fa === 'sk') { c.fillStyle = 'rgba(255,220,234,0.16)'; c.fillRect(-OX / k - 2, top - 4, W / k + 4, bot - top + 8); }
   rr(c, -10, TL.road1, FW + 20, 34, 0); fill(c, '#D9CBB0'); rr(c, -10, TL.road2, FW + 20, 34, 0); fill(c, '#D9CBB0');
   c.fillStyle = 'rgba(255,255,255,0.5)'; for (let x = 6; x < FW; x += 40) { c.fillRect(x, TL.road1 + 15, 20, 4); c.fillRect(x, TL.road2 + 15, 20, 4); }
-  const vis = (r) => r.y + r.h + 60 > top && r.y - 60 < bot;
-  // arch
-  if (TL.t0 - 40 < bot) { rr(c, 14, TL.t0 - 2, 8, 140, 2); fs(c, '#A8724A', 2); rr(c, FW - 22, TL.t0 - 2, 8, 140, 2); fs(c, '#A8724A', 2); }
+  const vis = (r) => r.w > 0 && r.y + r.h + 60 > top && r.y - 60 < bot;
+  // entrance lantern posts
+  if (TL.t0 - 40 < bot) {
+    const lanC = fa === 'sk' ? '#FCD6E3' : fa === 'xm' ? '#E8453C' : '#FFE8A8';
+    [14, FW - 22].forEach((px, idx) => {
+      rr(c, px, TL.t0 - 2, 8, 140, 2); fs(c, '#A8724A', 2);
+      rr(c, px - 5, TL.t0 - 8, 18, 7, 3); fs(c, '#8A5530', 1.8);
+      const lx = px + (idx ? -2 : 10), ly = TL.t0 + 18;
+      c.beginPath(); c.moveTo(px + 4, TL.t0 - 1); c.lineTo(lx, ly - 8); stroke(c, 1.5, '#5A3A22');
+      c.globalAlpha = 0.25; circ(c, lx, ly, 12); fill(c, lanC); c.globalAlpha = 1;
+      ell(c, lx, ly, 6, 7.5); fs(c, lanC, 1.6);
+    });
+  }
   if (vis(TL.hall)) tHall(c, TL.hall, t);
   Object.keys(TL.shops).forEach((kk) => { if (vis(TL.shops[kk])) tShop(c, kk, TL.shops[kk], t); });
   T_FAC.forEach((f) => { if (vis(TL.fac[f.id])) tFac(c, f, TL.fac[f.id], t); });
   REG_KEYS.forEach((id) => { if (vis(TL.houses[id])) tHouse(c, id, TL.houses[id], t); });
   TOWN.floats.forEach((f) => { c.globalAlpha = clamp(f.t / 0.4, 0, 1); fTxt(c, f.text, f.x, f.y - (1.2 - f.t) * 26, 15, f.col || '#FFFFFF', 700, FB, 3.5); }); c.globalAlpha = 1;
   c.setTransform(DPR, 0, 0, DPR, 0, 0);
-  if (festActive() === 'xm') drawSnow(c, W, H, t, 60);
+  if (fa === 'xm') drawSnow(c, W, H, t, 60);
+  else if (fa === 'sk') drawPetals(c, W, H, t, 54);
 }
 function tHit(wx, wy) {
-  const inR = (r) => wx >= r.x && wx <= r.x + r.w && wy >= r.y && wy <= r.y + r.h;
+  const inR = (r) => r && r.w > 0 && wx >= r.x && wx <= r.x + r.w && wy >= r.y && wy <= r.y + r.h;
   if (inR(TL.hall)) return { k: 'hall' };
   for (const kk of Object.keys(TL.shops)) if (inR(TL.shops[kk])) return { k: 'shop', id: kk };
-  for (const f of T_FAC) if (inR(TL.fac[f.id])) return { k: 'fac', id: f.id };
+  for (const f of T_FAC) { if (f.fest && !festOn(f.fest) && !G.t.fac.includes(f.id)) continue; if (inR(TL.fac[f.id])) return { k: 'fac', id: f.id }; }
   for (const id of REG_KEYS) if (inR(TL.houses[id])) return { k: 'house', id };
   return null;
 }
@@ -6844,7 +7765,7 @@ function tTap(hit) {
 }
 function tGo(dest) {
   tClose(true);
-  if (dest === 'farm') { if (G.f) fOpen(); else showFarmOffer(); return; }
+  if (dest === 'farm') { if (G.f) fOpen(); else { goHub(); showFarmOffer(); } return; }
   if (dest === 'mart' && !G.m) { goHub(); showMartOffer(); return; }
   if (G.shop !== dest) { G.shop = dest; M = G.m; save(); Music.stop(); if (G.set.music) setTimeout(() => Music.start(), 60); }
   sheetUp = false; goHub();
@@ -6858,10 +7779,18 @@ function tFacTap(id) {
     card.appendChild(el('p', '', f.desc + '。建好后小镇繁荣度 +' + f.pros + '。'));
     const bs = el('div', 'btns'); const no = el('button', 'btn ghost', '再想想'); no.type = 'button'; no.addEventListener('click', close);
     let ok;
-    if (f.fest) { ok = el('button', 'btn candy', '用 ' + SVG_BELL + f.bells + ' 建造'); ok.type = 'button'; if ((G.bells || 0) < f.bells) ok.disabled = true; ok.addEventListener('click', () => { if ((G.bells || 0) < f.bells) return; G.bells -= f.bells; tBuilt(f); close(); }); }
+    if (f.fest) {
+      const fk = festCur(f.fest), fc = f[fk], fn = festCurName(f.fest), fsvg = festCurSvg(f.fest);
+      ok = el('button', 'btn candy', '用 ' + fsvg + fc + ' 建造'); ok.type = 'button';
+      if ((G[fk] || 0) < fc) ok.disabled = true;
+      ok.addEventListener('click', () => { if ((G[fk] || 0) < fc) return; G[fk] -= fc; tBuilt(f); close(); });
+    }
     else ok = buyBtn(f.cost, G.coins >= f.cost, () => { if (!spend(f.cost)) return; tBuilt(f); close(); }, '建造 ');
     bs.appendChild(no); bs.appendChild(ok); card.appendChild(bs);
-    if (f.fest) card.appendChild(el('p', 'note', '现在有 ' + (G.bells || 0) + ' 个铃铛。卖姜饼口味的美食就能攒铃铛。'));
+    if (f.fest) {
+      const fk = festCur(f.fest), fn = festCurName(f.fest), topName = TOPS[FESTS[f.fest].top].name;
+      card.appendChild(el('p', 'note', '现在有 ' + (G[fk] || 0) + ' 个' + fn + '。卖' + topName + '口味的美食就能攒' + fn + '。'));
+    }
   });
 }
 function tBuilt(f) { G.t.fac.push(f.id); tAddPros(f.pros); save(); sfx.fanfare(); tFloat(TL.fac[f.id], '繁荣度 +' + f.pros, '#FFF3C4'); tHud(); }
@@ -7019,8 +7948,8 @@ $('#tabs').addEventListener('click', (e) => {
 });
 $('#grab').addEventListener('click', () => { sheetUp = !sheetUp; placeSheet(); sfx.tap(); });
 let hiddenAt = 0;
-document.addEventListener('visibilitychange', () => { if (!document.hidden && mode === 'hub' && hiddenAt && Date.now() - hiddenAt > 600000 && !modalQ.length) welcome(hiddenAt); if (document.hidden) { if (FARM || TOWN) save(); hiddenAt = Date.now(); Music.stop(); if (mode === 'day' && !paused) showPause(); save(); } else if (G.set.music && (mode === 'hub' || (mode === 'day' && !paused))) Music.start(); });
-window.addEventListener('resize', () => { layout(); if (PZ) { pzResize(); pzLayout(); } if (FARM) fResize(); if (TOWN) tResize(); });
+document.addEventListener('visibilitychange', () => { if (!document.hidden && mode === 'hub' && hiddenAt && Date.now() - hiddenAt > 600000 && !modalQ.length) welcome(hiddenAt); if (document.hidden) { if (FARM || TOWN || MG) save(); hiddenAt = Date.now(); Music.stop(); if (mode === 'day' && !paused) showPause(); save(); } else if (G.set.music && (mode === 'hub' || (mode === 'day' && !paused))) Music.start(); });
+window.addEventListener('resize', () => { layout(); if (PZ) { pzResize(); pzLayout(); } if (MG) { mgResize(); mgLayout(); } if (FARM) fResize(); if (TOWN) tResize(); });
 $('#townBtn').addEventListener('click', tEnter);
 ['down', 'move', 'up', 'cancel'].forEach((k) => $('#tc').addEventListener('pointer' + k, (e) => { e.preventDefault(); tPointer(e, k); }));
 $('#tBack').addEventListener('click', () => { sfx.tap(); tClose(); });
@@ -7041,6 +7970,18 @@ $('#fSeedDone').addEventListener('click', () => { sfx.tap(); fSeedClose(); });
 $('#pzBtn').addEventListener('click', () => { if (mode === 'hub') pzOpen(); });
 $('#pzClose').addEventListener('click', () => { sfx.tap(); pzClose(); });
 ['down', 'move', 'up', 'cancel'].forEach((k) => $('#pzc').addEventListener('pointer' + k, (e) => { e.preventDefault(); pzPointer(e, k === 'cancel' ? 'up' : k); }));
+$('#mgBtn').addEventListener('click', () => { if (mode === 'hub') mgOpen(); });
+$('#mgClose').addEventListener('click', () => { sfx.tap(); mgClose(); });
+$('#mgShake').addEventListener('click', () => { ensureAudio(); mgShake(); });
+$('#mgRestart').addEventListener('click', () => { ensureAudio(); mgRestart(); });
+['down', 'move', 'up', 'cancel'].forEach((k) => $('#mgc').addEventListener('pointer' + k, (e) => { e.preventDefault(); mgPointer(e, k); }));
+window.addEventListener('keydown', (e) => {
+  if (!MG || MG.over) return;
+  const r = MG_TIERS[MG.cur].r;
+  if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') { MG.aimX = clamp(MG.aimX - 18, r + 3, MG_W - r - 3); e.preventDefault(); }
+  else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') { MG.aimX = clamp(MG.aimX + 18, r + 3, MG_W - r - 3); e.preventDefault(); }
+  else if (e.key === ' ' || e.key === 'Enter' || e.key === 'ArrowDown') { ensureAudio(); mgDrop(); e.preventDefault(); }
+});
 window.addEventListener('pointerdown', () => { ensureAudio(); if (G.set.music && !Music.playing && (mode === 'day' || mode === 'hub')) Music.start(); }, { once: true });
 
 let last = performance.now();
@@ -7048,6 +7989,7 @@ function frame(now) {
   const dt = Math.min(0.05, Math.max(0, (now - last) / 1000)); last = now;
   const t0 = TEST ? performance.now() : 0;
   if (PZ) { pzUpdate(dt); pzRender(); requestAnimationFrame(frame); return; }
+  if (MG) { mgUpdate(dt); mgRender(); requestAnimationFrame(frame); return; }
   if (FARM) { fUpdate(dt); fRender(); requestAnimationFrame(frame); return; }
   if (TOWN) { tUpdate(dt); tRender(); requestAnimationFrame(frame); return; }
   if (!paused) update(dt);
@@ -7147,7 +8089,9 @@ if (TEST) {
     hold() { if (D) D.frozen = true; },
     layout: () => LY,
     drawMouse: (...a) => drawMouse(...a), skinKeys: () => SKIN_KEYS, wardrobe: () => showWardrobe(),
-    festDate: (d) => { FEST_NOW = d; layout(); }, pz: () => PZ, pzOpen: () => pzOpen(), pzPlaceAuto() { const P = PZ; const k = P.layer.pieces.findIndex((p) => !p.placed); if (k < 0) return false; const p = P.layer.pieces[k], hs = pzHoleSet(); for (let oi = -3; oi < 6; oi++) for (let oj = -3; oj < 6; oj++) { if (!pzFits(p.cells, oi, oj, hs)) continue; const nx = new Set(hs); p.cells.forEach(([i, j]) => nx.delete(i * 8 + oi * 8 + oj + j)); if (pzSolvable(P.layer.pieces.filter((q, n) => n !== k && !q.placed), nx)) { pzPlace(k, oi, oj); return true; } } return false; }, regGain: (id, n) => regGain(id, n, 100, 300), stories: () => showPendingStories(), regular: (id) => showRegular(id), festival: () => showFestival(),
+    festDate: (d) => { FEST_NOW = d; layout(); renderHub(); },
+    mg: () => MG, mgOpen: () => mgOpen(), mgClose: () => mgClose(), mgDrop: (x, t, b) => mgDrop(x, t, b), mgShake: () => mgShake(), mgStep: (dt) => { if (MG) mgUpdate(dt); },
+    pz: () => PZ, pzOpen: () => pzOpen(), pzPlaceAuto() { const P = PZ; const k = P.layer.pieces.findIndex((p) => !p.placed); if (k < 0) return false; const p = P.layer.pieces[k], hs = pzHoleSet(); for (let oi = -3; oi < 6; oi++) for (let oj = -3; oj < 6; oj++) { if (!pzFits(p.cells, oi, oj, hs)) continue; const nx = new Set(hs); p.cells.forEach(([i, j]) => nx.delete(i * 8 + oi * 8 + oj + j)); if (pzSolvable(P.layer.pieces.filter((q, n) => n !== k && !q.placed), nx)) { pzPlace(k, oi, oj); return true; } } return false; }, regGain: (id, n) => regGain(id, n, 100, 300), stories: () => showPendingStories(), regular: (id) => showRegular(id), festival: () => showFestival(),
     farm: () => ({ F, FARM, FL, G }), fOpen: () => { $('#modal').hidden = true; modalQ = []; if (!G.f) G.f = defaultFarm(); fOpen(); }, fAdv: (ms) => { F_OFF += ms; }, tOpen: () => { $('#modal').hidden = true; modalQ = []; tOpen(); }, setFest: (d) => { FEST_NOW = d; }, fq: (s) => eval(s), fSim: (h, o) => { G.f = defaultFarm(); F = G.f; F_OFF = 0; return fBotSim(h, o); },
     LM: () => LM, M: () => M, MD: () => MD, mc: () => mc, mq: () => mq, step: (dt) => update(dt),
     openMart() { if (!G.m) { G.m = defaultMart(); } M = G.m; G.shop = 'mart'; M.tips.intro = 1; save(); goHub(); },
@@ -7179,7 +8123,7 @@ if (TEST) {
       opts.sort((a, b) => a[0] - b[0]);
       if (opts.length && G.coins - opts[0][0] >= reserve) { G.coins -= opts[0][0]; opts[0][1](); bought = true; }
     }
-    for (const cat of Object.keys(DECOR)) { const it = DECOR[cat].items.find((x) => !G.owned.includes(cat + ':' + x[0])); if (it && G.coins > it[3] * 3) { G.coins -= it[3]; G.owned.push(cat + ':' + it[0]); G.eq[cat] = it[0]; } }
+    for (const cat of Object.keys(DECOR)) { const it = DECOR[cat].items.find((x) => !x[4] && !G.owned.includes(cat + ':' + x[0])); if (it && G.coins > it[3] * 3) { G.coins -= it[3]; G.owned.push(cat + ':' + it[0]); G.eq[cat] = it[0]; } }
     computeSpots(); buildStations(); save();
   }
 }
