@@ -321,6 +321,30 @@ button{font:inherit;color:inherit;touch-action:manipulation}
 .fsell{position:sticky;bottom:-18px;display:flex;align-items:center;gap:6px;background:var(--paper);border:2.5px solid var(--ink);border-radius:16px;padding:8px 10px;box-shadow:0 -3px 0 rgba(61,44,41,.12)}
 .fsell .btn{min-width:0}
 .load-err{position:fixed;left:16px;right:16px;top:40%;z-index:20;text-align:center;background:var(--card);border:3px solid var(--ink);border-radius:18px;padding:16px;font-weight:700}
+.dy-pill{align-self:flex-start;appearance:none;border:2px solid var(--ink);background:#FFF3C4;color:var(--ink);border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 0 rgba(61,44,41,.18);line-height:1.35}
+.dy-pill:active{transform:translateY(1px);box-shadow:none}
+.dy-banner{flex:none;display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 max(12px,env(safe-area-inset-right,0px)) 8px max(12px,env(safe-area-inset-left,0px));padding:7px 10px;background:linear-gradient(90deg,#FFF4C2,#FFE4EC);border:2.5px solid var(--ink);border-radius:16px;box-shadow:0 3px 0 rgba(61,44,41,.18);cursor:pointer;text-align:left}
+.card .dy-banner{margin:2px 0}
+.dy-btxt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.dy-btxt b{font-size:12.5px;font-weight:900;color:var(--ink);line-height:1.3;word-break:break-word}
+.dy-btxt b code{font-family:var(--f-num);font-size:13px;background:#fff;padding:0 5px;border-radius:6px;border:1.5px solid var(--ink);margin-left:2px}
+.dy-btxt small{font-size:11.5px;font-weight:700;color:#B8435E;line-height:1.3}
+.dy-cpbtn{appearance:none;flex:none;border:2px solid var(--ink);background:var(--cheese);color:var(--ink);font-weight:900;font-size:12px;padding:6px 10px;border-radius:999px;box-shadow:0 2.5px 0 var(--ink);cursor:pointer;white-space:nowrap}
+.dy-cpbtn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
+.dy-cpbtn.ok{background:var(--mint);color:#fff}
+.dy-foot{appearance:none;width:100%;border:2px dashed #D8C2A3;background:#FFF9EE;color:var(--ink-soft);border-radius:14px;padding:8px 10px;font-size:11.5px;font-weight:700;line-height:1.45;text-align:center;cursor:pointer;margin-top:4px}
+.about-modal{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;background:rgba(61,44,41,.52);padding:16px;box-sizing:border-box;pointer-events:auto}
+.dy-idcard{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#FFF6C8,#FFE5EE);border:2.5px solid var(--ink);border-radius:18px;padding:10px 12px;text-align:left;box-shadow:0 3px 0 rgba(61,44,41,.14)}
+.dy-idcard canvas{width:56px;height:56px;border-radius:14px;background:#FFFDF8;border:2px solid var(--ink);flex:none}
+.dy-idinfo{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.dy-idinfo b{font-size:15px;font-weight:900;color:var(--ink)}
+.dy-idinfo span{font-family:var(--f-num);font-size:14px;font-weight:700;color:#D9533A}
+.dy-idinfo small{font-size:12px;font-weight:700;color:var(--ink-soft)}
+.dy-box{background:var(--card);border:2px solid var(--ink);border-radius:16px;padding:10px 12px;text-align:left;font-size:12.5px;line-height:1.55;color:var(--ink)}
+.dy-box.warn{background:#FFF4F2;border-color:#D9533A}
+.dy-box b{color:#C93B2B}
+.dy-box.thanks b{color:#C2457E}
+.dy-float-toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 14px);transform:translateX(-50%);z-index:80;max-width:calc(100vw - 28px);background:rgba(42,28,25,.94);color:#fff;font-weight:800;font-size:13.5px;padding:8px 16px;border-radius:999px;border:2px solid #FFC433;box-shadow:0 4px 12px rgba(0,0,0,.25);pointer-events:none;white-space:nowrap}
 @media (prefers-reduced-motion: reduce){.card,.stars3 .s-on,.pill.bump,.combo.pop{animation:none}}
 </style>
 </head>
@@ -355,10 +379,18 @@ button{font:inherit;color:inherit;touch-action:manipulation}
       <div class="day-info">
         <div class="day-title"><b id="hubDay">第 1 天</b><button class="rep" id="hubRep" type="button" hidden>口碑 Lv.0</button><span class="event" id="hubEvent" hidden></span><button class="festchip" id="hubFest" type="button" hidden></button></div>
         <div class="goals" id="hubGoals"></div>
+        <button class="dy-pill" id="hubAboutPill" type="button">🎵 更多奶鼠游戏 · 版权与致谢</button>
       </div>
       <div class="openwrap"><button class="big-btn" id="openBtn" type="button">开门营业</button><div class="minibtns"><button class="pzbtn" id="pzBtn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 7.5 12 12 4 7.5z" fill="#7FE0F5" stroke="#3D2C29" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 7.5V16.5L12 21V12z" fill="#38C6E8" stroke="#3D2C29" stroke-width="1.8" stroke-linejoin="round"/><path d="M20 7.5V16.5L12 21V12z" fill="#2390B0" stroke="#3D2C29" stroke-width="1.8" stroke-linejoin="round"/></svg>方块</button><button class="pzbtn mgbtn" id="mgBtn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="#FFE07A" stroke="#3D2C29" stroke-width="2"/><path d="M7.5 14.5l9-6v6z" fill="#FFC433" stroke="#3D2C29" stroke-width="1.6" stroke-linejoin="round"/><circle cx="11" cy="13" r="1.2" fill="#E39B12"/><circle cx="14.5" cy="12" r="1" fill="#E39B12"/></svg>合成</button></div></div>
     </div>
     <div class="quests" id="hubQuests" hidden></div>
+    <div class="dy-banner" id="hubDyBanner" role="button" tabindex="0" aria-label="抖音名片与更多奶鼠游戏">
+      <div class="dy-btxt">
+        <b>🎵 抖音：喜欢玩奶鼠游戏 <code>26172698685</code></b>
+        <small>✨ 主页还有很多奶鼠游戏发布 · 点此查看声明</small>
+      </div>
+      <button class="dy-cpbtn" id="hubDyCopy" type="button">复制抖音号</button>
+    </div>
     <nav class="tabs" role="tablist" id="tabs"></nav>
     <div class="tab-body" id="tabBody" role="tabpanel"></div>
   </section>
@@ -388,6 +420,8 @@ button{font:inherit;color:inherit;touch-action:manipulation}
 </div></div>
 <div class="pz" id="pz" hidden><canvas id="pzc" aria-label="奶鼠方块塔"></canvas><button class="icon-btn pzx" id="pzClose" type="button" aria-label="返回小店"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="pztitle">奶鼠方块塔</div></div>
 <div class="pz mg" id="mg" hidden><canvas id="mgc" aria-label="奶鼠甜品合成"></canvas><div class="fcol"><button class="icon-btn pzx" id="mgClose" type="button" aria-label="返回小店"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="mgbar"><button class="mgact" id="mgShake" type="button">摇一摇 <b id="mgShakeN">1</b></button><button class="mgact" id="mgRestart" type="button">重开</button></div><div class="mgover" id="mgOver" hidden></div></div></div>
+<div class="about-modal" id="aboutModal" hidden><div class="card" id="aboutCard" role="dialog" aria-modal="true" aria-label="更多游戏与版权声明"></div></div>
+<div class="dy-float-toast" id="dyFloatToast" hidden></div>
 <div class="load-err" id="loadErr" hidden>游戏没加载出来，请刷新页面再试一次。</div>
 
 <script>
@@ -2609,6 +2643,7 @@ function renderHub() {
   document.querySelectorAll('#tabs button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === curTab)));
   const body = $('#tabBody'); const scroll = body.dataset.tab === curTab ? body.scrollTop : 0; body.innerHTML = ''; body.dataset.tab = curTab;
   ({ menu: renderMenu, up: renderUp, staff: renderStaff, decor: renderDecor, album: renderAlbum, ach: renderAch })[curTab](body);
+  appendDyFooter(body);
   body.scrollTop = scroll;
   updateDots();
 }
@@ -2795,6 +2830,118 @@ function renderAch(body) {
 /* =========================================================
    modals
    ========================================================= */
+const DOUYIN_NAME = '喜欢玩奶鼠游戏';
+const DOUYIN_ID = '26172698685';
+let dyToastT = null;
+function showDyToast(msg) {
+  const t = $('#dyFloatToast');
+  if (!t) { toast(msg); return; }
+  t.textContent = msg;
+  t.hidden = false;
+  clearTimeout(dyToastT);
+  dyToastT = setTimeout(() => { t.hidden = true; }, 2200);
+}
+function copyDouyinId(btn, ev) {
+  if (ev) { ev.stopPropagation(); ev.preventDefault(); }
+  ensureAudio();
+  const markOk = () => {
+    sfx.buy();
+    showDyToast('已复制抖音号：' + DOUYIN_ID + '，快去抖音搜索吧！');
+    if (btn) {
+      const orig = btn.dataset.orig || btn.textContent;
+      btn.dataset.orig = orig;
+      btn.classList.add('ok');
+      btn.textContent = '✓ 已复制';
+      setTimeout(() => { btn.classList.remove('ok'); btn.textContent = orig; }, 2000);
+    }
+  };
+  const fallbackCopy = () => {
+    const ta = document.createElement('textarea');
+    ta.value = DOUYIN_ID;
+    ta.setAttribute('readonly', 'readonly');
+    ta.style.cssText = 'position:fixed;top:0;left:-9999px;font-size:16px;opacity:0;';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try { ta.setSelectionRange(0, DOUYIN_ID.length); } catch (e) {}
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    if (ok) markOk();
+    else showDyToast('抖音号：' + DOUYIN_ID + '（请手动记住搜索）');
+  };
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(DOUYIN_ID).then(markOk).catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
+  } catch (e) {
+    fallbackCopy();
+  }
+}
+function buildDyBanner() {
+  const wrap = el('div', 'dy-banner');
+  wrap.setAttribute('role', 'button');
+  wrap.tabIndex = 0;
+  wrap.innerHTML = '<div class="dy-btxt"><b>🎵 抖音：' + DOUYIN_NAME + ' <code>' + DOUYIN_ID + '</code></b><small>✨ 主页还有很多奶鼠游戏发布 · 点此查看声明</small></div>';
+  const cp = el('button', 'dy-cpbtn', '复制抖音号');
+  cp.type = 'button';
+  cp.addEventListener('click', (e) => copyDouyinId(cp, e));
+  wrap.appendChild(cp);
+  wrap.addEventListener('click', (e) => { if (e.target === cp) return; ensureAudio(); sfx.tap(); showAboutModal(); });
+  wrap.addEventListener('keydown', (e) => { if (e.target === cp) return; if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ensureAudio(); sfx.tap(); showAboutModal(); } });
+  return wrap;
+}
+function appendDyFooter(body) {
+  const ft = el('button', 'dy-foot', '⚠️ 免费公益同人二创 · 「奶鼠」版权归原版权方所有<br>点此查看《更多奶鼠游戏 · 版权声明与特别致谢》');
+  ft.type = 'button';
+  ft.addEventListener('click', () => { ensureAudio(); sfx.tap(); showAboutModal(); });
+  body.appendChild(ft);
+}
+function closeAboutModal() {
+  const am = $('#aboutModal');
+  if (am) am.hidden = true;
+}
+function showAboutModal() {
+  const am = $('#aboutModal'), card = $('#aboutCard');
+  if (!am || !card) return;
+  card.innerHTML = '';
+  card.appendChild(el('h2', '', '更多游戏与版权声明'));
+  const idCard = el('div', 'dy-idcard');
+  idCard.appendChild(skinThumb(G.skin && G.skin !== 'none' ? G.skin : 'blogger', 56));
+  const info = el('div', 'dy-idinfo', '<b>抖音：' + DOUYIN_NAME + '</b><span>抖音号：' + DOUYIN_ID + '</span><small>主页还有很多奶鼠游戏发布，欢迎关注体验！</small>');
+  idCard.appendChild(info);
+  card.appendChild(idCard);
+
+  const cpBig = el('button', 'big-btn wide mint', '一键复制抖音号：' + DOUYIN_ID);
+  cpBig.type = 'button';
+  cpBig.style.cssText = 'font-size:17px;letter-spacing:.02em;padding:9px 10px 11px;';
+  cpBig.addEventListener('click', (e) => copyDouyinId(cpBig, e));
+  card.appendChild(cpBig);
+
+  const warnBox = el('div', 'dy-box warn',
+    '<b>【免费公益与版权严正声明】</b><br>' +
+    '• 本作为<b>免费公益同人二创</b>，永久免费游玩、零广告、零内购。<br>' +
+    '• 「奶鼠」角色形象及相关版权归原版权方所有（<b>不在本作者手中</b>）。<br>' +
+    '• <b>严禁任何商业售卖、付费引流、挂载广告变现或删改署名盗用！</b>若您花钱购得本作，请立即申请退款并举报倒卖者！'
+  );
+  card.appendChild(warnBox);
+
+  const thxBox = el('div', 'dy-box thanks',
+    '<b>【版本共创与特别致谢 ❤️】</b><br>' +
+    '• 本次大版本由作者与 AI 编程搭档 <b>Antigravity</b> 共同升级打造（在原版基础上新增《奶鼠甜品合成》物理玩法、樱花春游节全套限定装扮与四季切换、体验打磨与多项问题修复）。<br>' +
+    '• <b>特别感谢我的老婆一直以来的陪伴、理解与全力支持！</b>因为有你的鼓励，这间小小的奶酪屋才能越开越温暖热闹～'
+  );
+  card.appendChild(thxBox);
+
+  const okBtn = el('button', 'big-btn wide', '知道啦');
+  okBtn.type = 'button';
+  okBtn.addEventListener('click', () => { sfx.tap(); closeAboutModal(); });
+  card.appendChild(okBtn);
+  am.hidden = false;
+}
+
 let modalQ = [];
 function showModal(build, onClose) { modalQ.push({ build, onClose }); if (modalQ.length === 1) openModal(); }
 function openModal() { const m = modalQ[0]; if (!m) return; const card = $('#mcard'); card.innerHTML = ''; m.build(card, closeModal); $('#modal').hidden = false; }
@@ -2812,6 +2959,7 @@ function showResult(day, earned, stars, gl) {
     card.appendChild(lg);
     const repTxt = D.repTo > D.repFrom ? '口碑升到 Lv.' + D.repTo + '，客人会更多更挑剔' : D.repTo < D.repFrom ? '口碑降到 Lv.' + D.repTo + '，明天会轻松一点' : '';
     card.appendChild(el('p', '', (D.crown ? '戴上皇冠啦！' : stars === 3 ? '满分的一天！再多赚 ' + (gl[3] - earned) + ' 就能戴上皇冠。' : '还差 ' + (gl[Math.min(2, stars)] - earned) + ' 金币拿到下一颗星。') + (repTxt ? '<br>' + repTxt : '')));
+    card.appendChild(buildDyBanner());
     const b = el('button', 'big-btn wide', '回小店'); b.type = 'button'; b.addEventListener('click', close); card.appendChild(b);
     if (stars === 3) { sfx.fanfare(); for (let i = 0; i < 3; i++) setTimeout(() => burst(rnd(60, GW - 60), LY.top + 40, 'confetti', 28), i * 250); }
   }, () => { goHub(); checkNewUnlocks(); });
@@ -2909,14 +3057,16 @@ function showSettings() {
       fp.appendChild(fb);
     });
     card.appendChild(fp);
+    card.appendChild(buildDyBanner());
     card.appendChild(el('p', '', '进度自动存在这台手机的浏览器里。浏览器有时会清掉网页数据，隔几天备份一次存档码最保险。'));
     const bk = el('button', 'btn ghost', '备份存档'); bk.type = 'button'; bk.addEventListener('click', () => { close(); showBackup(); }); card.appendChild(bk);
     const rv = el('button', 'btn ghost', '用存档码恢复'); rv.type = 'button'; rv.addEventListener('click', () => { close(); showRestore(); }); card.appendChild(rv);
+    const ab = el('button', 'btn ghost', '更多奶鼠游戏 · 版权声明与致谢'); ab.type = 'button'; ab.addEventListener('click', () => { sfx.tap(); showAboutModal(); }); card.appendChild(ab);
     const rs = el('button', 'btn ghost', '清空存档，从头开始'); rs.type = 'button';
     rs.addEventListener('click', () => { if (rs.dataset.armed) { try { localStorage.removeItem(SAVE_KEY); } catch (e) {} G = defaultSave(); M = null; F = null; dispCoins = 0; bgDirty = true; mbgDirty = true; close(); layout(); buildStations(); goHub(); toast('已经重新开始'); } else { rs.dataset.armed = '1'; rs.textContent = '再点一次确认清空'; } });
     card.appendChild(rs);
     const b = el('button', 'big-btn wide', '好了'); b.type = 'button'; b.addEventListener('click', close); card.appendChild(b);
-    card.appendChild(el('p', '', '奶鼠奶酪屋 · by hyc'));
+    card.appendChild(el('p', '', '奶鼠奶酪屋 · 免费公益同人二创 · 感谢老婆支持 ❤️'));
   }, () => { if (festChanged) { if (festActive() === 'hw') halloweenGift(); festIntro(); } });
 }
 function showPause() {
@@ -4116,6 +4266,7 @@ function renderMartHub() {
   $('#hudStars').textContent = mStars();
   const body = $('#tabBody'); const scroll = body.dataset.tab === curTabM ? body.scrollTop : 0; body.innerHTML = ''; body.dataset.tab = curTabM;
   ({ stock: renderStock, shelf: renderShelf, mup: renderMup, mstaff: renderMStaff, ach: renderAch })[curTabM](body);
+  appendDyFooter(body);
   body.scrollTop = scroll;
   updateDots();
 }
@@ -4217,6 +4368,7 @@ function showMartResult(day, profit, stars, gl) {
     if (MD.angry >= 2) tips.push('结账排队太久了，手机支付、扫码枪、收银员都能帮忙');
     const repTxt = MD.repTo > MD.repFrom ? '口碑升到 Lv.' + MD.repTo : MD.repTo < MD.repFrom ? '口碑降到 Lv.' + MD.repTo : '';
     card.appendChild(el('p', '', (MD.crown ? '戴上皇冠啦！' : stars === 3 ? '满分的一天！' : '离下一颗星还差 ' + Math.max(0, gl[Math.min(2, stars)] - profit) + '。') + (repTxt ? '<br>' + repTxt : '') + (tips.length ? '<br>' + tips[0] : '')));
+    card.appendChild(buildDyBanner());
     const b = el('button', 'big-btn wide', '回超市'); b.type = 'button'; b.addEventListener('click', close); card.appendChild(b);
     if (stars === 3) { sfx.fanfare(); for (let i = 0; i < 3; i++) setTimeout(() => burst(rnd(60, GW - 60), LY.top + 40, 'confetti', 28), i * 250); }
   }, () => { goHub(); checkMUnlocks(); });
@@ -5142,6 +5294,7 @@ function mgEndGame() {
     + '<span>积分奖励</span><span>+' + rw + ' 金币</span>'
     + (S.bonusCoins ? '<span>金奶酪奖金</span><span>+' + S.bonusCoins + ' 金币</span>' : '');
   card.appendChild(lg);
+  card.appendChild(buildDyBanner());
   const again = el('button', 'big-btn wide mint', '再来一局'); again.type = 'button'; again.addEventListener('click', mgRestart); card.appendChild(again);
   const back = el('button', 'btn ghost', '回小店'); back.type = 'button'; back.addEventListener('click', () => { sfx.tap(); mgClose(); }); card.appendChild(back);
   ov.appendChild(card);
@@ -7938,6 +8091,11 @@ $('#setBtn').addEventListener('click', () => { ensureAudio(); showSettings(); })
 $('#hubRep').addEventListener('click', () => { ensureAudio(); sfx.tap(); if (isMart()) showMRepInfo(); else showRepInfo(); });
 $('#swapBtn').addEventListener('click', () => { ensureAudio(); swapShop(); });
 $('#hubFest').addEventListener('click', () => { ensureAudio(); sfx.tap(); showFestival(); });
+$('#hubAboutPill').addEventListener('click', () => { ensureAudio(); sfx.tap(); showAboutModal(); });
+$('#hubDyCopy').addEventListener('click', (e) => copyDouyinId($('#hubDyCopy'), e));
+$('#hubDyBanner').addEventListener('click', (e) => { if (e.target.closest('#hubDyCopy')) return; ensureAudio(); sfx.tap(); showAboutModal(); });
+$('#hubDyBanner').addEventListener('keydown', (e) => { if (e.target.closest('#hubDyCopy')) return; if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ensureAudio(); sfx.tap(); showAboutModal(); } });
+$('#aboutModal').addEventListener('click', (e) => { if (e.target === $('#aboutModal')) { sfx.tap(); closeAboutModal(); } });
 $('#pauseBtn').addEventListener('click', () => { if (mode === 'day' && !paused) showPause(); });
 $('#tabs').addEventListener('click', (e) => {
   const b = e.target.closest('button[data-tab]'); if (!b) return;
@@ -8090,7 +8248,7 @@ if (TEST) {
     layout: () => LY,
     drawMouse: (...a) => drawMouse(...a), skinKeys: () => SKIN_KEYS, wardrobe: () => showWardrobe(),
     festDate: (d) => { FEST_NOW = d; layout(); renderHub(); },
-    mg: () => MG, mgOpen: () => mgOpen(), mgClose: () => mgClose(), mgDrop: (x, t, b) => mgDrop(x, t, b), mgShake: () => mgShake(), mgStep: (dt) => { if (MG) mgUpdate(dt); },
+    mg: () => MG, mgOpen: () => mgOpen(), mgClose: () => mgClose(), mgDrop: (x, t, b) => mgDrop(x, t, b), mgShake: () => mgShake(), mgStep: (dt) => { if (MG) mgUpdate(dt); }, mgEnd: () => mgEndGame(), about: () => showAboutModal(),
     pz: () => PZ, pzOpen: () => pzOpen(), pzPlaceAuto() { const P = PZ; const k = P.layer.pieces.findIndex((p) => !p.placed); if (k < 0) return false; const p = P.layer.pieces[k], hs = pzHoleSet(); for (let oi = -3; oi < 6; oi++) for (let oj = -3; oj < 6; oj++) { if (!pzFits(p.cells, oi, oj, hs)) continue; const nx = new Set(hs); p.cells.forEach(([i, j]) => nx.delete(i * 8 + oi * 8 + oj + j)); if (pzSolvable(P.layer.pieces.filter((q, n) => n !== k && !q.placed), nx)) { pzPlace(k, oi, oj); return true; } } return false; }, regGain: (id, n) => regGain(id, n, 100, 300), stories: () => showPendingStories(), regular: (id) => showRegular(id), festival: () => showFestival(),
     farm: () => ({ F, FARM, FL, G }), fOpen: () => { $('#modal').hidden = true; modalQ = []; if (!G.f) G.f = defaultFarm(); fOpen(); }, fAdv: (ms) => { F_OFF += ms; }, tOpen: () => { $('#modal').hidden = true; modalQ = []; tOpen(); }, setFest: (d) => { FEST_NOW = d; }, fq: (s) => eval(s), fSim: (h, o) => { G.f = defaultFarm(); F = G.f; F_OFF = 0; return fBotSim(h, o); },
     LM: () => LM, M: () => M, MD: () => MD, mc: () => mc, mq: () => mq, step: (dt) => update(dt),
